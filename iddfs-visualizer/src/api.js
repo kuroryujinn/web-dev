@@ -1,9 +1,12 @@
+// Use the Render backend URL in production, local proxy in development
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 /**
  * Fetches the IDDFS stepwise log from the Python backend.
  */
 export async function runIDDFS(graph, startNode, goalNode, maxDepth) {
     try {
-        const response = await fetch('/api/iddfs', {
+        const response = await fetch(`${API_BASE}/api/iddfs`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -24,7 +27,7 @@ export async function runIDDFS(graph, startNode, goalNode, maxDepth) {
         return steps;
     } catch (error) {
         console.error("Failed to fetch IDDFS logic from backend:", error);
-        alert("Error running IDDFS. Ensure the Python backend is running on port 8000.");
+        alert("Error running IDDFS. Ensure the Python backend is running.");
         return [];
     }
 }
@@ -34,7 +37,7 @@ export async function runIDDFS(graph, startNode, goalNode, maxDepth) {
  */
 export async function generateGraph(numNodes) {
     try {
-        const response = await fetch('/api/generate-graph', {
+        const response = await fetch(`${API_BASE}/api/generate-graph`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +53,7 @@ export async function generateGraph(numNodes) {
         return data;
     } catch (error) {
         console.error("Failed to generate graph:", error);
-        alert("Error generating graph. Ensure the Python backend is running on port 8000.");
+        alert("Error generating graph. Ensure the Python backend is running.");
         return null;
     }
 }
