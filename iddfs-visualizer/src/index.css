@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #050a18;
+  --bg-panel: #0d1526;
+  --bg-card: #111e35;
+  --border: #1e3a5f;
+  --cyan: #00f5ff;
+  --green: #39ff14;
+  --gold: #ffd700;
+  --grey-visited: #2a2a3a;
+  --teal-visited: #1a6b6b;
+  --node-unvisited: #1a2744;
+  --text-primary: #e0f0ff;
+  --text-secondary: #6888aa;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--bg-base);
+  background-image: radial-gradient(circle, #1e3a5f 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--text-primary);
+  font-family: 'Space Mono', monospace;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Syne', sans-serif;
+}
+
+/* Base custom classes for elements if needed */
+.panel {
+  @apply bg-bg-panel border border-border-custom rounded-lg p-4 shadow-lg;
+}
+
+.btn {
+  @apply px-4 py-2 bg-bg-card hover:bg-border-custom border border-border-custom text-text-primary rounded transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2;
+}
+
+.btn-primary {
+  @apply bg-teal-visited hover:bg-cyan-neon hover:text-bg-base border-cyan-neon text-cyan-neon transition duration-300;
+}
