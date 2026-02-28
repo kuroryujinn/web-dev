@@ -1,10 +1,7 @@
-from flask import Flask
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route("/")
-def home():
-    return "Backend is running."
-
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.get("/")
+def root():
+    return {"message": "Hello"}
