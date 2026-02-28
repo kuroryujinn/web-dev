@@ -1,52 +1,97 @@
-# IDDFS Visualizer
+# 🌲 IDDFS Visualizer
 
-An interactive, animated, step-by-step visual web application for the **Iterative Deepening Depth-First Search** (IDDFS) algorithm. Built with React, Vite, D3.js, and Tailwind CSS.
+> *Watch a search algorithm think — one depth at a time.*
 
-![IDDFS Visualizer Banner](https://via.placeholder.com/800x400.png?text=IDDFS+Visualizer)
+An interactive, browser-based visualization of **Iterative Deepening Depth-First Search** — an elegant algorithm that marries the memory efficiency of DFS with the optimality of BFS. Built to make the invisible mechanics of graph traversal not just visible, but beautiful.
 
-## Features
+---
 
-- **Visual Step-by-Step Animation**: Watch the algorithm expand outwards iteration by iteration.
-- **D3 Graph Rendering**: Smooth node physics and dynamic edge highlighting marking the active search path.
-- **Live Pseudocode Tracing**: A synchronized display highlighting the exact line of IDDFS pseudocode currently executing.
-- **Dynamic Stats**: Track the current depth limit, nodes visited, and execution status.
-- **Graph Editor / Presets**: Load from standard layouts (Balanced Tree, Unbalanced, Cyclic, Random) or add your own custom nodes and edges.
-- **Playback Controls**: Play, pause, step forward, step backward, or change the algorithm speed globally.
-- **Responsive Dark Theme**: Modern, sci-fi inspired dark terminal aesthetic suitable for all device sizes.
+## ✨ What is IDDFS?
 
-## Getting Started
+Iterative Deepening Depth-First Search is one of those rare algorithms that feels like a magic trick. It plunges deep into a graph like DFS, yet systematically finds the shortest path like BFS — all while using only **O(d)** memory, where *d* is the depth of the solution.
 
-### Prerequisites
-- Node.js (v18+ recommended)
-- NPM
+The secret? It restarts. Over and over. Each iteration allows itself to go one level deeper, discarding everything it learned before — and somehow, this seemingly wasteful repetition leads to the optimal answer.
 
-### Installation & Run
+This visualizer lets you *see* exactly how that happens.
 
-1. Clone this repository (or download it).
-2. Install the dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+---
 
-### Building for Production
+## 🎬 Demo
 
-To create an optimized production build:
-```bash
-npm run build
+> Explore it live → **[Launch Visualizer](https://kuroryujinn.github.io/web-dev/iddfs-visualizer)**
+
+---
+
+## 🔍 Features
+
+- **Step-by-step traversal** — watch the algorithm explore node by node, with full control over speed
+- **Depth boundary visualization** — clearly see the depth limit expand with each new iteration
+- **Backtracking animation** — observe how the algorithm unwinds its path and tries again
+- **Custom graph input** — define your own nodes, edges, and target to test any scenario
+- **Color-coded states** — instantly distinguish visited, frontier, and backtracked nodes
+- **Iteration counter** — track exactly how many restarts it takes to find the goal
+
+---
+
+## 🧠 Algorithm at a Glance
+
 ```
-The resulting files will be placed in the `dist/` directory.
+for depth_limit = 0, 1, 2, ... :
+    result = depth_limited_search(root, goal, depth_limit)
+    if result found:
+        return result
+```
 
-## Tech Stack
-- [React](https://reactjs.org/) (UI Components)
-- [Vite](https://vitejs.dev/) (Build tool)
-- [D3.js](https://d3js.org/) (Graph Physics and Rendering)
-- [Tailwind CSS](https://tailwindcss.com/) (Styling)
-- [Lucide React](https://lucide.dev/) (Icons)
+Simple. Profound. Surprisingly powerful.
 
-## How IDDFS Works
-Iterative Deepening Depth-First Search combines the space-efficiency of Depth-First Search (DFS) with the completeness of Breadth-First Search (BFS). It repeatedly runs a depth-limited version of DFS, increasing the depth limit by one each iteration, until the goal is found. This visualizer aims to make that concept intuitive to grasp algorithmically.
+---
+
+## 🚀 Getting Started
+
+No build tools. No dependencies. Just open and explore.
+
+```bash
+git clone https://github.com/kuroryujinn/web-dev.git
+cd web-dev/iddfs-visualizer
+open index.html
+```
+
+Or simply drag `index.html` into your browser.
+
+---
+
+## 🛠️ Built With
+
+- **Vanilla JavaScript** — zero dependencies, pure logic
+- **HTML5 Canvas / SVG** — smooth, expressive graph rendering
+- **CSS animations** — fluid transitions that follow the algorithm's rhythm
+
+---
+
+## 📚 Learn More
+
+- [IDDFS on Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)
+- [Comparison of graph search algorithms](https://en.wikipedia.org/wiki/Graph_traversal)
+
+---
+
+## 🤝 Contributing
+
+Got an idea to make the visualization more expressive? Found a quirk in the traversal? Pull requests are warmly welcome.
+
+1. Fork the repo
+2. Create your branch: `git checkout -b feature/your-idea`
+3. Commit your changes: `git commit -m 'Add some magic'`
+4. Push and open a PR
+
+---
+
+## 📄 License
+
+MIT — free to use, learn from, and build upon.
+
+---
+
+<p align="center">
+  <i>Sometimes the most elegant solution is the one that isn't afraid to start over.</i>
+</p>
