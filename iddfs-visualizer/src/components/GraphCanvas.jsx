@@ -30,6 +30,17 @@ export function GraphCanvas({ graphEditor, currentStep, stepsLength }) {
             .attr('d', 'M0,-5L10,0L0,5')
             .attr('fill', '#1e3a5f'); // Default edge color
 
+        // Container group for zoom/pan – all visual elements go inside this
+        const container = svg.append('g').attr('class', 'zoom-container');
+
+        // Apply zoom behavior to the SVG
+        const zoom = d3.zoom()
+            .scaleExtent([0.2, 5])
+            .on('zoom', (event) => {
+                container.attr('transform', event.transform);
+            });
+        svg.call(zoom);
+
         const simulation = d3.forceSimulation(graph.nodes)
             .force('link', d3.forceLink(graph.links).id(d => d.id).distance(80))
             .force('charge', d3.forceManyBody().strength(-300))
@@ -40,7 +51,7 @@ export function GraphCanvas({ graphEditor, currentStep, stepsLength }) {
         simulationRef.current = simulation;
 
         // Draw depth limit line (hidden by default)
-        svg.append('line')
+        container.append('line')
             .attr('class', 'depth-limit-line')
             .attr('x1', 0)
             .attr('x2', width)
@@ -52,7 +63,7 @@ export function GraphCanvas({ graphEditor, currentStep, stepsLength }) {
             .attr('display', 'none'); // Hidden initially
 
         // Draw edges
-        const link = svg.append('g')
+        const link = container.append('g')
             .attr('class', 'links')
             .selectAll('g')
             .data(graph.links)
@@ -71,7 +82,7 @@ export function GraphCanvas({ graphEditor, currentStep, stepsLength }) {
             .attr('text-anchor', 'middle');
 
         // Draw nodes
-        const node = svg.append('g')
+        const node = container.append('g')
             .attr('class', 'nodes')
             .selectAll('g')
             .data(graph.nodes)
