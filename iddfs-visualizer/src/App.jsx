@@ -6,13 +6,14 @@ import { ControlPanel } from './components/ControlPanel';
 import { PseudocodePanel } from './components/PseudocodePanel';
 import { useGraphEditor } from './hooks/useGraphEditor';
 import { useAnimationPlayer } from './hooks/useAnimationPlayer';
-import { runIDDFS } from './api';
+import { runAlgorithm } from './api';
 
 function App() {
   const graphEditor = useGraphEditor();
   const [startNode, setStartNode] = useState('A');
   const [goalNode, setGoalNode] = useState('L');
   const [maxDepth, setMaxDepth] = useState(4);
+  const [algorithm, setAlgorithm] = useState('IDDFS');
   const [algorithmSteps, setAlgorithmSteps] = useState([]);
 
   const animationPlayer = useAnimationPlayer(algorithmSteps, 500);
@@ -51,10 +52,10 @@ function App() {
       alert("Please select a valid Start Node and Goal Node.");
       return;
     }
-    const steps = await runIDDFS(graphEditor.graph, startNode, goalNode, maxDepth);
+    const steps = await runAlgorithm(algorithm, graphEditor.graph, startNode, goalNode, maxDepth);
     setAlgorithmSteps(steps || []);
     animationPlayer.reset();
-  }, [graphEditor.graph, startNode, goalNode, maxDepth, animationPlayer]);
+  }, [algorithm, graphEditor.graph, startNode, goalNode, maxDepth, animationPlayer]);
 
   // Handle Preset changes updating start/goal node defaults gracefully
   useEffect(() => {
@@ -112,10 +113,12 @@ function App() {
               setGoalNode={setGoalNode}
               maxDepth={maxDepth}
               setMaxDepth={setMaxDepth}
+              algorithm={algorithm}
+              setAlgorithm={setAlgorithm}
             />
           </div>
           <div className="flex-[0.5] min-h-[250px] lg:min-h-0 relative">
-            <PseudocodePanel currentStep={animationPlayer.currentStep} />
+            <PseudocodePanel currentStep={animationPlayer.currentStep} algorithm={algorithm} />
           </div>
         </div>
 

@@ -24,7 +24,7 @@ export function useGraphEditor(initialGraph = PRESETS.balancedTree) {
         }));
     }, []);
 
-    const addEdge = useCallback((source, target) => {
+    const addEdge = useCallback((source, target, weight = 1) => {
         if (source === target) return;
         setGraph(prev => {
             // Avoid duplicate edges
@@ -36,7 +36,7 @@ export function useGraphEditor(initialGraph = PRESETS.balancedTree) {
 
             return {
                 ...prev,
-                links: [...prev.links, { source, target }]
+                links: [...prev.links, { source, target, weight }]
             };
         });
     }, []);

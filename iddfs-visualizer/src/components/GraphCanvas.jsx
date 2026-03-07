@@ -54,12 +54,21 @@ export function GraphCanvas({ graphEditor, currentStep, stepsLength }) {
         // Draw edges
         const link = svg.append('g')
             .attr('class', 'links')
-            .selectAll('line')
+            .selectAll('g')
             .data(graph.links)
-            .enter().append('line')
+            .enter().append('g');
+
+        link.append('line')
             .attr('stroke-width', 2)
             .attr('stroke', '#1e3a5f')
             .attr('marker-end', 'url(#arrow)');
+
+        link.append('text')
+            .text(d => d.weight !== undefined && d.weight !== null ? d.weight : '')
+            .attr('fill', '#00f5ff')
+            .attr('font-size', '12px')
+            .attr('font-weight', 'bold')
+            .attr('text-anchor', 'middle');
 
         // Draw nodes
         const node = svg.append('g')
@@ -95,11 +104,15 @@ export function GraphCanvas({ graphEditor, currentStep, stepsLength }) {
                 return `translate(${d.x},${d.y})`;
             });
 
-            link
+            link.select('line')
                 .attr('x1', d => d.source.x)
                 .attr('y1', d => d.source.y)
                 .attr('x2', d => d.target.x)
                 .attr('y2', d => d.target.y);
+
+            link.select('text')
+                .attr('x', d => (d.source.x + d.target.x) / 2)
+                .attr('y', d => (d.source.y + d.target.y) / 2 - 5);
 
             // Update depth line if visible based on an approximate Y mapping
             const depthLine = svg.select('.depth-limit-line');

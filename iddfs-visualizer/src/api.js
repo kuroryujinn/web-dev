@@ -2,16 +2,17 @@
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
 /**
- * Fetches the IDDFS stepwise log from the Python backend.
+ * Fetches the algorithm stepwise log from the Python backend.
  */
-export async function runIDDFS(graph, startNode, goalNode, maxDepth) {
+export async function runAlgorithm(algorithm, graph, startNode, goalNode, maxDepth) {
     try {
-        const response = await fetch(`${API_BASE}/api/iddfs`, {
+        const response = await fetch(`${API_BASE}/api/run-algorithm`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                algorithm,
                 graph,
                 startNode,
                 goalNode,
@@ -26,8 +27,8 @@ export async function runIDDFS(graph, startNode, goalNode, maxDepth) {
         const steps = await response.json();
         return steps;
     } catch (error) {
-        console.error("Failed to fetch IDDFS logic from backend:", error);
-        alert("Error running IDDFS. Ensure the Python backend is running.");
+        console.error("Failed to fetch logic from backend:", error);
+        alert(`Error running ${algorithm}. Ensure the Python backend is running.`);
         return [];
     }
 }

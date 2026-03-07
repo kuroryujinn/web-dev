@@ -12,11 +12,14 @@ export function ControlPanel({
     goalNode,
     setGoalNode,
     maxDepth,
-    setMaxDepth
+    setMaxDepth,
+    algorithm,
+    setAlgorithm
 }) {
     const [newNodeName, setNewNodeName] = useState('');
     const [edgeSource, setEdgeSource] = useState('');
     const [edgeTarget, setEdgeTarget] = useState('');
+    const [edgeWeight, setEdgeWeight] = useState(1);
     const [numNodes, setNumNodes] = useState(8);
     const [isGenerating, setIsGenerating] = useState(false);
 
@@ -27,7 +30,7 @@ export function ControlPanel({
 
     const handleAddEdge = () => {
         if (edgeSource && edgeTarget) {
-            graphEditor.addEdge(edgeSource, edgeTarget);
+            graphEditor.addEdge(edgeSource, edgeTarget, Number(edgeWeight) || 1);
             setEdgeSource('');
             setEdgeTarget('');
         }
@@ -91,6 +94,20 @@ export function ControlPanel({
             {/* Algorithm Config */}
             <section className="border-t border-border-custom pt-4">
                 <h2 className="text-sm font-bold text-text-secondary uppercase tracking-wider mb-3">Algorithm Config</h2>
+
+                <div className="flex flex-col gap-1 mb-4">
+                    <label className="text-xs text-text-secondary">Algorithm</label>
+                    <select
+                        value={algorithm} onChange={e => setAlgorithm(e.target.value)}
+                        className="bg-bg-base border border-border-custom rounded p-1 text-sm outline-none focus:border-cyan"
+                    >
+                        <option value="IDDFS">Iterative Deepening DFS (IDDFS)</option>
+                        <option value="BFS">Breadth-First Search (BFS)</option>
+                        <option value="DFS">Depth-First Search (DFS)</option>
+                        <option value="DIJKSTRA">Dijkstra's Algorithm</option>
+                    </select>
+                </div>
+
                 <div className="grid grid-cols-2 gap-3 mb-4">
                     <div className="flex flex-col gap-1">
                         <label className="text-xs text-text-secondary">Start Node</label>
@@ -114,9 +131,9 @@ export function ControlPanel({
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-1 mb-4">
+                <div className={`flex flex-col gap-1 mb-4 ${algorithm === 'BFS' || algorithm === 'DIJKSTRA' ? 'opacity-50 pointer-events-none' : ''}`}>
                     <div className="flex justify-between text-xs text-text-secondary">
-                        <span>Max Depth</span>
+                        <span>Max Depth (IDDFS/DFS only)</span>
                         <span>{maxDepth}</span>
                     </div>
                     <input
@@ -131,7 +148,7 @@ export function ControlPanel({
                     onClick={onRunAlgorithm}
                     disabled={!startNode || !goalNode}
                 >
-                    GENERATE & RUN IDDFS
+                    GENERATE & RUN {algorithm}
                 </button>
             </section>
 
@@ -203,6 +220,12 @@ export function ControlPanel({
                             <option value="">To...</option>
                             {graphEditor.graph.nodes.map(n => <option key={`tgt-${n.id}`} value={n.id}>{n.id}</option>)}
                         </select>
+                        <input
+                            type="number" placeholder="W" min="1" max="99"
+                            value={edgeWeight} onChange={e => setEdgeWeight(e.target.value)}
+                            className="bg-bg-base border border-border-custom rounded p-1.5 text-sm outline-none focus:border-cyan w-14 min-w-0"
+                            title="Edge Weight"
+                        />
                         <button className="btn px-2 border-border-custom" onClick={handleAddEdge} disabled={!edgeSource || !edgeTarget}>
                             <Plus size={16} />
                         </button>
