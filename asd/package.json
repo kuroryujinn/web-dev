@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.13.4",
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.2",
     "chokidar": "^5.0.0",
     "jwt-decode": "^4.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tailwindcss": "^4.2.1",
+    "tailwindcss": "^4.2.2",
     "ws": "^8.19.0"
   },
   "devDependencies": {
