@@ -1,0 +1,206 @@
+[
+  {
+    "id": 1,
+    "type": "identify",
+    "questionImage": "/images/questions/banana.jpg",
+    "questionAlt": "A yellow fruit, a banana",
+    "questionLabel": "What is this?",
+    "options": [
+      { "id": "a", "image": "/images/options/banana.jpg", "label": "Banana", "correct": true },
+      { "id": "b", "image": "/images/options/apple.jpg", "label": "Apple", "correct": false },
+      { "id": "c", "image": "/images/options/grapes.jpg", "label": "Grapes", "correct": false },
+      { "id": "d", "image": "/images/options/orange.jpg", "label": "Orange", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's a banana!",
+      "incorrect": "Oops! That's a banana! Let's keep going!"
+    }
+  },
+  {
+    "id": 2,
+    "type": "identify",
+    "questionImage": "/images/questions/dog.jpg",
+    "questionAlt": "A dog",
+    "questionLabel": "What is this?",
+    "options": [
+      { "id": "a", "image": "/images/options/dog.jpg", "label": "Dog", "correct": true },
+      { "id": "b", "image": "/images/options/cat.jpg", "label": "Cat", "correct": false },
+      { "id": "c", "image": "/images/options/rabbit.jpg", "label": "Rabbit", "correct": false },
+      { "id": "d", "image": "/images/options/horse.jpg", "label": "Horse", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's a dog!",
+      "incorrect": "Oops! That's a dog! Let's keep going!"
+    }
+  },
+  {
+    "id": 3,
+    "type": "identify",
+    "questionImage": "/images/questions/sun.jpg",
+    "questionAlt": "The bright sun in the sky",
+    "questionLabel": "What is this?",
+    "options": [
+      { "id": "a", "image": "/images/options/sun.jpg", "label": "Sun", "correct": true },
+      { "id": "b", "image": "/images/options/moon.jpg", "label": "Moon", "correct": false },
+      { "id": "c", "image": "/images/options/star.jpg", "label": "Star", "correct": false },
+      { "id": "d", "image": "/images/options/cloud.jpg", "label": "Cloud", "correct": false }
+    ],
+    "feedback": {
+      "correct": "That's right, it's the sun!",
+      "incorrect": "Not quite! That's the sun."
+    }
+  },
+  {
+    "id": 4,
+    "type": "identify",
+    "questionImage": "/images/questions/chair.jpg",
+    "questionAlt": "A wooden chair",
+    "questionLabel": "What is this?",
+    "options": [
+      { "id": "a", "image": "/images/options/chair.jpg", "label": "Chair", "correct": true },
+      { "id": "b", "image": "/images/options/table.jpg", "label": "Table", "correct": false },
+      { "id": "c", "image": "/images/options/bed.jpg", "label": "Bed", "correct": false },
+      { "id": "d", "image": "/images/options/door.jpg", "label": "Door", "correct": false }
+    ],
+    "feedback": {
+      "correct": "You got it! It's a chair.",
+      "incorrect": "That's a chair. Good try!"
+    }
+  },
+  {
+    "id": 5,
+    "type": "identify",
+    "questionImage": "/images/questions/bus.jpg",
+    "questionAlt": "A yellow school bus",
+    "questionLabel": "What is this?",
+    "options": [
+      { "id": "a", "image": "/images/options/bus.jpg", "label": "Bus", "correct": true },
+      { "id": "b", "image": "/images/options/car.jpg", "label": "Car", "correct": false },
+      { "id": "c", "image": "/images/options/train.jpg", "label": "Train", "correct": false },
+      { "id": "d", "image": "/images/options/bicycle.jpg", "label": "Bicycle", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Correct! It's a bus!",
+      "incorrect": "That's a bus. Keep it up!"
+    }
+  },
+  {
+    "id": 6,
+    "type": "identify",
+    "questionImage": "/images/questions/book.jpg",
+    "questionAlt": "An open book",
+    "questionLabel": "What is this?",
+    "options": [
+      { "id": "a", "image": "/images/options/book.jpg", "label": "Book", "correct": true },
+      { "id": "b", "image": "/images/options/pencil.jpg", "label": "Pencil", "correct": false },
+      { "id": "c", "image": "/images/options/bag.jpg", "label": "Bag", "correct": false },
+      { "id": "d", "image": "/images/options/ruler.jpg", "label": "Ruler", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes, that's a book!",
+      "incorrect": "It's a book. You're learning so much!"
+    }
+  },
+  {
+    "id": 7,
+    "type": "match",
+    "questionImage": "/images/questions/bed.jpg",
+    "questionAlt": "A cozy bed",
+    "questionLabel": "Which one goes with this?",
+    "options": [
+      { "id": "a", "image": "/images/options/sleep.jpg", "label": "Sleep", "correct": true },
+      { "id": "b", "image": "/images/options/eat.jpg", "label": "Eat", "correct": false },
+      { "id": "c", "image": "/images/options/play.jpg", "label": "Play", "correct": false },
+      { "id": "d", "image": "/images/options/swim.jpg", "label": "Swim", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Great matching! You sleep in a bed.",
+      "incorrect": "A bed is for sleeping. Let's try the next one!"
+    }
+  },
+  {
+    "id": 8,
+    "type": "match",
+    "questionImage": "/images/questions/rain.jpg",
+    "questionAlt": "Rain falling from a cloud",
+    "questionLabel": "Which one goes with this?",
+    "options": [
+      { "id": "a", "image": "/images/options/umbrella.jpg", "label": "Umbrella", "correct": true },
+      { "id": "b", "image": "/images/options/sunglasses.jpg", "label": "Sunglasses", "correct": false },
+      { "id": "c", "image": "/images/options/gloves.jpg", "label": "Gloves", "correct": false },
+      { "id": "d", "image": "/images/options/hat.jpg", "label": "Hat", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Perfect! You use an umbrella when it rains.",
+      "incorrect": "An umbrella helps you stay dry in the rain."
+    }
+  },
+  {
+    "id": 9,
+    "type": "count",
+    "questionImage": "/images/questions/3-apples.jpg",
+    "questionAlt": "Three apples on a plate",
+    "questionLabel": "How many are there?",
+    "options": [
+      { "id": "a", "image": "/images/options/3.jpg", "label": "3", "correct": true },
+      { "id": "b", "image": "/images/options/1.jpg", "label": "1", "correct": false },
+      { "id": "c", "image": "/images/options/2.jpg", "label": "2", "correct": false },
+      { "id": "d", "image": "/images/options/4.jpg", "label": "4", "correct": false }
+    ],
+    "feedback": {
+      "correct": "You got it! There are 3 apples.",
+      "incorrect": "Let's count together: one, two, three. There are 3 apples."
+    }
+  },
+  {
+    "id": 10,
+    "type": "count",
+    "questionImage": "/images/questions/2-dogs.jpg",
+    "questionAlt": "Two dogs sitting together",
+    "questionLabel": "How many are there?",
+    "options": [
+      { "id": "a", "image": "/images/options/2.jpg", "label": "2", "correct": true },
+      { "id": "b", "image": "/images/options/1.jpg", "label": "1", "correct": false },
+      { "id": "c", "image": "/images/options/3.jpg", "label": "3", "correct": false },
+      { "id": "d", "image": "/images/options/4.jpg", "label": "4", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Awesome counting! There are 2 dogs.",
+      "incorrect": "There are 2 dogs. You're doing great!"
+    }
+  },
+  {
+    "id": 11,
+    "type": "math",
+    "questionLabel": "What is 3 + 2?",
+    "questionImage": null,
+    "questionAlt": "",
+    "options": [
+      { "id": "a", "label": "4", "correct": false },
+      { "id": "b", "label": "5", "correct": true },
+      { "id": "c", "label": "6", "correct": false },
+      { "id": "d", "label": "3", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Great! 3 + 2 = 5.",
+      "incorrect": "Try again! 3 + 2 = 5."
+    }
+  },
+  {
+    "id": 12,
+    "type": "math",
+    "questionLabel": "What is 7 - 4?",
+    "questionImage": null,
+    "questionAlt": "",
+    "options": [
+      { "id": "a", "label": "2", "correct": false },
+      { "id": "b", "label": "3", "correct": true },
+      { "id": "c", "label": "4", "correct": false },
+      { "id": "d", "label": "5", "correct": false }
+    ],
+    "feedback": {
+      "correct": "Correct! 7 - 4 = 3.",
+      "incorrect": "Try again! 7 - 4 = 3."
+    }
+  }
+]
