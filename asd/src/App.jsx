@@ -50,22 +50,13 @@ function AppContent() {
         {screen === 'login' && <LoginPage onLogin={handleLogin} />}
 
         {screen === 'landing' && user && (
-          <LandingScreen user={user} onStartQuiz={handleStartQuiz} />
+          <LandingScreen user={user} onStartQuiz={handleStartQuiz} onLogout={handleLogout} />
         )}
 
         {screen === 'quiz' && user && (
           <QuizScreen user={user} onBackToHome={handleBackToHome} />
         )}
       </div>
-
-      {user && (
-        <button
-          onClick={handleLogout}
-          className="fixed top-8 right-8 px-8 py-3 text-sm font-black text-rose-100 bg-rose-500/10 border-2 border-rose-500/50 hover:bg-rose-500/20 hover:border-rose-500 rounded-2xl shadow-[0_0_20px_rgba(244,63,94,0.3)] active:translate-y-[2px] active:shadow-none transition-all z-50 uppercase tracking-widest backdrop-blur-md"
-        >
-          Disconnect
-        </button>
-      )}
 
       {/* Persistent Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden h-screen w-screen z-0">

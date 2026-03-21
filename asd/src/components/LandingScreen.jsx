@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LandingScreen = ({ user, onStartQuiz }) => {
+const LandingScreen = ({ user, onStartQuiz, onLogout }) => {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-transparent w-full items-stretch overflow-hidden">
       {/* Left Section: Welcome Message */}
@@ -52,9 +52,16 @@ const LandingScreen = ({ user, onStartQuiz }) => {
               <div className="animate-pulse">{user.avatar}</div>
             </div>
             
-            <div className="inline-block bg-white/5 border border-white/10 text-cyan-400 px-14 py-5 rounded-xl font-black text-3xl shadow-2xl uppercase tracking-[0.3em]">
+            <div className="inline-block bg-white/5 border border-white/10 text-cyan-400 px-14 py-5 rounded-xl font-black text-3xl shadow-2xl uppercase tracking-[0.3em] mb-8">
               RANK :: LEVEL_01
             </div>
+
+            <button
+              onClick={onLogout}
+              className="mt-4 w-full py-6 text-xl font-black text-rose-400 hover:text-rose-100 bg-rose-500/5 hover:bg-rose-500/20 border border-rose-500/30 hover:border-rose-500 rounded-2xl transition-all uppercase tracking-[0.3em]"
+            >
+              Terminate_Connection
+            </button>
           </div>
 
           {/* Stats Grid */}
