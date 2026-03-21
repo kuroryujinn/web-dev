@@ -16,35 +16,41 @@ export const ResultScreen = ({ score, totalQuestions, onRestart, onHome }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center text-center p-8 bg-bg-card rounded-2xl border border-gray-100 shadow-sm max-w-[600px] w-full">
-      <div className="text-6xl mb-6" role="img" aria-label="Result Icon">{icon}</div>
-      
-      <h2 className="text-3xl font-bold text-text-primary mb-2">Quiz Complete!</h2>
-      <p className="text-2xl text-accent-blue font-bold mb-6">
-        You got {score} out of {totalQuestions}! 🎉
-      </p>
-      
-      <p className="text-xl text-text-secondary mb-10">
-        {message}
-      </p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#EEF4FB] p-4 md:p-8">
+      <div className="w-full max-w-4xl bg-white rounded-[32px] shadow-2xl p-8 md:p-16 border-4 border-white text-center flex flex-col items-center">
+        <div className="text-8xl md:text-9xl mb-10 animate-pulse" role="img" aria-label="Result Icon">{icon}</div>
+        
+        <h2 className="text-4xl md:text-6xl font-black text-gray-800 mb-4 tracking-tight">Quiz Complete!</h2>
+        
+        <div className="bg-blue-50 px-8 py-6 rounded-3xl border-4 border-blue-100 mb-8 w-full max-w-md">
+          <p className="text-4xl md:text-5xl text-[#4A90D9] font-black tracking-tighter">
+            {score} <span className="text-gray-400 text-2xl">/</span> {totalQuestions}
+          </p>
+          <p className="text-lg font-bold text-gray-500 uppercase tracking-widest mt-2">Final Score</p>
+        </div>
+        
+        <p className="text-2xl md:text-3xl text-gray-600 font-bold mb-12 max-w-2xl">
+          {message}
+        </p>
 
-      <div className="flex flex-col gap-4 w-full md:w-auto">
-        <button
-          onClick={onRestart}
-          className="px-8 py-4 bg-correct-green text-white text-xl font-bold rounded-xl 
-                     hover:bg-green-600 active:bg-green-700 transition-colors shadow-sm
-                     min-h-[60px]"
-        >
-          Play Again
-        </button>
-        <button
-          onClick={onHome}
-          className="px-8 py-4 bg-gray-100 text-text-secondary text-xl font-bold rounded-xl 
-                     hover:bg-gray-200 active:bg-gray-300 transition-colors
-                     min-h-[60px]"
-        >
-          Back to Start
-        </button>
+        <div className="flex flex-col md:flex-row gap-6 w-full md:w-auto">
+          <button
+            onClick={onRestart}
+            className="px-12 py-5 bg-[#4A90D9] text-white text-2xl font-black rounded-2xl 
+                       hover:bg-[#3A80C9] active:scale-95 transition-all shadow-xl hover:shadow-2xl
+                       min-h-[70px] border-b-8 border-blue-800"
+          >
+            Play Again 🔄
+          </button>
+          <button
+            onClick={onHome}
+            className="px-12 py-5 bg-gray-100 text-gray-500 text-2xl font-black rounded-2xl 
+                       hover:bg-gray-200 active:scale-95 transition-all
+                       min-h-[70px] border-b-8 border-gray-300"
+          >
+            Back to Home
+          </button>
+        </div>
       </div>
     </div>
   );

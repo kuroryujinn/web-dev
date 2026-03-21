@@ -1,37 +1,94 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #EEF4FB;
-  --color-bg-card: #FFFFFF;
-  --color-text-primary: #1E293B;
-  --color-text-secondary: #64748B;
-  --color-accent-blue: #3B82F6;
-  --color-correct-green: #22C55E;
-  --color-incorrect-red: #EF4444;
-  --color-feedback-bg: #FEF9C3;
+  --color-bg-primary: #0F172A;
+  --color-bg-card: rgba(30, 41, 59, 0.7);
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-accent-neon: #22D3EE;
+  --color-neon-pink: #F472B6;
+  --color-neon-purple: #C084FC;
+  --color-correct-green: #34D399;
+  --color-incorrect-red: #FB7185;
   --radius-xl: 12px;
   --font-sans: 'Nunito', sans-serif;
+  --animate-bounce-slow: bounce-slow 2s infinite;
+
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15%); }
+  }
+
+  @keyframes pulse-neon {
+    0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(34, 211, 238, 0.8); }
+  }
 }
 
+/* Glassmorphism Classes */
+.glass-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.neon-border-blue {
+  border: 2px solid #22D3EE;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4), inset 0 0 10px rgba(34, 211, 238, 0.2);
+}
+
+.neon-text-blue {
+  color: #22D3EE;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.neon-text-pink {
+  color: #F472B6;
+  text-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+}
+
+/* Base Styles */
 @layer base {
   :root {
-    --bg-primary: #EEF4FB;
-    --bg-card: #FFFFFF;
-    --text-primary: #1E293B;
-    --text-secondary: #64748B;
-    --accent-blue: #3B82F6;
-    --correct-green: #22C55E;
-    --incorrect-red: #EF4444;
-    --feedback-bg: #FEF9C3;
-    --border-radius: 12px;
+    --bg-primary: #0F172A;
+    --text-primary: #F8FAFC;
     --font-family: 'Nunito', system-ui, sans-serif;
   }
 
   body {
     background-color: var(--bg-primary);
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(34, 211, 238, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(192, 132, 252, 0.15) 0px, transparent 50%);
     color: var(--text-primary);
     font-family: var(--font-family);
-    margin: 0;
-    min-height: 100vh;
   }
 }
+
+/* Custom Scrollbar for a modern look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
