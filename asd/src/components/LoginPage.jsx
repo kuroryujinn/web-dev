@@ -104,27 +104,6 @@ const LoginPage = ({ onLogin }) => {
             </div>
           </div>
         </div>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-24 h-20 flex items-center justify-center lg:justify-start">
-              {selectedAvatar ? (
-                <div className="flex items-center gap-6">
-                  <div className="w-4 h-4 rounded-full bg-cyan-400 animate-ping"></div>
-                  <p className="neon-text-blue font-black text-4xl uppercase tracking-[0.2em]">
-                    Identity Validated
-                  </p>
-                </div>
-              ) : (
-                <p className="text-cyan-900 font-black text-2xl uppercase tracking-[0.5em] animate-pulse">
-                  Await selection...
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
