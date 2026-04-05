@@ -23,7 +23,7 @@ const QuizScreen = ({ user, onBackToHome }) => {
   const handleNextQuestion = () => {
     setShowFeedback(false);
     setSelectedAnswer(null);
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setCurrentQuestionIndex((prev) => prev + 1);
   };
   
   const handlePlayAgain = () => {
@@ -32,6 +32,10 @@ const QuizScreen = ({ user, onBackToHome }) => {
     setSelectedAnswer(null);
     setShowFeedback(false);
   };
+
+  if (currentQuestionIndex >= questions.length) {
+    return <ResultsScreen user={user} score={score} totalQuestions={questions.length} onPlayAgain={handlePlayAgain} onBackToHome={onBackToHome} />;
+  }
 
   if (!currentQuestion) {
     return (
@@ -42,10 +46,6 @@ const QuizScreen = ({ user, onBackToHome }) => {
         </button>
       </div>
     );
-  }
-
-  if (currentQuestionIndex >= questions.length) {
-    return <ResultsScreen user={user} score={score} totalQuestions={questions.length} onPlayAgain={handlePlayAgain} onBackToHome={onBackToHome} />;
   }
 
   return (

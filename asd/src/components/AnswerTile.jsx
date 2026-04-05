@@ -37,8 +37,8 @@ const AnswerTile = ({ option, onSelect, isSelected, isCorrect, showResult }) => 
       )}
       
       <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 flex items-center justify-center bg-transparent rounded-xl mr-6 overflow-hidden relative z-10">
-        {imageFailed ? (
-          <span className="text-2xl md:text-3xl opacity-50 grayscale">🖼️</span>
+        {imageFailed || !option.image ? (
+          <span className="text-2xl md:text-3xl opacity-50 grayscale">{option.label}</span>
         ) : (
           <img
             src={option.image}
