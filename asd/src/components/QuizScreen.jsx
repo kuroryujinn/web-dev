@@ -38,13 +38,13 @@ const QuizScreen = ({ user, onBackToHome }) => {
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-start py-12 lg:py-20 min-h-screen bg-transparent p-6 lg:p-24 w-full overflow-x-hidden">
-      <div className="w-full max-w-7xl mb-24 flex flex-col items-center relative z-10">
-        <div className="w-full max-w-6xl flex justify-between items-end mb-12 px-8">
+    <div className="relative flex flex-col items-center justify-start py-8 lg:py-12 min-h-screen bg-transparent p-4 lg:p-12 w-full overflow-x-hidden">
+      <div className="w-full max-w-5xl mb-12 flex flex-col items-center relative z-10">
+        <div className="w-full max-w-4xl flex justify-between items-end mb-8 px-4">
           <div className="flex flex-col">
-            <span className="text-sm font-black text-cyan-500 uppercase tracking-[0.5em] mb-4">Uplink Status</span>
-            <span className="text-5xl md:text-7xl font-black text-white tracking-widest leading-none">
-              QUESTION_{currentQuestionIndex + 1} <span className="text-white/10">// {questions.length}</span>
+            <span className="text-xs font-black text-sky-600 uppercase tracking-[0.4em] mb-2">Uplink Status</span>
+            <span className="text-3xl md:text-5xl font-black text-slate-800 tracking-wider leading-none">
+              QUESTION_{currentQuestionIndex + 1} <span className="text-slate-400/30">// {questions.length}</span>
             </span>
           </div>
           <div className="flex flex-col items-end">

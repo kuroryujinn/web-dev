@@ -27,24 +27,24 @@ const LoginPage = ({ onLogin }) => {
       <div className="w-full h-full flex flex-col lg:flex-row items-stretch min-h-screen">
         
         {/* Left Side: Cyber Intro */}
-        <div className="flex-1 flex flex-col justify-center p-12 md:p-20 lg:p-32 bg-[#0F172A]/40 backdrop-blur-3xl relative overflow-hidden">
-          {/* Neon Pulse */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(34,211,238,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+        <div className="flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-white/20 backdrop-blur-xl relative overflow-hidden">
+          {/* Subtle Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(14,165,233,0.05)_0%,transparent_70%)] pointer-events-none"></div>
           
-          <div className="relative z-10 max-w-2xl">
-            <div className="mb-12 inline-flex items-center justify-center p-8 rounded-full border-4 border-cyan-500/30 glass-morphism shadow-[0_0_50px_rgba(34,211,238,0.2)]">
-              <span className="text-9xl animate-bounce-slow inline-block grayscale brightness-200">🚀</span>
+          <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
+            <div className="mb-8 inline-flex items-center justify-center p-6 rounded-full border-2 border-slate-200 glass-morphism shadow-sm">
+              <span className="text-6xl animate-bounce-slow inline-block grayscale brightness-110">🚀</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-none">
-              Welcome to <br /><span className="neon-text-blue">ASD QUIZ</span>
+            <h1 className="text-4xl md:text-6xl font-black text-slate-800 mb-6 tracking-tight leading-tight">
+              Welcome to <br /><span className="text-sky-600">ASD QUIZ</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-cyan-100/60 font-medium leading-relaxed mb-16 uppercase tracking-[0.2em]">
+            <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed mb-10 uppercase tracking-widest">
               Initialize testing module_01
             </p>
             
-            <div className="space-y-12">
+            <div className="space-y-8">
               <div className="relative group">
-                <label htmlFor="name" className="text-sm font-black text-cyan-400 block mb-6 uppercase tracking-[0.5em] ml-2">
+                <label htmlFor="name" className="text-xs font-black text-sky-600 block mb-4 uppercase tracking-[0.3em] ml-1">
                   Assign Alias
                 </label>
                 <input
@@ -53,17 +53,17 @@ const LoginPage = ({ onLogin }) => {
                   value={name}
                   onChange={(e) => setName(e.target.value.slice(0, 20))}
                   placeholder="ID_QUEST_MASTER"
-                  className="w-full px-12 py-10 text-4xl border-4 border-cyan-500/20 rounded-[40px] focus:outline-none focus:ring-4 focus:ring-cyan-500/50 focus:border-cyan-400 transition-all bg-black/40 font-black text-cyan-200 placeholder:text-cyan-900/50 shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+                  className="w-full px-8 py-5 text-2xl border-2 border-slate-200 rounded-3xl focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-400 transition-all bg-white/40 font-bold text-slate-700 placeholder:text-slate-300 shadow-sm backdrop-blur-md"
                 />
               </div>
 
               <button
                 onClick={handleLogin}
                 disabled={!name || !selectedAvatar}
-                className={`w-full py-12 text-5xl font-black rounded-[40px] shadow-2xl transition-all active:scale-95 border-b-[15px] uppercase tracking-[0.3em] ${
+                className={`w-full py-6 text-3xl font-black rounded-3xl shadow-lg transition-all active:scale-95 border-b-8 uppercase tracking-widest ${
                   name && selectedAvatar 
-                    ? 'bg-cyan-500 text-black hover:bg-cyan-300 border-cyan-700 hover:shadow-[0_0_50px_rgba(34,211,238,0.6)]' 
-                    : 'bg-slate-800 text-slate-900 border-slate-950 cursor-not-allowed opacity-50 grayscale'
+                    ? 'bg-sky-600 text-white hover:bg-sky-500 border-sky-800 hover:shadow-sky-500/20' 
+                    : 'bg-slate-200 text-slate-400 border-slate-300 cursor-not-allowed opacity-50 grayscale'
                 }`}
               >
                 Launch Grid
@@ -73,31 +73,37 @@ const LoginPage = ({ onLogin }) => {
         </div>
 
         {/* Right Side: Identity Selection */}
-        <div className="flex-1 bg-black/20 p-12 md:p-20 lg:p-32 flex flex-col justify-center relative overflow-hidden border-l-4 border-cyan-500/10">
-          <div className="relative z-10 w-full max-w-4xl mx-auto">
-            <p className="text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-16 uppercase tracking-[0.8em] text-center lg:text-left">
+        <div className="flex-1 bg-slate-50/10 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative overflow-hidden border-l-2 border-slate-200/50">
+          <div className="relative z-10 w-full max-w-2xl mx-auto">
+            <p className="text-xs font-black text-slate-400 mb-10 uppercase tracking-[0.5em] text-center lg:text-left">
               Select Avatar Protocol
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {AVATARS.map((avatar) => (
                 <button
                   key={avatar}
                   onClick={() => setSelectedAvatar(avatar)}
-                  className={`aspect-square text-8xl md:text-9xl p-10 rounded-[64px] border-[6px] group relative transition-all duration-300 ${
+                  className={`aspect-square text-6xl md:text-7xl p-6 rounded-[32px] border-[4px] group relative transition-all duration-300 ${
                     selectedAvatar === avatar 
-                      ? 'bg-cyan-500/10 border-cyan-400 shadow-[0_0_60px_rgba(34,211,238,0.4)] scale-110' 
-                      : 'bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10'
+                      ? 'bg-sky-100/50 border-sky-400 shadow-lg scale-105' 
+                      : 'bg-white/40 border-slate-200 hover:border-sky-300 hover:bg-white/60'
                   }`}
                 >
-                  <div className={`transition-all duration-500 ${selectedAvatar === avatar ? 'brightness-125 scale-110 drop-shadow-[0_0_20px_rgba(34,211,238,1)]' : 'grayscale opacity-60'}`}>
+                  <div className={`transition-all duration-500 ${selectedAvatar === avatar ? 'scale-110 drop-shadow-md' : 'grayscale opacity-50'}`}>
                     {avatar}
                   </div>
                   {selectedAvatar === avatar && (
-                    <div className="absolute -top-6 -right-6 bg-cyan-400 text-black rounded-full p-6 shadow-[0_0_30px_rgba(34,211,238,0.8)] border-8 border-[#0F172A]">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" viewBox="0 0 20 20" fill="currentColor">
+                    <div className="absolute -top-3 -right-3 bg-sky-500 text-white rounded-full p-2 shadow-lg border-4 border-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
                   )}
                 </button>
               ))}
