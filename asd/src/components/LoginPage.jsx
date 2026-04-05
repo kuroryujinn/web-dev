@@ -8,8 +8,8 @@ const LoginPage = ({ onLogin }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   const handleLogin = () => {
-    if (name && selectedAvatar) {
-      const user = { name, avatar: selectedAvatar };
+    if (name) {
+      const user = { name, avatar: selectedAvatar || '🚀' };
       localStorage.setItem('asd_quiz_user', JSON.stringify(user));
       onLogin(user);
     }
@@ -59,9 +59,9 @@ const LoginPage = ({ onLogin }) => {
 
               <button
                 onClick={handleLogin}
-                disabled={!name || !selectedAvatar}
+                disabled={!name}
                 className={`w-full py-6 text-3xl font-black rounded-3xl shadow-lg transition-all active:scale-95 border-b-8 uppercase tracking-widest ${
-                  name && selectedAvatar 
+                  name 
                     ? 'bg-sky-600 text-white hover:bg-sky-500 border-sky-800 hover:shadow-sky-500/20' 
                     : 'bg-slate-200 text-slate-400 border-slate-300 cursor-not-allowed opacity-50 grayscale'
                 }`}

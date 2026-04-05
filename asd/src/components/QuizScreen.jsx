@@ -33,6 +33,17 @@ const QuizScreen = ({ user, onBackToHome }) => {
     setShowFeedback(false);
   };
 
+  if (!currentQuestion) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h2 className="text-2xl font-bold text-slate-800">LOADING_NEURAL_DATA...</h2>
+        <button onClick={onBackToHome} className="mt-4 text-sky-600 font-bold uppercase tracking-widest">
+          [ ABORT_MISSION ]
+        </button>
+      </div>
+    );
+  }
+
   if (currentQuestionIndex >= questions.length) {
     return <ResultsScreen user={user} score={score} totalQuestions={questions.length} onPlayAgain={handlePlayAgain} onBackToHome={onBackToHome} />;
   }
