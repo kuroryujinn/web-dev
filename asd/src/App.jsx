@@ -6,7 +6,7 @@ import QuizScreen from './components/QuizScreen';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 
-function AppContent() {
+function AppContent({ hasGoogleClientId }) {
   const [user, setUser] = useState(null);
   const [screen, setScreen] = useState('login');
 
@@ -50,7 +50,12 @@ function AppContent() {
         {screen === 'login' && <LoginPage onLogin={handleLogin} />}
 
         {screen === 'landing' && user && (
-          <LandingScreen user={user} onStartQuiz={handleStartQuiz} onLogout={handleLogout} />
+          <LandingScreen
+            user={user}
+            onStartQuiz={handleStartQuiz}
+            onLogout={handleLogout}
+            hasGoogleClientId={hasGoogleClientId}
+          />
         )}
 
         {screen === 'quiz' && user && (
@@ -80,12 +85,12 @@ function App() {
   }, []);
 
   if (googleIdMissing) {
-    return <AppContent />;
+    return <AppContent hasGoogleClientId={false} />;
   }
 
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <AppContent />
+      <AppContent hasGoogleClientId />
     </GoogleOAuthProvider>
   );
 }

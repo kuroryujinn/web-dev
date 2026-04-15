@@ -2,7 +2,7 @@ import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 
-const LandingScreen = ({ user, onStartQuiz, onLogout }) => {
+const GoogleLinkButton = () => {
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
       // In a real app, you'd exchange code for tokens
@@ -14,15 +14,33 @@ const LandingScreen = ({ user, onStartQuiz, onLogout }) => {
   });
 
   return (
+    <button
+      className="px-6 py-2 text-[10px] font-black text-amber-600 hover:text-white glass-card border-amber-500/20 hover:border-amber-500 rounded-lg transition-all uppercase tracking-[0.2em] backdrop-blur-3xl flex items-center gap-2"
+      onClick={() => login()}
+    >
+      <span className="text-sm">G</span> Link_Neural_ID
+    </button>
+  );
+};
+
+const LandingScreen = ({ user, onStartQuiz, onLogout, hasGoogleClientId = true }) => {
+
+  return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-transparent w-full items-stretch overflow-hidden">
       {/* Absolute Quick Actions */}
       <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 items-end">
-        <button
-          className="px-6 py-2 text-[10px] font-black text-amber-600 hover:text-white glass-card border-amber-500/20 hover:border-amber-500 rounded-lg transition-all uppercase tracking-[0.2em] backdrop-blur-3xl flex items-center gap-2"
-          onClick={() => login()}
-        >
-          <span className="text-sm">G</span> Link_Neural_ID
-        </button>
+        {hasGoogleClientId ? (
+          <GoogleLinkButton />
+        ) : (
+          <button
+            type="button"
+            className="px-6 py-2 text-[10px] font-black text-slate-400 glass-card border-slate-300/20 rounded-lg uppercase tracking-[0.2em] backdrop-blur-3xl flex items-center gap-2 cursor-not-allowed"
+            disabled
+            title="Google client ID not configured"
+          >
+            <span className="text-sm">G</span> Link_Neural_ID
+          </button>
+        )}
         <button
           onClick={onLogout}
           className="px-6 py-2 text-[10px] font-black text-rose-600 hover:text-white glass-card border-rose-500/20 hover:border-rose-500 rounded-lg transition-all uppercase tracking-[0.2em] backdrop-blur-3xl bg-rose-50/20"
