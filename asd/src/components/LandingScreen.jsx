@@ -1,6 +1,5 @@
 import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
 
 const GoogleLinkButton = () => {
   const login = useGoogleLogin({

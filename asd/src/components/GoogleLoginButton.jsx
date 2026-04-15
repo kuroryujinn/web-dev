@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 
-const GoogleLoginButton = ({ onGoogleLogin, isLoading }) => {
+const GoogleLoginButton = ({ onGoogleLogin }) => {
   const handleGoogleSuccess = (credentialResponse) => {
     try {
       const decoded = jwtDecode(credentialResponse.credential);

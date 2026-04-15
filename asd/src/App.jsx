@@ -6,24 +6,25 @@ import QuizScreen from './components/QuizScreen';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 
-function AppContent({ hasGoogleClientId }) {
-  const [user, setUser] = useState(null);
-  const [screen, setScreen] = useState('login');
+const getStoredUser = () => {
+  const storedUser = localStorage.getItem('asd_quiz_user');
+  if (!storedUser) return null;
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('asd_quiz_user');
-    if (!storedUser) return;
-
-    try {
-      const parsedUser = JSON.parse(storedUser);
-      if (parsedUser?.name && parsedUser?.avatar) {
-        setUser(parsedUser);
-        setScreen('landing');
-      }
-    } catch {
-      localStorage.removeItem('asd_quiz_user');
+  try {
+    const parsedUser = JSON.parse(storedUser);
+    if (parsedUser?.name && parsedUser?.avatar) {
+      return parsedUser;
     }
-  }, []);
+  } catch {
+    localStorage.removeItem('asd_quiz_user');
+  }
+
+  return null;
+};
+
+function AppContent({ hasGoogleClientId }) {
+  const [user, setUser] = useState(() => getStoredUser());
+  const [screen, setScreen] = useState(() => (getStoredUser() ? 'landing' : 'login'));
 
   const handleLogin = (loggedInUser) => {
     setUser(loggedInUser);
@@ -73,16 +74,13 @@ function AppContent({ hasGoogleClientId }) {
 }
 
 function App() {
-  const [googleIdMissing, setGoogleIdMissing] = useState(!GOOGLE_CLIENT_ID);
+  const googleIdMissing = !GOOGLE_CLIENT_ID;
 
   useEffect(() => {
-    if (!GOOGLE_CLIENT_ID) {
+    if (googleIdMissing) {
       console.warn('VITE_GOOGLE_CLIENT_ID not set. Google login will not work.');
-      setGoogleIdMissing(true);
-    } else {
-      setGoogleIdMissing(false);
     }
-  }, []);
+  }, [googleIdMissing]);
 
   if (googleIdMissing) {
     return <AppContent hasGoogleClientId={false} />;

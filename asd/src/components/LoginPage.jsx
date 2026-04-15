@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import GoogleLoginButton from './GoogleLoginButton';
 
 const AVATARS = ['🐶', '🐱', '🐸', '🦊', '🐼', '🐧'];
 
@@ -14,13 +13,6 @@ const LoginPage = ({ onLogin }) => {
       onLogin(user);
     }
   };
-
-  const handleGoogleLogin = (googleUser) => {
-    localStorage.setItem('asd_quiz_user', JSON.stringify(googleUser));
-    onLogin(googleUser);
-  };
-
-  const hasGoogleClientId = !!import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent w-full">

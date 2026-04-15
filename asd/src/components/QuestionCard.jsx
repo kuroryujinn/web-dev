@@ -1,21 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import AnswerTile from './AnswerTile';
 
 const QuestionCard = ({ question, onAnswerSelect, selectedAnswer }) => {
   const [questionImageFailed, setQuestionImageFailed] = useState(false);
 
-  useEffect(() => {
-    setQuestionImageFailed(false);
-  }, [question.id, question.questionImage]);
-
   const shuffledOptions = useMemo(() => {
     const options = [...question.options];
-    for (let i = options.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [options[i], options[j]] = [options[j], options[i]];
-    }
-    return options;
-  }, [question.id]);
+    if (options.length <= 1) return options;
+
+    const offset = question.id % options.length;
+    return [...options.slice(offset), ...options.slice(0, offset)];
+  }, [question.id, question.options]);
 
   return (
     <div className="w-full max-w-5xl glass-card rounded-[40px] p-8 md:p-12 lg:p-16 border-[12px] border-slate-200/50 relative overflow-hidden shadow-[0_0_60px_rgba(14,165,233,0.05)]">

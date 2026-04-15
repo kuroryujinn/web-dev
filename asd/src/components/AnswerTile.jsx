@@ -1,11 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
 const AnswerTile = ({ option, onSelect, isSelected, isCorrect, showResult }) => {
   const [imageFailed, setImageFailed] = useState(false);
-
-  useEffect(() => {
-    setImageFailed(false);
-  }, [option.image, option.label]);
 
   const getStatusClasses = () => {
     if (!showResult) {

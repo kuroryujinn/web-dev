@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import QuestionCard from './QuestionCard';
 import FeedbackOverlay from './FeedbackOverlay';
 import ResultsScreen from './ResultsScreen';
