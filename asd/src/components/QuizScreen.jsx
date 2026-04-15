@@ -40,8 +40,8 @@ const QuizScreen = ({ user, onBackToHome }) => {
   if (!currentQuestion) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <h2 className="text-2xl font-bold text-slate-800">LOADING_NEURAL_DATA...</h2>
-        <button onClick={onBackToHome} className="mt-4 text-sky-600 font-bold uppercase tracking-widest">
+        <h2 className="text-2xl font-bold text-[var(--ink)]">LOADING_QUESTIONS...</h2>
+        <button onClick={onBackToHome} className="mt-5 brutal-button pressable px-6 py-3 text-[var(--ink)] font-black uppercase tracking-[0.14em] bg-[var(--surface-butter)]">
           [ ABORT_MISSION ]
         </button>
       </div>
@@ -49,25 +49,25 @@ const QuizScreen = ({ user, onBackToHome }) => {
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-start py-8 lg:py-12 min-h-screen bg-transparent p-4 lg:p-12 w-full overflow-x-hidden">
-      <div className="w-full max-w-5xl mb-12 flex flex-col items-center relative z-10">
-        <div className="w-full max-w-4xl flex justify-between items-end mb-8 px-4">
+    <div className="relative flex flex-col items-center justify-start py-8 lg:py-12 min-h-screen bg-transparent p-4 lg:p-10 w-full overflow-x-hidden">
+      <div className="w-full max-w-5xl mb-8 flex flex-col items-center relative z-10 brutal-card raised-glass-soft bg-warm-butter/70 p-4 md:p-6">
+        <div className="w-full max-w-4xl flex justify-between items-end mb-4 px-2 md:px-4">
           <div className="flex flex-col">
-            <span className="text-xs font-black text-sky-600 uppercase tracking-[0.4em] mb-2">Uplink Status</span>
-            <span className="text-3xl md:text-5xl font-black text-slate-800 tracking-wider leading-none">
-              QUESTION_{currentQuestionIndex + 1} <span className="text-slate-400/30">// {questions.length}</span>
+            <span className="text-xs font-black text-[var(--ink-soft)] uppercase tracking-[0.28em] mb-2">Quiz Progress</span>
+            <span className="text-3xl md:text-5xl font-black text-[var(--ink)] tracking-tight leading-none">
+              QUESTION {currentQuestionIndex + 1} <span className="text-[var(--ink-soft)]">/ {questions.length}</span>
             </span>
           </div>
           <div className="flex flex-col items-end">
-            <span className="text-sm font-black text-purple-400 uppercase tracking-[0.5em] mb-4">Neural Score</span>
-            <span className="text-6xl md:text-8xl font-black neon-text-blue tabular-nums leading-none">
+            <span className="text-sm font-black text-[var(--ink-soft)] uppercase tracking-[0.3em] mb-3">Score</span>
+            <span className="text-5xl md:text-7xl font-black text-[var(--ink)] tabular-nums leading-none">
               {score * 100}
             </span>
           </div>
         </div>
-        <div className="w-full max-w-6xl h-4 bg-black/40 rounded-full overflow-hidden border-2 border-white/5 relative shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+        <div className="w-full max-w-6xl h-4 bg-white/70 rounded-full overflow-hidden border-[3px] border-[var(--ink)]">
           <div 
-            className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 transition-all duration-1000 ease-out rounded-full relative z-10 shadow-[0_0_25px_rgba(34,211,238,0.8)]"
+            className="h-full bg-[var(--surface-coral)] transition-all duration-500 ease-out rounded-full"
             style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
           />
         </div>

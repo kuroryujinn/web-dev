@@ -2,31 +2,31 @@ import React from 'react';
 
 const FeedbackOverlay = ({ isCorrect, feedback, onNext }) => {
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-gray-900/80 backdrop-blur-xl z-[100] p-10 animate-fade-in">
-      <div className={`w-full max-w-4xl p-16 md:p-24 text-center rounded-[64px] shadow-2xl border-[16px] transform transition-all animate-scale-up ${
-        isCorrect 
-          ? 'bg-white border-green-400 shadow-green-200/50' 
-          : 'bg-white border-red-400 shadow-red-200/50'
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(31,26,23,0.35)] p-6 backdrop-blur-[2px]">
+      <div className={`brutal-card raised-glass-soft w-full max-w-3xl rounded-[2rem] p-8 md:p-12 text-center ${
+        isCorrect
+          ? 'bg-warm-mint'
+          : 'bg-warm-coral'
       }`}>
-        <div className="text-9xl mb-12 animate-bounce-slow">
-          {isCorrect ? '🌟' : '💪'}
+        <div className="text-7xl mb-6">
+          {isCorrect ? '🌟' : '🧠'}
         </div>
         
-        <h2 className={`text-6xl md:text-8xl font-black mb-8 uppercase tracking-tighter ${
-          isCorrect ? 'text-green-500' : 'text-red-500'
+        <h2 className={`text-4xl md:text-6xl font-black mb-4 uppercase tracking-[0.04em] ${
+          isCorrect ? 'text-[var(--ink)]' : 'text-[var(--ink)]'
         }`}>
-          {isCorrect ? 'AMAZING!' : 'STAY POSITIVE!'}
+          {isCorrect ? 'NICE WORK!' : 'TRY AGAIN!'}
         </h2>
 
-        <p className="text-3xl md:text-4xl font-bold text-gray-600 mb-16 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-xl md:text-3xl font-black text-[var(--ink-soft)] mb-10 leading-relaxed max-w-2xl mx-auto">
           {feedback}
         </p>
 
         <button
           onClick={onNext}
-          className="w-full max-w-xl py-10 text-5xl font-black text-white bg-[#4A90D9] rounded-[40px] shadow-[0_20px_0_rgb(30,64,175)] hover:translate-y-[5px] hover:shadow-[0_15px_0_rgb(30,64,175)] active:translate-y-[20px] active:shadow-none transition-all duration-75 uppercase tracking-widest"
+          className="brutal-button pressable w-full py-4 text-2xl md:text-3xl font-black text-[var(--ink)] bg-[var(--surface-butter)] uppercase tracking-[0.16em]"
         >
-          CONTINUE 🚀
+          CONTINUE
         </button>
       </div>
     </div>

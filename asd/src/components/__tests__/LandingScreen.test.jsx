@@ -18,6 +18,8 @@ describe('LandingScreen', () => {
       );
     }).not.toThrow();
 
-    expect(screen.getByRole('button', { name: /initiate_game/i })).toBeInTheDocument();
+    const startButton = screen.getByRole('button', { name: /initiate_game/i });
+    expect(startButton).toBeInTheDocument();
+    expect(startButton.className).toMatch(/brutal-button/);
   });
 });

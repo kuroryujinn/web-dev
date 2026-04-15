@@ -16,76 +16,72 @@ const LoginPage = ({ onLogin }) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent w-full">
-      <div className="w-full h-full flex flex-col lg:flex-row items-stretch min-h-screen">
+      <div className="w-full h-full flex flex-col lg:flex-row items-stretch min-h-screen gap-6 p-4 md:p-8">
         
-        {/* Left Side: Cyber Intro */}
-        <div className="flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-white/20 backdrop-blur-xl relative overflow-hidden">
-          {/* Subtle Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(14,165,233,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+        <div className="flex-1 brutal-card raised-glass-soft flex flex-col justify-center p-8 md:p-12 lg:p-14 relative overflow-hidden bg-warm-butter/70">
           
           <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
-            <div className="mb-8 inline-flex items-center justify-center p-6 rounded-full border-2 border-slate-200 glass-morphism shadow-sm">
-              <span className="text-6xl animate-bounce-slow inline-block grayscale brightness-110">🚀</span>
+            <div className="mb-6 inline-flex items-center justify-center p-4 rounded-full border-[3px] border-[var(--ink)] bg-white/80">
+              <span className="text-5xl inline-block">🚀</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-slate-800 mb-6 tracking-tight leading-tight">
-              Welcome to <br /><span className="text-sky-600">ASD QUIZ</span>
+            <h1 className="text-4xl md:text-6xl font-black text-[var(--ink)] mb-4 tracking-tight leading-tight">
+              Welcome to <br /><span className="text-[var(--ink-soft)]">ASD QUIZ</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed mb-10 uppercase tracking-widest">
-              Initialize testing module_01
+            <p className="text-base md:text-xl text-[var(--ink-soft)] font-black leading-relaxed mb-8 uppercase tracking-[0.15em]">
+              Cozy Study Board
             </p>
             
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div className="relative group">
-                <label htmlFor="name" className="text-xs font-black text-sky-600 block mb-4 uppercase tracking-[0.3em] ml-1">
-                  Assign Alias
+                <label htmlFor="name" className="text-xs font-black text-[var(--ink-soft)] block mb-3 uppercase tracking-[0.22em] ml-1">
+                  Enter Name
                 </label>
                 <input
                   id="name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value.slice(0, 20))}
-                  placeholder="ID_QUEST_MASTER"
-                  className="w-full px-8 py-5 text-2xl border-2 border-slate-200 rounded-3xl focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-400 transition-all bg-white/40 font-bold text-slate-700 placeholder:text-slate-300 shadow-sm backdrop-blur-md"
+                  placeholder="TANMAY"
+                  className="w-full px-6 py-4 text-2xl border-[3px] border-[var(--ink)] rounded-2xl focus:outline-none transition-all bg-white/90 font-black text-[var(--ink)] placeholder:text-[var(--ink-soft)]"
                 />
               </div>
 
               <button
                 onClick={handleLogin}
                 disabled={!name}
-                className={`w-full py-6 text-3xl font-black rounded-3xl shadow-lg transition-all active:scale-95 border-b-8 uppercase tracking-widest ${
+                className={`w-full brutal-button pressable py-5 text-2xl font-black rounded-2xl uppercase tracking-[0.12em] ${
                   name 
-                    ? 'bg-sky-600 text-white hover:bg-sky-500 border-sky-800 hover:shadow-sky-500/20' 
-                    : 'bg-slate-200 text-slate-400 border-slate-300 cursor-not-allowed opacity-50 grayscale'
+                    ? 'bg-[var(--surface-coral)] text-[var(--ink)]' 
+                    : 'bg-white/70 text-[var(--ink-soft)] cursor-not-allowed'
                 }`}
               >
-                Launch Grid
+                START QUIZ
               </button>
             </div>
           </div>
         </div>
 
-        {/* Right Side: Identity Selection */}
-        <div className="flex-1 bg-slate-50/10 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative overflow-hidden border-l-2 border-slate-200/50">
+        <div className="flex-1 brutal-card raised-glass-soft bg-warm-sky/70 p-8 md:p-12 lg:p-14 flex flex-col justify-center relative overflow-hidden">
           <div className="relative z-10 w-full max-w-2xl mx-auto">
-            <p className="text-xs font-black text-slate-400 mb-10 uppercase tracking-[0.5em] text-center lg:text-left">
-              Select Avatar Protocol
+            <p className="text-xs font-black text-[var(--ink-soft)] mb-8 uppercase tracking-[0.28em] text-center lg:text-left">
+              Pick Avatar
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {AVATARS.map((avatar) => (
                 <button
                   key={avatar}
                   onClick={() => setSelectedAvatar(avatar)}
-                  className={`aspect-square text-6xl md:text-7xl p-6 rounded-[32px] border-[4px] group relative transition-all duration-300 ${
+                  className={`brutal-button pressable aspect-square text-6xl md:text-7xl p-6 rounded-[20px] group relative transition-all duration-150 ${
                     selectedAvatar === avatar 
-                      ? 'bg-sky-100/50 border-sky-400 shadow-lg scale-105' 
-                      : 'bg-white/40 border-slate-200 hover:border-sky-300 hover:bg-white/60'
+                      ? 'bg-[var(--surface-mint)] -translate-y-1' 
+                      : 'bg-white/80 hover:bg-[var(--surface-butter)]'
                   }`}
                 >
-                  <div className={`transition-all duration-500 ${selectedAvatar === avatar ? 'scale-110 drop-shadow-md' : 'grayscale opacity-50'}`}>
+                  <div className={`transition-all duration-300 ${selectedAvatar === avatar ? 'scale-110' : 'opacity-75'}`}>
                     {avatar}
                   </div>
                   {selectedAvatar === avatar && (
-                    <div className="absolute -top-3 -right-3 bg-sky-500 text-white rounded-full p-2 shadow-lg border-4 border-white">
+                    <div className="absolute -top-3 -right-3 bg-[var(--surface-coral)] text-[var(--ink)] rounded-full p-2 border-[3px] border-[var(--ink)]">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>

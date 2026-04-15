@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neo-Brutal Warm Cozy Options</title>
+  <style>
+    :root {
+      --ink: #1f1a17;
+      --cream: #fff4df;
+      --peach: #ffd9bf;
+      --butter: #ffe8a3;
+      --coral: #ffc2ad;
+      --mint: #ccefd7;
+      --sky: #cfe8ff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, #ffd9bf 0%, transparent 42%),
+        radial-gradient(circle at 85% 85%, #ccefd7 0%, transparent 40%),
+        #fff4df;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: 0.02em;
+    }
+
+    p.lead {
+      margin-top: 0;
+      font-size: 1.05rem;
+      max-width: 900px;
+    }
+
+    .grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      border: 3px solid var(--ink);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.55);
+      box-shadow: 8px 8px 0 var(--ink);
+      overflow: hidden;
+    }
+
+    .card h2 {
+      margin: 0;
+      padding: 14px 16px;
+      border-bottom: 3px solid var(--ink);
+      font-size: 1.1rem;
+      background: #fff;
+    }
+
+    .content { padding: 14px 16px 18px; }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .swatch {
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      padding: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: center;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mock {
+      border: 3px solid var(--ink);
+      border-radius: 14px;
+      background: #fff;
+      padding: 12px;
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .hero {
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border: 2px solid var(--ink);
+      border-bottom-width: 5px;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    .choice {
+      margin-top: 10px;
+      padding: 10px;
+      border: 2px dashed var(--ink);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.5);
+    }
+
+    .a .mock { background: #fffdf7; }
+    .a .pill.start { background: var(--coral); }
+    .a .pill.secondary { background: var(--sky); }
+
+    .b .mock { background: #fffaef; }
+    .b .pill.start { background: var(--butter); }
+    .b .pill.secondary { background: var(--mint); }
+
+    .c .mock { background: #fffaf2; }
+    .c .pill.start { background: #ffcaa0; }
+    .c .pill.secondary { background: #bfe8d5; }
+
+    footer {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <h1>Visual Redesign Direction Preview</h1>
+  <p class="lead">This is the level of change I will implement next: hard neo-brutal borders, stronger warm pastel identity, and visible depth interactions instead of subtle glass.</p>
+
+  <div class="grid">
+    <section class="card a">
+      <h2>Option A: Warm Arcade</h2>
+      <div class="content">
+        <div class="swatches">
+          <div class="swatch" style="background:#fff4df;">Cream</div>
+          <div class="swatch" style="background:#ffd9bf;">Peach</div>
+          <div class="swatch" style="background:#ffc2ad;">Coral</div>
+          <div class="swatch" style="background:#cfe8ff;">Sky</div>
+          <div class="swatch" style="background:#ccefd7;">Mint</div>
+          <div class="swatch" style="background:#ffe8a3;">Butter</div>
+        </div>
+        <div class="mock">
+          <div class="hero">WELCOME, TANMAY</div>
+          <div class="row">
+            <div class="pill start">INITIATE GAME</div>
+            <div class="pill secondary">ARCHIVE BADGES</div>
+          </div>
+        </div>
+        <div class="choice">Most playful, highest contrast, strongest visual change.</div>
+      </div>
+    </section>
+
+    <section class="card b">
+      <h2>Option B: Cozy Study Board</h2>
+      <div class="content">
+        <div class="swatches">
+          <div class="swatch" style="background:#fff4df;">Cream</div>
+          <div class="swatch" style="background:#ffe8a3;">Butter</div>
+          <div class="swatch" style="background:#eec9a0;">Tan</div>
+          <div class="swatch" style="background:#ccefd7;">Mint</div>
+          <div class="swatch" style="background:#d9e6ff;">Soft Sky</div>
+          <div class="swatch" style="background:#ffd8be;">Apricot</div>
+        </div>
+        <div class="mock">
+          <div class="hero">QUESTION 4/12</div>
+          <div class="row">
+            <div class="pill start">ANSWER TILE</div>
+            <div class="pill secondary">DROPPED WRONG</div>
+          </div>
+        </div>
+        <div class="choice">Softer mood, still brutal structure, best readability.</div>
+      </div>
+    </section>
+
+    <section class="card c">
+      <h2>Option C: Sunset Notebook</h2>
+      <div class="content">
+        <div class="swatches">
+          <div class="swatch" style="background:#fff2e8;">Paper</div>
+          <div class="swatch" style="background:#ffcaa0;">Sunset</div>
+          <div class="swatch" style="background:#ffb292;">Salmon</div>
+          <div class="swatch" style="background:#bfe8d5;">Leaf</div>
+          <div class="swatch" style="background:#cce5ff;">Aqua Sky</div>
+          <div class="swatch" style="background:#ffe4ae;">Warm Light</div>
+        </div>
+        <div class="mock">
+          <div class="hero">MISSION COMPLETE</div>
+          <div class="row">
+            <div class="pill start">REBOOT</div>
+            <div class="pill secondary">HOME</div>
+          </div>
+        </div>
+        <div class="choice">Most editorial look, slightly calmer than Option A.</div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Reply in terminal with A, B, or C and I will implement the full app redesign in that direction.
+  </footer>
+</body>
+</html>

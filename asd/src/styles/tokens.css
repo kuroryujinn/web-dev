@@ -1,12 +1,12 @@
 :root {
   --ink: #1f1a17;
   --ink-soft: #4a3f38;
-  --bg-warm: #fff4df;
-  --bg-peach: #ffd9bf;
-  --surface-butter: #ffe8a3;
-  --surface-coral: #ffc2ad;
-  --surface-mint: #ccefd7;
-  --surface-sky: #cfe8ff;
+  --bg-warm: #fffaf0;
+  --bg-peach: #ffe9d8;
+  --surface-butter: #ddb85b;
+  --surface-coral: #cf886f;
+  --surface-mint: #86bca0;
+  --surface-sky: #86b0d4;
   --border-brutal: 3px;
   --shadow-offset: 6px;
   --panel-highlight: rgba(255, 255, 255, 0.45);
