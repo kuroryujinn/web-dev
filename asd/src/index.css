@@ -2,12 +2,12 @@
 @import "./styles/tokens.css";
 
 @theme {
-  --color-warm-cream: #fffaf0;
-  --color-warm-peach: #ffe9d8;
-  --color-surface-butter: #ddb85b;
-  --color-surface-coral: #cf886f;
-  --color-surface-mint: #86bca0;
-  --color-surface-sky: #86b0d4;
+  --color-warm-cream: #fff4df;
+  --color-warm-peach: #ffd7bc;
+  --color-surface-butter: #ffc94a;
+  --color-surface-coral: #ff7a59;
+  --color-surface-mint: #57d19d;
+  --color-surface-sky: #5eaefd;
   --color-ink: #1f1a17;
   --color-ink-soft: #4a3f38;
   --shadow-brutal: 6px 6px 0 0 #1f1a17;
@@ -115,9 +115,9 @@
   body {
     background-color: var(--bg-warm);
     background-image: 
-      radial-gradient(at 6% 9%, rgba(255, 194, 173, 0.55) 0px, transparent 45%),
-      radial-gradient(at 86% 18%, rgba(255, 232, 163, 0.52) 0px, transparent 42%),
-      radial-gradient(at 88% 88%, rgba(204, 239, 215, 0.46) 0px, transparent 46%);
+      radial-gradient(at 6% 9%, rgba(255, 122, 89, 0.5) 0px, transparent 45%),
+      radial-gradient(at 86% 18%, rgba(255, 201, 74, 0.48) 0px, transparent 42%),
+      radial-gradient(at 88% 88%, rgba(87, 209, 157, 0.44) 0px, transparent 46%);
     color: var(--ink);
     font-family: var(--font-sans);
   }
@@ -133,11 +133,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #8cbdf7;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #5eaefd;
 }
 
