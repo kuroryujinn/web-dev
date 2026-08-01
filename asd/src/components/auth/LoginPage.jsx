@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { signInWithGoogle, signInWithEmail, registerWithEmail } from '../../services/authService';
+import EmailPasswordForm from './EmailPasswordForm';
 
 const LoginPage = ({ onLogin }) => {
-  const handleDemoLogin = () => {
-    const user = { uid: 'demo-user', name: 'Demo User', email: 'demo@example.com', avatar: '🧑' };
-    localStorage.setItem('asd_user', JSON.stringify(user));
-    onLogin(user);
+  const [error, setError] = useState('');
+
+  const handleGoogleLogin = async () => {
+    try {
+      setError('');
+      const user = await signInWithGoogle();
+      onLogin({ uid: user.uid, name: user.displayName, email: user.email, avatar: '🧑' });
+    } catch (err) {
+      setError(err.message || 'Google login failed');
+    }
+  };
+
+  const handleEmailLogin = async (email, password) => {
+    const user = await signInWithEmail(email, password);
+    onLogin({ uid: user.uid, name: user.displayName || 'Friend', email: user.email, avatar: '🧑' });
+  };
+
+  const handleEmailRegister = async (email, password, name) => {
+    const user = await registerWithEmail(email, password, name);
+    onLogin({ uid: user.uid, name: name || user.displayName, email: user.email, avatar: '🧑' });
   };
 
   return (
@@ -21,12 +39,30 @@ const LoginPage = ({ onLogin }) => {
             <p className="text-base md:text-xl text-[var(--ink-soft)] font-black leading-relaxed mb-8 uppercase tracking-[0.15em]">
               Progressive Motor-Skill Training
             </p>
-            <button
-              onClick={handleDemoLogin}
-              className="w-full brutal-button pressable py-5 text-2xl font-black text-[var(--ink)] bg-[var(--surface-coral)] uppercase tracking-[0.12em]"
-            >
-              START LEARNING
-            </button>
+
+            <div className="space-y-6">
+              <EmailPasswordForm onLogin={handleEmailLogin} onRegister={handleEmailRegister} />
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t-2 border-[var(--ink)]" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-4 bg-warm-butter/70 text-[var(--ink-soft)] font-bold">OR</span>
+                </div>
+              </div>
+
+              <button
+                onClick={handleGoogleLogin}
+                className="w-full brutal-button pressable py-4 text-xl font-black text-[var(--ink)] bg-white uppercase tracking-[0.12em] flex items-center justify-center gap-3"
+              >
+                <span className="text-2xl">G</span> SIGN IN WITH GOOGLE
+              </button>
+            </div>
+
+            {error && (
+              <p className="mt-4 text-red-500 text-sm font-bold" role="alert">{error}</p>
+            )}
           </div>
         </div>
 
