@@ -1,46 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import LoginPage from './components/LoginPage';
-import LandingScreen from './components/LandingScreen';
-import QuizScreen from './components/QuizScreen';
-
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
+import LoginPage from './components/auth/LoginPage';
+import DashboardScreen from './components/dashboard/DashboardScreen';
 
 const getStoredUser = () => {
-  const storedUser = localStorage.getItem('asd_quiz_user');
+  const storedUser = localStorage.getItem('asd_user');
   if (!storedUser) return null;
-
   try {
-    const parsedUser = JSON.parse(storedUser);
-    if (parsedUser?.name && parsedUser?.avatar) {
-      return parsedUser;
-    }
+    const parsed = JSON.parse(storedUser);
+    if (parsed?.name && parsed?.uid) return parsed;
   } catch {
-    localStorage.removeItem('asd_quiz_user');
+    localStorage.removeItem('asd_user');
   }
-
   return null;
 };
 
-function AppContent({ hasGoogleClientId }) {
+function AppContent() {
   const [user, setUser] = useState(() => getStoredUser());
-  const [screen, setScreen] = useState(() => (getStoredUser() ? 'landing' : 'login'));
+  const [screen, setScreen] = useState(() => (getStoredUser() ? 'dashboard' : 'login'));
 
   const handleLogin = (loggedInUser) => {
     setUser(loggedInUser);
-    setScreen('landing');
-  };
-
-  const handleStartQuiz = () => {
-    setScreen('quiz');
-  };
-
-  const handleBackToHome = () => {
-    setScreen('landing');
+    setScreen('dashboard');
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('asd_quiz_user');
+    localStorage.removeItem('asd_user');
     setUser(null);
     setScreen('login');
   };
@@ -49,49 +33,23 @@ function AppContent({ hasGoogleClientId }) {
     <div className="App min-h-screen bg-warm-cream selection:bg-warm-coral/60 selection:text-ink transition-colors duration-500">
       <div className="relative w-full min-h-screen z-10 transition-all duration-500 max-w-[1440px] mx-auto">
         {screen === 'login' && <LoginPage onLogin={handleLogin} />}
-
-        {screen === 'landing' && user && (
-          <LandingScreen
-            user={user}
-            onStartQuiz={handleStartQuiz}
-            onLogout={handleLogout}
-            hasGoogleClientId={hasGoogleClientId}
-          />
-        )}
-
-        {screen === 'quiz' && user && (
-          <QuizScreen user={user} onBackToHome={handleBackToHome} />
+        {screen === 'dashboard' && user && (
+          <DashboardScreen user={user} onLogout={handleLogout} />
         )}
       </div>
 
       {/* Persistent Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden h-screen w-screen z-0">
-        <div className="absolute -top-20 -left-24 w-[420px] h-[420px] bg-warm-peach/70 rounded-full blur-[110px]"></div>
-        <div className="absolute top-[18%] right-[-8%] w-[360px] h-[360px] bg-warm-butter/65 rounded-full blur-[96px]"></div>
-        <div className="absolute bottom-[-12%] left-[25%] w-[430px] h-[430px] bg-warm-mint/55 rounded-full blur-[110px]"></div>
+        <div className="absolute -top-20 -left-24 w-[420px] h-[420px] bg-warm-peach/70 rounded-full blur-[110px]" />
+        <div className="absolute top-[18%] right-[-8%] w-[360px] h-[360px] bg-warm-butter/65 rounded-full blur-[96px]" />
+        <div className="absolute bottom-[-12%] left-[25%] w-[430px] h-[430px] bg-warm-mint/55 rounded-full blur-[110px]" />
       </div>
     </div>
   );
 }
 
 function App() {
-  const googleIdMissing = !GOOGLE_CLIENT_ID;
-
-  useEffect(() => {
-    if (googleIdMissing) {
-      console.warn('VITE_GOOGLE_CLIENT_ID not set. Google login will not work.');
-    }
-  }, [googleIdMissing]);
-
-  if (googleIdMissing) {
-    return <AppContent hasGoogleClientId={false} />;
-  }
-
-  return (
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <AppContent hasGoogleClientId />
-    </GoogleOAuthProvider>
-  );
+  return <AppContent />;
 }
 
 export default App;
