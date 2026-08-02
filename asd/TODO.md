@@ -100,7 +100,7 @@ Implement all 6 activity type components.
 - [x] **4f.3** Add visual connection lines
 - [x] **4f.4** Test Matching activity
 
-- [ ] **4.5** Commit all activity types
+- [x] **4.5** Commit all activity types
 
 ---
 
@@ -259,6 +259,10 @@ Audit, optimize, and document.
 ---
 
 ## Session Notes — August 2, 2026
+
+### Milestone 4.5 — Commit (complete)
+
+All six activity types committed. Milestone 4 is **28/28 complete**: `b414553` (4a+4b) and `5d8780c` (4c–4f, 17 files, +2336/−24). Working tree clean. Next milestone: **5. Progress System**.
 
 ### Milestone 4f — MatchingActivity (complete) — all 6 activity types done 🎯
 
