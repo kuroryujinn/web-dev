@@ -1,7 +1,7 @@
 # ASD Motor-Skill Learning Platform — Project Tracker
 
 > **Status:** 🟡 In Progress
-> **Last Updated:** August 1, 2026
+> **Last Updated:** August 2, 2026
 > **Spec:** `docs/superpowers/specs/2026-08-01-asd-motor-skill-platform-design.md`
 > **Plan:** `docs/superpowers/plans/2026-08-01-asd-motor-skill-platform-implementation.md`
 
@@ -26,16 +26,16 @@ Remove dead code, refactor existing components, establish clean base.
 
 Set up Firebase backend, auth providers, and user management.
 
-- [ ] **2.1** Install Firebase dependencies (`firebase`, `react-firebase-hooks`)
-- [ ] **2.2** Create `src/services/firebase.js` — Firebase config & initialization
-- [ ] **2.3** Create `src/contexts/AuthContext.jsx` — Auth state management
-- [ ] **2.4** Create `src/services/authService.js` — Login/logout/register functions
-- [ ] **2.5** Create `src/components/auth/EmailPasswordForm.jsx` — Email/password login
-- [ ] **2.6** Refactor `GoogleLoginButton.jsx` — Use Firebase Google auth
-- [ ] **2.7** Refactor `LoginPage.jsx` — Integrate Firebase auth
-- [ ] **2.8** Create `src/contexts/SettingsContext.jsx` — User settings
-- [ ] **2.9** Test authentication flow end-to-end
-- [ ] **2.10** Commit Firebase auth changes
+- [x] **2.1** Install Firebase dependencies (`firebase`, `react-firebase-hooks`)
+- [x] **2.2** Create `src/services/firebase.js` — Firebase config & initialization
+- [x] **2.3** Create `src/contexts/AuthContext.jsx` — Auth state management
+- [x] **2.4** Create `src/services/authService.js` — Login/logout/register functions
+- [x] **2.5** Create `src/components/auth/EmailPasswordForm.jsx` — Email/password login
+- [x] **2.6** Integrate Google sign-in in `LoginPage.jsx` — Use Firebase Google auth (popup)
+- [x] **2.7** Refactor `LoginPage.jsx` — Integrate Firebase auth
+- [x] **2.8** Create `src/contexts/SettingsContext.jsx` — User settings
+- [x] **2.9** Test authentication flow end-to-end
+- [x] **2.10** Commit Firebase auth changes
 
 ---
 
@@ -43,17 +43,17 @@ Set up Firebase backend, auth providers, and user management.
 
 Build the data-driven activity rendering system.
 
-- [ ] **3.1** Create `src/services/activityService.js` — Fetch activities from Firestore
-- [ ] **3.2** Create `src/data/levels.js` — Level definitions (5 levels)
-- [ ] **3.3** Create `src/data/badges.js` — Badge definitions
-- [ ] **3.4** Create `src/components/activities/ActivityPlayer.jsx` — Main activity renderer
-- [ ] **3.5** Create `src/components/activities/ActivityHeader.jsx` — Title, timer, score
-- [ ] **3.6** Create `src/hooks/useTimer.js` — Timer hook for timed activities
-- [ ] **3.7** Create `src/utils/scoring.js` — Score calculation utilities
-- [ ] **3.8** Create `src/components/shared/AccessibleButton.jsx` — Accessible button component
-- [ ] **3.9** Create `src/components/shared/FeedbackOverlay.jsx` — Enhanced feedback modal
-- [ ] **3.10** Test activity engine with mock data
-- [ ] **3.11** Commit activity engine core
+- [x] **3.1** Create `src/services/activityService.js` — Fetch activities from Firestore
+- [x] **3.2** Create `src/data/levels.js` — Level definitions (5 levels)
+- [x] **3.3** Create `src/data/badges.js` — Badge definitions
+- [x] **3.4** Create `src/components/activities/ActivityPlayer.jsx` — Main activity renderer
+- [x] **3.5** Create `src/components/activities/ActivityHeader.jsx` — Title, timer, score
+- [x] **3.6** Create `src/hooks/useTimer.js` — Timer hook for timed activities
+- [x] **3.7** Create `src/utils/scoring.js` — Score calculation utilities
+- [x] **3.8** Create `src/components/shared/AccessibleButton.jsx` — Accessible button component
+- [x] **3.9** Create `src/components/shared/FeedbackOverlay.jsx` — Enhanced feedback modal
+- [x] **3.10** Test activity engine with mock data
+- [x] **3.11** Commit activity engine core
 
 ---
 
@@ -229,13 +229,13 @@ Refine neo-brutalism design, ensure consistency.
 
 Comprehensive testing and final verification.
 
-- [ ] **10.1** Run all existing tests — verify no regressions
+- [x] **10.1** Run all existing tests — verify no regressions (62/62 passing; re-verify at release)
 - [ ] **10.2** Add unit tests for scoring utilities
 - [ ] **10.3** Add unit tests for progress calculations
 - [ ] **10.4** Add component tests for ActivityPlayer
 - [ ] **10.5** Add component tests for each activity type
-- [ ] **10.6** Run ESLint — fix all warnings
-- [ ] **10.7** Run build — verify no errors
+- [x] **10.6** Run ESLint — fix all warnings (clean at `--max-warnings 0`)
+- [x] **10.7** Run build — verify no errors
 - [ ] **10.8** Manual test: Complete full user flow (login → dashboard → activity → results)
 - [ ] **10.9** Manual test: Verify progress persistence (refresh page, check data)
 - [ ] **10.10** Manual test: Verify level unlocking works
@@ -258,22 +258,56 @@ Audit, optimize, and document.
 
 ---
 
+## Session Notes — August 2, 2026
+
+### Milestone 3 — Activity Engine Core (complete)
+
+Built the data-driven activity engine foundation:
+
+- **`src/data/badges.js`** — 8 badge definitions with rarity tiers (`RARITY_ORDER`, `getBadgeById`, `getBadgesByRarity`).
+- **`src/utils/scoring.js`** — stars (≥90/≥70/>0), XP (base × difficulty × stars), and per-type 0–100 scorers (multipleChoice, dragAndDrop, sorting, matching, pathTracing).
+- **`src/hooks/useTimer.js`** — reusable countdown hook (autoStart, start/pause/reset, formatted mm:ss, onTimeUp).
+- **`src/components/shared/AccessibleButton.jsx`** — ≥48px touch target, focus-visible ring, ARIA-label, disabled handling, variants.
+- **`src/components/shared/FeedbackOverlay.jsx`** — enhanced modal: dialog semantics, focus management, polite live region, optional sound cue (OFF by default).
+- **`src/components/activities/ActivityHeader.jsx`** — title, countdown timer, optional score chip, back nav.
+- **`src/components/activities/ActivityPlayer.jsx`** — registry-driven renderer with graceful "COMING SOON" placeholder for types not yet implemented (Milestone 4 plugs components in). Handles completion → FeedbackOverlay → `onComplete({ score, stars, xp, activityId })` and timer-expiry.
+- **Tests:** 5 new test files (badges, scoring, useTimer, ActivityPlayer, ActivityHeader, AccessibleButton, FeedbackOverlay) — suite at **112 tests / 17 files**, all passing; lint clean; build OK.
+- **⚠️ Note:** `ActivityPlayer` was intentionally built registry-first (per plan review) so the engine is testable before activity-type components exist.
+
+### Prior session notes
+
+Auxiliary work completed earlier this session (not milestone tasks, tracked for context):
+
+- **Test suite:** 10 files / **62 tests** passing. Covers the full auth flow
+  (EmailPasswordForm, LoginPage, authService, AuthContext, App routing), SettingsContext,
+  activityService, levels, and the legacy quiz components.
+- **Coverage:** v8 provider configured via `npm run test:coverage` (report in `coverage/`).
+  Overall ≈62% lines; auth flow, SettingsContext, levels, activityService at 100%.
+- **Auth hardening:** client-side validation in `EmailPasswordForm` (email format, min 6-char
+  password, required name); `onLogin` prop removed from `LoginPage` — navigation is fully
+  driven by `AuthContext`; `SettingsContext.reducedMotion` defaults to the OS preference.
+- **Infra:** `@vitest/coverage-v8` installed; `test:coverage` script added; ESLint ignores
+  `coverage/` and allows co-located provider/hook exports in `src/contexts`.
+- **⚠️ Uncommitted:** all session changes are uncommitted — commit when ready.
+
+---
+
 ## Progress Summary
 
 | Milestone | Status | Tasks | Completed |
 |-----------|--------|-------|-----------|
-| 1. Foundation & Cleanup | ⬜ Not Started | 8 | 0/8 |
-| 2. Firebase Auth | ⬜ Not Started | 10 | 0/10 |
-| 3. Activity Engine | ⬜ Not Started | 11 | 0/11 |
+| 1. Foundation & Cleanup | ✅ Complete | 8 | 8/8 |
+| 2. Firebase Auth | ✅ Complete | 10 | 10/10 |
+| 3. Activity Engine | ✅ Complete | 11 | 11/11 |
 | 4. Activity Types | ⬜ Not Started | 21 | 0/21 |
 | 5. Progress System | ⬜ Not Started | 13 | 0/13 |
 | 6. Dashboard & Nav | ⬜ Not Started | 15 | 0/15 |
 | 7. Level Content | ⬜ Not Started | 19 | 0/19 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
-| 10. Testing | ⬜ Not Started | 12 | 0/12 |
+| 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | ⬜ | **135** | **0/135** |
+| **Total** | 🟡 In Progress | **135** | **32/135** |
 
 ---
 
@@ -288,8 +322,9 @@ Audit, optimize, and document.
 
 **Commands:**
 ```bash
-npm run dev      # Start dev server
-npm run build    # Build for production
-npm run test     # Run tests
-npm run lint     # Run linter
+npm run dev            # Start dev server
+npm run build          # Build for production
+npm run test           # Run tests
+npm run test:coverage  # Run tests with coverage report
+npm run lint           # Run linter
 ```
