@@ -1,5 +1,6 @@
 import {
   calculateDragDropScore,
+  calculateFreehandDrawingScore,
   calculateMatchingScore,
   calculateMultipleChoiceScore,
   calculatePathTracingScore,
@@ -89,5 +90,17 @@ describe('activity scoring helpers', () => {
       { x: 4, y: 4, withinTolerance: true },
     ];
     expect(calculatePathTracingScore(points)).toBe(75);
+  });
+
+  it('calculates freehand drawing score from completed strokes', () => {
+    expect(calculateFreehandDrawingScore(0)).toBe(0);
+    expect(calculateFreehandDrawingScore(1)).toBe(20);
+    expect(calculateFreehandDrawingScore(3)).toBe(60);
+    expect(calculateFreehandDrawingScore(4)).toBe(80);
+  });
+
+  it('caps freehand drawing score at 100', () => {
+    expect(calculateFreehandDrawingScore(5)).toBe(100);
+    expect(calculateFreehandDrawingScore(9)).toBe(100);
   });
 });

@@ -22,8 +22,8 @@ const baseActivity = {
   },
 };
 
-// A type that is not yet wired into the default registry.
-const unimplementedActivity = { ...baseActivity, type: 'matching' };
+// A type that is not wired into the default registry (all six real types are).
+const unimplementedActivity = { ...baseActivity, type: 'futureType' };
 
 const renderWithSettings = (ui) =>
   render(<SettingsProvider>{ui}</SettingsProvider>);

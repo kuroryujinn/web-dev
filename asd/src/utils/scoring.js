@@ -72,3 +72,13 @@ export const calculateMatchingScore = (pairs) =>
  */
 export const calculatePathTracingScore = (points) =>
   scorePercentage(points.filter((p) => p.withinTolerance).length, points.length);
+
+/**
+ * Calculate score for a freehand drawing activity.
+ * Effort-based per the design spec: each completed stroke earns points,
+ * capped at 100 (5+ strokes). Simplified scoring — no overlap detection.
+ * @param {number} strokeCount - Number of completed strokes the user made
+ * @returns {number} 0-100
+ */
+export const calculateFreehandDrawingScore = (strokeCount) =>
+  Math.min(100, Math.max(0, strokeCount) * 20);

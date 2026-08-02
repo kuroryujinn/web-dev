@@ -2,18 +2,26 @@ import React, { useState, useCallback } from 'react';
 import ActivityHeader from './ActivityHeader';
 import MultipleChoiceActivity from './MultipleChoiceActivity';
 import DragAndDropActivity from './DragAndDropActivity';
+import PathTracingActivity from './PathTracingActivity';
+import FreehandDrawingActivity from './FreehandDrawingActivity';
+import SortingActivity from './SortingActivity';
+import MatchingActivity from './MatchingActivity';
 import FeedbackOverlay from '../shared/FeedbackOverlay';
 import AccessibleButton from '../shared/AccessibleButton';
 import { calculateStars, calculateXP } from '../../utils/scoring';
 
 /**
  * Activity registry maps an activity `type` to its rendering component.
- * Milestone 4 fills this in as each activity component lands. Types not yet
- * implemented render a friendly placeholder instead of breaking the player.
+ * All six activity types are wired. Unknown/malformed types still render a
+ * friendly placeholder as a defensive safety net instead of crashing.
  */
 const DEFAULT_REGISTRY = {
   multipleChoice: MultipleChoiceActivity,
   dragAndDrop: DragAndDropActivity,
+  pathTracing: PathTracingActivity,
+  freehandDrawing: FreehandDrawingActivity,
+  sorting: SortingActivity,
+  matching: MatchingActivity,
 };
 
 const ActivityPlayer = ({

@@ -75,30 +75,30 @@ Implement all 6 activity type components.
 - [x] **4b.5** Test DragAndDrop activity
 
 ### 4c: PathTracing
-- [ ] **4c.1** Create `src/hooks/usePathTracing.js` — Touch/draw state
-- [ ] **4c.2** Create `src/components/activities/PathTracingActivity.jsx`
-- [ ] **4c.3** Implement SVG path rendering and stroke detection
-- [ ] **4c.4** Add visual feedback during tracing
-- [ ] **4c.5** Test PathTracing activity
+- [x] **4c.1** Create `src/hooks/usePathTracing.js` — Touch/draw state
+- [x] **4c.2** Create `src/components/activities/PathTracingActivity.jsx`
+- [x] **4c.3** Implement SVG path rendering and stroke detection
+- [x] **4c.4** Add visual feedback during tracing
+- [x] **4c.5** Test PathTracing activity
 
 ### 4d: FreehandDrawing
-- [ ] **4d.1** Create `src/components/activities/FreehandDrawingActivity.jsx`
-- [ ] **4d.2** Implement HTML5 Canvas drawing
-- [ ] **4d.3** Add stroke recording and scoring
-- [ ] **4d.4** Add undo/clear functionality
-- [ ] **4d.5** Test FreehandDrawing activity
+- [x] **4d.1** Create `src/components/activities/FreehandDrawingActivity.jsx`
+- [x] **4d.2** Implement HTML5 Canvas drawing
+- [x] **4d.3** Add stroke recording and scoring
+- [x] **4d.4** Add undo/clear functionality
+- [x] **4d.5** Test FreehandDrawing activity
 
 ### 4e: Sorting
-- [ ] **4e.1** Create `src/components/activities/SortingActivity.jsx`
-- [ ] **4e.2** Implement drag-to-reorder
-- [ ] **4e.3** Add keyboard fallback for sorting
-- [ ] **4e.4** Test Sorting activity
+- [x] **4e.1** Create `src/components/activities/SortingActivity.jsx`
+- [x] **4e.2** Implement drag-to-reorder
+- [x] **4e.3** Add keyboard fallback for sorting
+- [x] **4e.4** Test Sorting activity
 
 ### 4f: Matching
-- [ ] **4f.1** Create `src/components/activities/MatchingActivity.jsx`
-- [ ] **4f.2** Implement tap-to-select-pairs
-- [ ] **4f.3** Add visual connection lines
-- [ ] **4f.4** Test Matching activity
+- [x] **4f.1** Create `src/components/activities/MatchingActivity.jsx`
+- [x] **4f.2** Implement tap-to-select-pairs
+- [x] **4f.3** Add visual connection lines
+- [x] **4f.4** Test Matching activity
 
 - [ ] **4.5** Commit all activity types
 
@@ -260,6 +260,35 @@ Audit, optimize, and document.
 
 ## Session Notes — August 2, 2026
 
+### Milestone 4f — MatchingActivity (complete) — all 6 activity types done 🎯
+
+- **`src/components/activities/MatchingActivity.jsx`** — tap-to-select pairs between two columns. Either order works (left→right or right→left); re-tapping the selected item deselects it; matches can be changed freely before checking (orphaned partners lose their matched styling). **Visual connection lines** (4f.3 — not in the plan's draft) drawn as an SVG overlay between matched button centers, measured via `getBoundingClientRect` in a `useLayoutEffect` (pointer-events-none, aria-hidden, beneath the z-10 columns). Correct pairs highlight mint, wrong pairs coral after submit. `aria-pressed` selection state, polite `role="status"` live region (announces each match and the result), 1500ms completion timer cleaned up on unmount, interactions gated after results, CHECK MATCHES via `AccessibleButton` disabled until every left item is matched. Hardcoded "Left/Right" headers from the plan dropped (child-friendly).
+- **Wiring:** `matching` added to `ActivityPlayer` registry — the final slot; the placeholder test now uses an unknown `futureType` since all six real types are wired (placeholder kept as a defensive safety net).
+- **Tests:** `MatchingActivity.test.jsx` (14 tests — both tap orders, deselect, re-match + orphan styling, perfect/partial scoring, stubbed-rect connection-line coordinates, one-line-per-match, announcements, gating, unmount). Suite at **206 tests / 26 files**, all passing; lint clean; build OK.
+- **4.5 remains:** all six activity types are implemented and **uncommitted** — 4.5 is the commit point for the full Milestone 4 (4a–4f).
+
+### Milestone 4e — SortingActivity (complete)
+
+- **`src/components/activities/SortingActivity.jsx`** — reorder items to match a target order (ascending/descending). **Three equivalent input modes converging on the same ID-based swap semantics** (predictable for ASD): (1) drag item A onto item B, (2) tap/click two items, (3) ArrowUp/ArrowDown on a focused item (position-aware announcements, focus retained via stable keys). The swap is keyed by item **ID**, deliberately fixing a bug in the plan's draft that indexed the stable `items` array by display position and swapped the wrong items after the first reorder. Correct-position items highlight mint, wrong coral after submit. Semantic `<ol>`, `aria-pressed` selection state, polite `role="status"` live region (announces swaps, moves, and results), 1500ms completion timer cleaned up on unmount, interactions gated after results.
+- **Wiring:** `sorting` added to `ActivityPlayer` registry.
+- **Tests:** `SortingActivity.test.jsx` (14 tests — swap by ID, drag-and-drop swap, arrow reorder + boundary, focus retention after reorder, perfect/partial scoring, announcements, gating, unmount). Suite at **193 tests / 25 files**, all passing; lint clean; build OK.
+- **📊 Table correction:** Milestone 4's task count in the progress summary was corrected from 21 → 28 (the actual checkbox total through 4f + the 4.5 commit); grand total 135 → 142.
+
+### Milestone 4d — FreehandDrawingActivity (complete)
+
+- **`src/utils/scoring.js`** — added `calculateFreehandDrawingScore(strokeCount)` = `min(100, max(0, n) × 20)` — effort-based, per the design spec's "score based on strokes made."
+- **`src/components/activities/FreehandDrawingActivity.jsx`** — HTML5 canvas drawing with unified pointer events (finger/stylus/mouse; `touch-none` + `setPointerCapture` so strokes continue past the canvas edge). Strokes recorded as point data; canvas redraws from state on every commit (enables **UNDO** by replaying all but the last stroke). Optional light SVG template overlay from `content.template`. CLEAR/UNDO/DONE via `AccessibleButton`, polite `role="status"` live region, drawing gated after results, 1500ms completion timer cleaned up on unmount. Ref-based drawing guard (no dropped move events on fast strokes).
+- **Wiring:** `freehandDrawing` added to `ActivityPlayer` registry (placeholder test still uses `matching`).
+- **Tests:** `FreehandDrawingActivity.test.jsx` (12 tests — mocked canvas 2D context since jsdom lacks canvas), scoring tests added. Suite at **179 tests / 24 files**, all passing; lint clean; build OK.
+
+### Milestone 4c — PathTracingActivity (complete)
+
+- **`src/utils/pathTracing.js`** — pure (jsdom-safe) SVG path sampler supporting M/L/H/V/C/S/Q/T/A/Z (absolute + relative, implicit lineto after moveto, arc sampling) plus distance-based stroke detection: `samplePathPoints`, `getPathSegments`, `distanceToSegment`, `calculateTraceScore` (reuses `calculatePathTracingScore`), and `getPathCoverage` (fraction of template path covered — drives live feedback).
+- **`src/hooks/usePathTracing.js`** — pointer-event drawing state normalized to a 0–100 coordinate space; supports touch, stylus, mouse; undo/clear.
+- **`src/components/activities/PathTracingActivity.jsx`** — SVG tracing area with template paths that light up mint as they're covered (progressive visual feedback), user strokes in coral, UNDO/CLEAR/DONE controls, polite `role="status"` live region, timer cleanup on unmount, drawing gated after results.
+- **Wiring:** `pathTracing` added to `ActivityPlayer` registry.
+- **Tests:** `pathTracing.test.js` (17 tests incl. parser edge cases), `usePathTracing.test.jsx` (6), `PathTracingActivity.test.jsx` (7). Suite at **165 tests / 23 files**, all passing; lint clean; build OK.
+
 ### Milestone 4b — DragAndDropActivity (complete)
 
 - **`src/hooks/useDragAndDrop.js`** — assignment state (targetId → itemId), drag start/end/drop, tap-to-assign, placements with correct flags, `isComplete`, `reset`. Items live in exactly one target (re-placing moves them).
@@ -316,7 +345,7 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 1. Foundation & Cleanup | ✅ Complete | 8 | 8/8 |
 | 2. Firebase Auth | ✅ Complete | 10 | 10/10 |
 | 3. Activity Engine | ✅ Complete | 11 | 11/11 |
-| 4. Activity Types | 🟡 In Progress | 21 | 9/21 |
+| 4. Activity Types | ✅ Complete | 28 | 28/28 |
 | 5. Progress System | ⬜ Not Started | 13 | 0/13 |
 | 6. Dashboard & Nav | ⬜ Not Started | 15 | 0/15 |
 | 7. Level Content | ⬜ Not Started | 19 | 0/19 |
@@ -324,7 +353,7 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **135** | **41/135** |
+| **Total** | 🟡 In Progress | **142** | **60/142** |
 
 ---
 
