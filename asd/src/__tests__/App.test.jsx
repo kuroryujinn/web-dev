@@ -1,6 +1,7 @@
 import React from 'react';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { getDoc } from 'firebase/firestore';
 import App from '../App';
 
 // Provides everything authService wraps so the login flow can be exercised end-to-end.
@@ -13,8 +14,15 @@ vi.mock('firebase/auth', () => ({
   updateProfile: vi.fn(),
 }));
 
+vi.mock('firebase/firestore', () => ({
+  doc: vi.fn(() => ({ id: 'progress-doc' })),
+  getDoc: vi.fn(),
+  setDoc: vi.fn(),
+}));
+
 vi.mock('../services/firebase', () => ({
   auth: {},
+  db: {},
 }));
 
 const firebaseUser = (overrides = {}) => ({
@@ -36,6 +44,8 @@ describe('App routing', () => {
       onAuthStateChangedCallback = callback;
       return mockUnsubscribe;
     });
+    // No progress document exists yet — the provider seeds a fresh one.
+    getDoc.mockResolvedValue({ exists: () => false, data: () => ({}) });
   });
 
   it('shows a loading screen while auth state is pending', () => {
