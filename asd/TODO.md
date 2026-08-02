@@ -120,7 +120,7 @@ XP, stars, badges, and level unlocking.
 - [x] **5.10** Create `src/components/results/StarsEarned.jsx`
 - [x] **5.11** Create `src/components/results/BadgesEarned.jsx`
 - [x] **5.12** Test progress tracking end-to-end (util + service + context + results suites)
-- [ ] **5.13** Commit progress system
+- [x] **5.13** Commit progress system
 
 ---
 
@@ -260,7 +260,11 @@ Audit, optimize, and document.
 
 ## Session Notes — August 2, 2026
 
-### Milestone 5 — Progress System (complete, uncommitted)
+### Milestone 5.13 — Commit (complete)
+
+Progress system committed as `cd153ed` (14 files, +1123/−26). Milestone 5 is **13/13 complete**. Working tree clean. Next milestone: **6. Dashboard & Navigation**.
+
+### Milestone 5 — Progress System (complete)
 
 - **`src/utils/progress.js`** — pure, side-effect-free progress logic: `createInitialProgress`, `getLevelForXP`, `isLevelUnlocked`, `applyActivityResult` (records an activity, accumulates XP, caps best score/stars, levels up, and returns newly earned badges), `checkEarnableBadges` (handles all 8 badge criteria types), `getEarnedBadgeObjects`, `updateLoginStreak` (same-day/next-day/gap), `getLevelProgress`.
 - **`src/services/progressService.js`** — Firestore `userProgress/{uid}` upsert with a localStorage backup/fallback (offline-safe), mockable like `activityService`.
@@ -361,14 +365,14 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 2. Firebase Auth | ✅ Complete | 10 | 10/10 |
 | 3. Activity Engine | ✅ Complete | 11 | 11/11 |
 | 4. Activity Types | ✅ Complete | 28 | 28/28 |
-| 5. Progress System | 🟡 In Progress | 13 | 12/13 |
+| 5. Progress System | ✅ Complete | 13 | 13/13 |
 | 6. Dashboard & Nav | ⬜ Not Started | 15 | 0/15 |
 | 7. Level Content | ⬜ Not Started | 19 | 0/19 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **142** | **72/142** |
+| **Total** | 🟡 In Progress | **142** | **73/142** |
 
 ---
 
