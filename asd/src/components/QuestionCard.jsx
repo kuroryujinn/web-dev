@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import AnswerTile from './AnswerTile';
+import AnswerTile from './shared/AnswerTile';
 
 const QuestionCard = ({ question, onAnswerSelect, selectedAnswer }) => {
   const [questionImageFailed, setQuestionImageFailed] = useState(false);

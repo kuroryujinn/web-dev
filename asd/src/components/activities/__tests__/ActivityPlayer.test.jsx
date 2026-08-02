@@ -10,8 +10,20 @@ const baseActivity = {
   difficulty: 1,
   timeLimit: null,
   maxScore: 100,
-  content: { feedback: { correct: 'Great job!', incorrect: 'Keep going!' } },
+  content: {
+    questionLabel: 'Find the Dog',
+    questionImage: null,
+    questionAlt: 'A dog',
+    options: [
+      { id: 'a', label: 'Cat', image: null, correct: false },
+      { id: 'b', label: 'Dog', image: null, correct: true },
+    ],
+    feedback: { correct: 'Great job!', incorrect: 'Keep going!' },
+  },
 };
+
+// A type that is not yet wired into the default registry.
+const unimplementedActivity = { ...baseActivity, type: 'matching' };
 
 const renderWithSettings = (ui) =>
   render(<SettingsProvider>{ui}</SettingsProvider>);
@@ -22,7 +34,7 @@ describe('ActivityPlayer', () => {
   });
   it('renders a placeholder for unimplemented activity types', () => {
     renderWithSettings(
-      <ActivityPlayer activity={baseActivity} onComplete={vi.fn()} onBack={vi.fn()} />,
+      <ActivityPlayer activity={unimplementedActivity} onComplete={vi.fn()} onBack={vi.fn()} />,
     );
 
     expect(screen.getByText('COMING SOON')).toBeInTheDocument();
@@ -30,29 +42,21 @@ describe('ActivityPlayer', () => {
   });
 
   it('renders the registered activity component and header', () => {
-    const MockActivity = ({ content, onComplete }) => (
-      <button onClick={() => onComplete(95)}>{content.feedback.correct}</button>
-    );
-    const registry = { multipleChoice: MockActivity };
-
     renderWithSettings(
       <ActivityPlayer
         activity={baseActivity}
         onComplete={vi.fn()}
         onBack={vi.fn()}
-        registry={registry}
       />,
     );
 
-    expect(screen.getByText('Find the Dog')).toBeInTheDocument();
-    expect(screen.getByText('Great job!')).toBeInTheDocument();
+    // The title appears once in the header and once as the question heading.
+    expect(screen.getAllByText('Find the Dog')).toHaveLength(2);
+    expect(screen.getByTestId('multiple-choice-activity')).toBeInTheDocument();
   });
 
   it('shows positive feedback and reports the result on continue', () => {
-    const MockActivity = ({ onComplete }) => (
-      <button onClick={() => onComplete(95)}>finish</button>
-    );
-    const registry = { multipleChoice: MockActivity };
+    vi.useFakeTimers();
     const onComplete = vi.fn();
 
     renderWithSettings(
@@ -60,11 +64,13 @@ describe('ActivityPlayer', () => {
         activity={baseActivity}
         onComplete={onComplete}
         onBack={vi.fn()}
-        registry={registry}
       />,
     );
 
-    fireEvent.click(screen.getByText('finish'));
+    fireEvent.click(screen.getByRole('button', { name: /dog/i }));
+    act(() => {
+      vi.advanceTimersByTime(1500);
+    });
 
     expect(screen.getByText('NICE WORK!')).toBeInTheDocument();
     expect(screen.getByText('Great job!')).toBeInTheDocument();
@@ -72,7 +78,7 @@ describe('ActivityPlayer', () => {
     fireEvent.click(screen.getByRole('button', { name: 'CONTINUE' }));
 
     expect(onComplete).toHaveBeenCalledWith({
-      score: 95,
+      score: 100,
       stars: 3,
       xp: 15,
       activityId: 'act-1',
@@ -80,21 +86,19 @@ describe('ActivityPlayer', () => {
   });
 
   it('shows encouraging retry feedback for low scores', () => {
-    const MockActivity = ({ onComplete }) => (
-      <button onClick={() => onComplete(40)}>finish</button>
-    );
-    const registry = { multipleChoice: MockActivity };
-
+    vi.useFakeTimers();
     renderWithSettings(
       <ActivityPlayer
         activity={baseActivity}
         onComplete={vi.fn()}
         onBack={vi.fn()}
-        registry={registry}
       />,
     );
 
-    fireEvent.click(screen.getByText('finish'));
+    fireEvent.click(screen.getByRole('button', { name: /cat/i }));
+    act(() => {
+      vi.advanceTimersByTime(1500);
+    });
 
     expect(screen.getByText('TRY AGAIN!')).toBeInTheDocument();
     expect(screen.getByText('Keep going!')).toBeInTheDocument();

@@ -14,19 +14,19 @@ const AnswerTile = ({ option, onSelect, isSelected, isCorrect, showResult }) => 
 
   const getStatusClasses = () => {
     if (!showResult) {
-      return isSelected 
+      return isSelected
         ? 'bg-[var(--surface-butter)] text-[var(--ink)]'
         : 'bg-white/85 text-[var(--ink-soft)] hover:bg-[var(--surface-sky)]';
     }
-    
+
     if (option.correct || isCorrect) {
       return 'bg-[var(--surface-mint)] text-[var(--ink)]';
     }
-    
+
     if (isSelected && !option.correct) {
       return 'bg-[var(--surface-coral)] text-[var(--ink)]';
     }
-    
+
     return 'bg-white/70 text-[var(--ink-soft)]';
   };
 
@@ -34,12 +34,13 @@ const AnswerTile = ({ option, onSelect, isSelected, isCorrect, showResult }) => 
     <button
       data-depth-state={depthState}
       data-layer="option"
+      aria-pressed={isSelected || undefined}
       className={`brutal-tile pressable ${depthState} group relative flex flex-row items-center justify-start p-4 md:p-6 w-full overflow-hidden ${getStatusClasses()}`}
       onClick={!showResult ? onSelect : undefined}
       disabled={showResult}
     >
       {!showResult && <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>}
-      
+
       <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 flex items-center justify-center bg-transparent rounded-xl mr-6 overflow-hidden relative z-10">
         {imageFailed || !option.image ? (
           <span className="text-2xl md:text-3xl opacity-70">{option.label}</span>
@@ -54,7 +55,7 @@ const AnswerTile = ({ option, onSelect, isSelected, isCorrect, showResult }) => 
           />
         )}
       </div>
-      
+
       <span className="text-lg md:text-xl font-black uppercase tracking-[0.05em] relative z-10 text-left whitespace-nowrap overflow-hidden text-ellipsis pr-8">
         {option.label}
       </span>

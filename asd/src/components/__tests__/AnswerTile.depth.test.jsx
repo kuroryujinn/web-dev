@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import AnswerTile from '../AnswerTile';
+import AnswerTile from '../shared/AnswerTile';
 
 const option = { id: 'a', label: 'Dog', image: '', correct: false };
 

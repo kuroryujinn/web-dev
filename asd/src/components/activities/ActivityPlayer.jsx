@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import ActivityHeader from './ActivityHeader';
+import MultipleChoiceActivity from './MultipleChoiceActivity';
+import DragAndDropActivity from './DragAndDropActivity';
 import FeedbackOverlay from '../shared/FeedbackOverlay';
 import AccessibleButton from '../shared/AccessibleButton';
 import { calculateStars, calculateXP } from '../../utils/scoring';
@@ -9,7 +11,10 @@ import { calculateStars, calculateXP } from '../../utils/scoring';
  * Milestone 4 fills this in as each activity component lands. Types not yet
  * implemented render a friendly placeholder instead of breaking the player.
  */
-const DEFAULT_REGISTRY = {};
+const DEFAULT_REGISTRY = {
+  multipleChoice: MultipleChoiceActivity,
+  dragAndDrop: DragAndDropActivity,
+};
 
 const ActivityPlayer = ({
   activity,

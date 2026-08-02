@@ -62,17 +62,17 @@ Build the data-driven activity rendering system.
 Implement all 6 activity type components.
 
 ### 4a: MultipleChoice (existing, enhanced)
-- [ ] **4a.1** Create `src/components/activities/MultipleChoiceActivity.jsx`
-- [ ] **4a.2** Add keyboard navigation (Tab + Enter)
-- [ ] **4a.3** Add ARIA labels and live regions
-- [ ] **4a.4** Test MultipleChoice activity
+- [x] **4a.1** Create `src/components/activities/MultipleChoiceActivity.jsx`
+- [x] **4a.2** Add keyboard navigation (Tab + Enter)
+- [x] **4a.3** Add ARIA labels and live regions
+- [x] **4a.4** Test MultipleChoice activity
 
 ### 4b: DragAndDrop
-- [ ] **4b.1** Create `src/hooks/useDragAndDrop.js` — Drag state management
-- [ ] **4b.2** Create `src/components/activities/DragAndDropActivity.jsx`
-- [ ] **4b.3** Add touch support (pointer events)
-- [ ] **4b.4** Add keyboard fallback (arrow keys + Enter)
-- [ ] **4b.5** Test DragAndDrop activity
+- [x] **4b.1** Create `src/hooks/useDragAndDrop.js` — Drag state management
+- [x] **4b.2** Create `src/components/activities/DragAndDropActivity.jsx`
+- [x] **4b.3** Add touch support (tap-to-assign — pointer-friendly)
+- [x] **4b.4** Add keyboard fallback (native buttons + ARIA, focus ring)
+- [x] **4b.5** Test DragAndDrop activity
 
 ### 4c: PathTracing
 - [ ] **4c.1** Create `src/hooks/usePathTracing.js` — Touch/draw state
@@ -260,6 +260,23 @@ Audit, optimize, and document.
 
 ## Session Notes — August 2, 2026
 
+### Milestone 4b — DragAndDropActivity (complete)
+
+- **`src/hooks/useDragAndDrop.js`** — assignment state (targetId → itemId), drag start/end/drop, tap-to-assign, placements with correct flags, `isComplete`, `reset`. Items live in exactly one target (re-placing moves them).
+- **`src/components/activities/DragAndDropActivity.jsx`** — items (draggable buttons) + targets (drop zones). Three input modes: native HTML5 drag (mouse), tap-to-assign (touch), and keyboard (Tab + Enter via native buttons). Targets announce empty/contains state via `aria-label`; results announced via polite `role="status"` live region; 1500ms completion timer cleaned up on unmount.
+- **Wiring:** `dragAndDrop` added to `ActivityPlayer` registry.
+- **Tests:** `useDragAndDrop.test.js` (8 tests) + `DragAndDropActivity.test.jsx` (9 tests). Suite at **135 tests / 20 files**, all passing; lint clean; build OK.
+
+### Milestone 4a — MultipleChoiceActivity (complete)
+
+First real activity type wired into the engine:
+
+- **`src/components/shared/AnswerTile.jsx`** — moved from `src/components/AnswerTile.jsx` (final plan structure); added `aria-pressed` for selection state. References updated: `QuestionCard.jsx`, `AnswerTile.depth.test.jsx`.
+- **`src/components/activities/MultipleChoiceActivity.jsx`** — one question + selectable options using shared `AnswerTile`. Keyboard accessible (native buttons, Tab + Enter), `role="group"` labelled by the question heading, polite `role="status"` live region announcing results, deterministic option rotation, 1500ms reveal delay before `onComplete` (timer cleaned up on unmount).
+- **Wiring:** `multipleChoice` added to `ActivityPlayer` `DEFAULT_REGISTRY` — the player now renders the real component instead of the placeholder.
+- **Tests:** new `MultipleChoiceActivity.test.jsx` (6 tests); `ActivityPlayer.test.jsx` updated to use the real component. Suite at **118 tests / 18 files**, all passing; lint clean; build OK.
+- **⚠️ Uncommitted:** 4a changes are uncommitted — milestone 4.5 is the planned commit point (after all activity types land).
+
 ### Milestone 3 — Activity Engine Core (complete)
 
 Built the data-driven activity engine foundation:
@@ -299,7 +316,7 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 1. Foundation & Cleanup | ✅ Complete | 8 | 8/8 |
 | 2. Firebase Auth | ✅ Complete | 10 | 10/10 |
 | 3. Activity Engine | ✅ Complete | 11 | 11/11 |
-| 4. Activity Types | ⬜ Not Started | 21 | 0/21 |
+| 4. Activity Types | 🟡 In Progress | 21 | 9/21 |
 | 5. Progress System | ⬜ Not Started | 13 | 0/13 |
 | 6. Dashboard & Nav | ⬜ Not Started | 15 | 0/15 |
 | 7. Level Content | ⬜ Not Started | 19 | 0/19 |
@@ -307,7 +324,7 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **135** | **32/135** |
+| **Total** | 🟡 In Progress | **135** | **41/135** |
 
 ---
 
