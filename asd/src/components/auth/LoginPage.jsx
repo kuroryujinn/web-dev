@@ -2,27 +2,26 @@ import React, { useState } from 'react';
 import { signInWithGoogle, signInWithEmail, registerWithEmail } from '../../services/authService';
 import EmailPasswordForm from './EmailPasswordForm';
 
-const LoginPage = ({ onLogin }) => {
+// Navigation is driven by AuthContext (onAuthStateChanged), so these handlers only
+// call the auth service and let the context react to the resulting auth state.
+const LoginPage = () => {
   const [error, setError] = useState('');
 
   const handleGoogleLogin = async () => {
     try {
       setError('');
-      const user = await signInWithGoogle();
-      onLogin({ uid: user.uid, name: user.displayName, email: user.email, avatar: '🧑' });
+      await signInWithGoogle();
     } catch (err) {
       setError(err.message || 'Google login failed');
     }
   };
 
   const handleEmailLogin = async (email, password) => {
-    const user = await signInWithEmail(email, password);
-    onLogin({ uid: user.uid, name: user.displayName || 'Friend', email: user.email, avatar: '🧑' });
+    await signInWithEmail(email, password);
   };
 
   const handleEmailRegister = async (email, password, name) => {
-    const user = await registerWithEmail(email, password, name);
-    onLogin({ uid: user.uid, name: name || user.displayName, email: user.email, avatar: '🧑' });
+    await registerWithEmail(email, password, name);
   };
 
   return (
