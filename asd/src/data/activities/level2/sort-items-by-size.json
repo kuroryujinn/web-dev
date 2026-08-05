@@ -1,0 +1,29 @@
+{
+  "id": "l2-sort-items-by-size",
+  "levelId": "level2",
+  "type": "dragAndDrop",
+  "title": "Sort by Size",
+  "description": "Drag each item to the box that fits its size",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 6,
+  "content": {
+    "instructions": "Drag each item into the box that fits its size",
+    "items": [
+      { "id": "whale", "label": "🐋 Whale", "image": null },
+      { "id": "mouse", "label": "🐭 Mouse", "image": null },
+      { "id": "ant", "label": "🐜 Ant", "image": null }
+    ],
+    "targets": [
+      { "id": "big", "label": "BIG box", "image": null, "correctItemId": "whale" },
+      { "id": "small", "label": "SMALL box", "image": null, "correctItemId": "mouse" },
+      { "id": "tiny", "label": "TINY box", "image": null, "correctItemId": "ant" }
+    ],
+    "feedback": {
+      "correct": "Excellent sorting!",
+      "incorrect": "One of these is in the wrong box. Try again!"
+    }
+  },
+  "hints": ["Think about which animal is bigger"]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "l2-drag-food-to-plate",
+  "levelId": "level2",
+  "type": "dragAndDrop",
+  "title": "Drag Food to the Plate",
+  "description": "Put each food on the matching plate",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 5,
+  "content": {
+    "instructions": "Drag each food onto the plate that matches it",
+    "items": [
+      { "id": "apple", "label": "🍎 Apple", "image": null },
+      { "id": "carrot", "label": "🥕 Carrot", "image": null },
+      { "id": "cheese", "label": "🧀 Cheese", "image": null }
+    ],
+    "targets": [
+      { "id": "red-plate", "label": "Red plate", "image": null, "correctItemId": "apple" },
+      { "id": "orange-plate", "label": "Orange plate", "image": null, "correctItemId": "carrot" },
+      { "id": "yellow-plate", "label": "Yellow plate", "image": null, "correctItemId": "cheese" }
+    ],
+    "feedback": {
+      "correct": "Great job! Every food is on the right plate.",
+      "incorrect": "Some foods are on the wrong plate. Try again!"
+    }
+  },
+  "hints": ["Match the color of the food to the plate"]
+}

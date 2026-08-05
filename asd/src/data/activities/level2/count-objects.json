@@ -1,0 +1,27 @@
+{
+  "id": "l2-count-objects",
+  "levelId": "level2",
+  "type": "multipleChoice",
+  "title": "Count the Objects",
+  "description": "How many objects are shown?",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 3,
+  "content": {
+    "questionLabel": "How many stars are here? ⭐⭐⭐⭐",
+    "questionImage": null,
+    "questionAlt": "Four yellow stars",
+    "options": [
+      { "id": "a", "label": "4", "image": null, "correct": true },
+      { "id": "b", "label": "3", "image": null, "correct": false },
+      { "id": "c", "label": "5", "image": null, "correct": false },
+      { "id": "d", "label": "2", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! There are 4!",
+      "incorrect": "Not quite. Count them again — there are 4!"
+    }
+  },
+  "hints": ["Point to each star and count out loud"]
+}

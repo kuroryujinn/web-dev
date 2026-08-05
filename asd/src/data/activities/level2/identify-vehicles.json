@@ -1,0 +1,27 @@
+{
+  "id": "l2-identify-vehicles",
+  "levelId": "level2",
+  "type": "multipleChoice",
+  "title": "Identify the Vehicle",
+  "description": "What vehicle is shown?",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 1,
+  "content": {
+    "questionLabel": "What vehicle is this? 🚗",
+    "questionImage": null,
+    "questionAlt": "A red car",
+    "options": [
+      { "id": "a", "label": "🚗 Car", "image": null, "correct": true },
+      { "id": "b", "label": "✈️ Airplane", "image": null, "correct": false },
+      { "id": "c", "label": "🚲 Bicycle", "image": null, "correct": false },
+      { "id": "d", "label": "🚌 Bus", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's a car!",
+      "incorrect": "Not quite. That's a car!"
+    }
+  },
+  "hints": ["It has four wheels and a steering wheel"]
+}

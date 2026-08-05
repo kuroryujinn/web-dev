@@ -1,0 +1,27 @@
+{
+  "id": "l2-identify-food",
+  "levelId": "level2",
+  "type": "multipleChoice",
+  "title": "Identify the Food",
+  "description": "What food is shown?",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 2,
+  "content": {
+    "questionLabel": "What food is this? 🍕",
+    "questionImage": null,
+    "questionAlt": "A slice of pizza",
+    "options": [
+      { "id": "a", "label": "🍕 Pizza", "image": null, "correct": true },
+      { "id": "b", "label": "🍦 Ice Cream", "image": null, "correct": false },
+      { "id": "c", "label": "🍞 Bread", "image": null, "correct": false },
+      { "id": "d", "label": "🍿 Popcorn", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's pizza!",
+      "incorrect": "Not quite. That's pizza!"
+    }
+  },
+  "hints": ["It's a round flat bread with toppings"]
+}

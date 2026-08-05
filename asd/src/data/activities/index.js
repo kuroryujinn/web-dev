@@ -14,6 +14,14 @@ import level1IdentifyShapes from './level1/identify-shapes.json';
 import level1MatchBodyParts from './level1/match-body-parts.json';
 import level1MatchAnimalsToSounds from './level1/match-animals-to-sounds.json';
 import level1MatchColorsToObjects from './level1/match-colors-to-objects.json';
+import level2IdentifyVehicles from './level2/identify-vehicles.json';
+import level2IdentifyFood from './level2/identify-food.json';
+import level2CountObjects from './level2/count-objects.json';
+import level2MatchShapesToOutlines from './level2/match-shapes-to-outlines.json';
+import level2DragFoodToPlate from './level2/drag-food-to-plate.json';
+import level2SortItemsBySize from './level2/sort-items-by-size.json';
+import level2MatchNumbersToCounts from './level2/match-numbers-to-counts.json';
+import level2MatchThingsToPlaces from './level2/match-things-to-places.json';
 
 const ACTIVITIES_BY_LEVEL = {
   level1: [
@@ -25,6 +33,16 @@ const ACTIVITIES_BY_LEVEL = {
     level1MatchBodyParts,
     level1MatchAnimalsToSounds,
     level1MatchColorsToObjects,
+  ],
+  level2: [
+    level2IdentifyVehicles,
+    level2IdentifyFood,
+    level2CountObjects,
+    level2MatchShapesToOutlines,
+    level2DragFoodToPlate,
+    level2SortItemsBySize,
+    level2MatchNumbersToCounts,
+    level2MatchThingsToPlaces,
   ],
 };
 

@@ -1,15 +1,15 @@
 import { getActivitiesForLevel } from '../index';
 import { validateLevelContent } from './levelContentValidator';
 
-describe('Level 1 activities', () => {
+describe('Level 2 activities', () => {
   const activities = validateLevelContent({
-    levelId: 'level1',
-    difficulty: 1,
-    expectedTypes: { multipleChoice: 5, matching: 3 },
+    levelId: 'level2',
+    difficulty: 2,
+    expectedTypes: { multipleChoice: 3, dragAndDrop: 3, matching: 2 },
   });
 
-  it('returns an empty array for levels without content yet', () => {
-    expect(getActivitiesForLevel('level5')).toEqual([]);
+  it('keeps level 1 content untouched', () => {
+    expect(getActivitiesForLevel('level1')).toHaveLength(8);
   });
 
   // No level-specific extra assertions beyond the shared validator for now.

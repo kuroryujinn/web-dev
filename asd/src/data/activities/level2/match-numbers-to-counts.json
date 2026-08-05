@@ -1,0 +1,25 @@
+{
+  "id": "l2-match-numbers-to-counts",
+  "levelId": "level2",
+  "type": "matching",
+  "title": "Match Numbers to Counts",
+  "description": "Match each number to the same number of dots",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 7,
+  "content": {
+    "instructions": "Tap a number, then tap the group with that many dots",
+    "pairs": [
+      { "left": { "id": "l1", "label": "1", "image": null }, "right": { "id": "r1", "label": "●", "image": null } },
+      { "left": { "id": "l2", "label": "2", "image": null }, "right": { "id": "r2", "label": "●●", "image": null } },
+      { "left": { "id": "l3", "label": "3", "image": null }, "right": { "id": "r3", "label": "●●●", "image": null } },
+      { "left": { "id": "l4", "label": "4", "image": null }, "right": { "id": "r4", "label": "●●●●", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching!",
+      "incorrect": "Not quite. Count the dots and try again!"
+    }
+  },
+  "hints": []
+}

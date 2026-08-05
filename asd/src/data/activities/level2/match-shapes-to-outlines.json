@@ -1,0 +1,29 @@
+{
+  "id": "l2-match-shapes-to-outlines",
+  "levelId": "level2",
+  "type": "dragAndDrop",
+  "title": "Match Shapes to Outlines",
+  "description": "Drag each shape onto its matching outline",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 4,
+  "content": {
+    "instructions": "Drag each shape onto its matching outline",
+    "items": [
+      { "id": "circle", "label": "⭕ Circle", "image": null },
+      { "id": "square", "label": "⬛ Square", "image": null },
+      { "id": "triangle", "label": "🔺 Triangle", "image": null }
+    ],
+    "targets": [
+      { "id": "t1", "label": "Round outline", "image": null, "correctItemId": "circle" },
+      { "id": "t2", "label": "Four-sided outline", "image": null, "correctItemId": "square" },
+      { "id": "t3", "label": "Three-corner outline", "image": null, "correctItemId": "triangle" }
+    ],
+    "feedback": {
+      "correct": "Perfect! Every shape found its outline.",
+      "incorrect": "Some shapes are on the wrong outline. Try again!"
+    }
+  },
+  "hints": ["Look at how many sides each shape has"]
+}

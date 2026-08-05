@@ -157,11 +157,11 @@ Seed activities for all 5 levels.
 - [x] **7a.4** Test Level 1 activities
 
 ### 7b: Level 2 — Basic Coordination
-- [ ] **7b.1** Create `src/data/activities/level2/` directory
-- [ ] **7b.2** Create 3 MultipleChoice activities
-- [ ] **7b.3** Create 3 DragAndDrop activities (match shapes, sort items)
-- [ ] **7b.4** Create 2 Matching activities
-- [ ] **7b.5** Test Level 2 activities
+- [x] **7b.1** Create `src/data/activities/level2/` directory
+- [x] **7b.2** Create 3 MultipleChoice activities
+- [x] **7b.3** Create 3 DragAndDrop activities (match shapes, sort items)
+- [x] **7b.4** Create 2 Matching activities
+- [x] **7b.5** Test Level 2 activities
 
 ### 7c: Level 3 — Visual-Motor Integration
 - [ ] **7c.1** Create `src/data/activities/level3/` directory
@@ -259,6 +259,15 @@ Audit, optimize, and document.
 ---
 
 ## Session Notes — August 5, 2026
+
+### Milestone 7b — Level 2 Content (complete)
+
+Seeded all of Level 2's activities (Basic Coordination) and registered them:
+
+- **`src/data/activities/level2/*.json`** — 8 activity documents at `difficulty: 2`: 3 MultipleChoice (`identify-vehicles`, `identify-food`, `count-objects`), 3 DragAndDrop (`match-shapes-to-outlines`, `drag-food-to-plate`, `sort-items-by-size` — each with unique items and targets whose `correctItemId` references a real, uniquely-used item), and 2 Matching (`match-numbers-to-counts`, `match-things-to-places`). Emoji labels (image-less, ASD-friendly).
+- **`src/data/activities/index.js`** — registered `level2` in `ACTIVITIES_BY_LEVEL` (8 entries).
+- **Tests:** `src/data/activities/__tests__/level2.test.js` (18 tests) plus a **shared validator** — `levelContentValidator.js` now runs the common structural checks for both level suites (count, type mix, unique ids, sequential order, type whitelist, difficulty, per-type content shapes, and DnD **balance**: every item is the answer to exactly one target so nothing is stranded unplaceable). Level 1's test was refactored onto the same helper (7c/7d/7e reuse it). Level 1 data verified untouched.
+- **Suite:** ✅ **361 tests / 41 files passing** (up from 343/40), ESLint clean, build OK.
 
 ### Milestone 7a — Level 1 Content (complete)
 
@@ -433,12 +442,12 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 4. Activity Types | ✅ Complete | 28 | 28/28 |
 | 5. Progress System | ✅ Complete | 13 | 13/13 |
 | 6. Dashboard & Nav | ✅ Complete | 15 | 15/15 |
-| 7. Level Content | 🟡 In Progress | 19 | 4/19 |
+| 7. Level Content | 🟡 In Progress | 19 | 9/19 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **142** | **92/142** |
+| **Total** | 🟡 In Progress | **142** | **97/142** |
 
 ---
 

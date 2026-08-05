@@ -1,0 +1,25 @@
+{
+  "id": "l2-match-things-to-places",
+  "levelId": "level2",
+  "type": "matching",
+  "title": "Match Things to Places",
+  "description": "Match each thing to the place it belongs",
+  "difficulty": 2,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 8,
+  "content": {
+    "instructions": "Tap a thing, then tap the place it belongs",
+    "pairs": [
+      { "left": { "id": "l1", "label": "🛏️ Pillow", "image": null }, "right": { "id": "r1", "label": "Bedroom", "image": null } },
+      { "left": { "id": "l2", "label": "🍽️ Plate", "image": null }, "right": { "id": "r2", "label": "Kitchen", "image": null } },
+      { "left": { "id": "l3", "label": "🚗 Toy Car", "image": null }, "right": { "id": "r3", "label": "Playroom", "image": null } },
+      { "left": { "id": "l4", "label": "🛁 Soap", "image": null }, "right": { "id": "r4", "label": "Bathroom", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching!",
+      "incorrect": "Not quite. Think about where each thing goes!"
+    }
+  },
+  "hints": []
+}
