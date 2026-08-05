@@ -2,12 +2,14 @@ import React from 'react';
 import { BADGES } from '../../data/badges';
 
 const BadgeShelf = ({ badges = [] }) => {
+  // Guard against null/undefined so callers can pass a raw progress field.
+  const earnedIds = badges ?? [];
   if (!BADGES || BADGES.length === 0) return null;
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
       {BADGES.map((badge) => {
-        const earned = badges.includes(badge.id);
+        const earned = earnedIds.includes(badge.id);
         return (
           <div
             key={badge.id}

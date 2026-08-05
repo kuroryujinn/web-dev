@@ -287,6 +287,15 @@ Extended `LevelScreen` and added a new `ActivityCard` suite with 18 edge-case te
 - **Fix (RED→GREEN):** `ActivityCard` now defaults a missing `bestScore` to 0 via `?? 0` — previously an undefined score would have rendered "undefined%" in both the badge and the aria-label.
 - **Suite:** ✅ **330 tests / 38 files passing**, ESLint clean, build OK.
 
+### Dashboard widget edge-case test coverage (complete)
+
+Added two new suites for the dashboard widgets:
+
+- **`QuickStats.test.jsx`** (new, 7 tests) — null / empty-object progress, missing optional keys (only `totalXP` present), `activities: null`, counting all activity entries regardless of completion status, multi-day streaks ("12 days"), and full stat-card rendering.
+- **`BadgeShelf.test.jsx`** (new, 6 tests) — default/empty arrays show all 8 badges locked, mixed earned/locked states with correct aria-labels, all-earned state, unknown badge ids ignored, and a **null `badges` guard**.
+- **Fix (RED→GREEN):** `BadgeShelf` now normalizes a null `badges` prop via `badges ?? []` — previously `badges={null}` crashed with "Cannot read properties of null (reading 'includes')".
+- **Suite:** ✅ **343 tests / 40 files passing**, ESLint clean, build OK.
+
 ---
 
 ## Session Notes — August 5, 2026
