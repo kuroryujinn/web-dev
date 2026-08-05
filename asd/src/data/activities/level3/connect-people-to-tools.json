@@ -1,0 +1,29 @@
+{
+  "id": "l3-connect-people-to-tools",
+  "levelId": "level3",
+  "type": "dragAndDrop",
+  "title": "Connect People to Tools",
+  "description": "Drag each person to the tool they use",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 7,
+  "content": {
+    "instructions": "Drag each person onto the tool they use",
+    "items": [
+      { "id": "artist", "label": "🎨 Artist", "image": null },
+      { "id": "chef", "label": "👨‍🍳 Chef", "image": null },
+      { "id": "doctor", "label": "👨‍⚕️ Doctor", "image": null }
+    ],
+    "targets": [
+      { "id": "paintbrush", "label": "🖌️ Paintbrush", "image": null, "correctItemId": "artist" },
+      { "id": "pot", "label": "🍳 Pan", "image": null, "correctItemId": "chef" },
+      { "id": "stethoscope", "label": "🩺 Stethoscope", "image": null, "correctItemId": "doctor" }
+    ],
+    "feedback": {
+      "correct": "Perfect! Everyone has the right tool.",
+      "incorrect": "Some people have the wrong tool. Try again!"
+    }
+  },
+  "hints": ["An artist paints with a brush"]
+}

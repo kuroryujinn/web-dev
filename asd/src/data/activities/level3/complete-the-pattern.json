@@ -1,0 +1,27 @@
+{
+  "id": "l3-complete-the-pattern",
+  "levelId": "level3",
+  "type": "multipleChoice",
+  "title": "Complete the Pattern",
+  "description": "What comes next in the pattern?",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 2,
+  "content": {
+    "questionLabel": "What comes next? 🔵 🟢 🔵 🟢 ?",
+    "questionImage": null,
+    "questionAlt": "A blue, green, blue, green pattern",
+    "options": [
+      { "id": "a", "label": "🔵 Blue", "image": null, "correct": true },
+      { "id": "b", "label": "🟢 Green", "image": null, "correct": false },
+      { "id": "c", "label": "🟡 Yellow", "image": null, "correct": false },
+      { "id": "d", "label": "🔴 Red", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! Blue comes next!",
+      "incorrect": "Not quite. The pattern is blue, green, blue, green…"
+    }
+  },
+  "hints": ["Say the pattern out loud: blue, green, blue, green"]
+}

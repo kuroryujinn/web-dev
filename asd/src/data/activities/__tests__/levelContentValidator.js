@@ -125,6 +125,41 @@ export const validateLevelContent = ({ levelId, difficulty, expectedTypes }) => 
       });
     }
 
+    if (expectedTypes.pathTracing) {
+      describe('path tracing content', () => {
+        const pt = activities.filter((a) => a.type === 'pathTracing');
+
+        it.each(pt.map((a) => [a.id, a]))(
+          '%s has instructions, valid SVG paths, and a positive tolerance',
+          (_id, activity) => {
+            expect(activity.content.instructions).toBeTruthy();
+            expect(activity.content.tolerance).toBeGreaterThan(0);
+            expect(activity.content.paths.length).toBeGreaterThanOrEqual(1);
+
+            const pathIds = activity.content.paths.map((p) => p.id);
+            expect(new Set(pathIds).size).toBe(activity.content.paths.length);
+            activity.content.paths.forEach((p) => {
+              expect(p.label).toBeTruthy();
+              expect(p.strokeWidth).toBeGreaterThan(0);
+              // The component renders path data in a 0–100 viewBox and samples
+              // it with the SVG path parser, so `d` must be non-empty and
+              // contain at least one drawing command.
+              expect(typeof p.d).toBe('string');
+              expect(p.d.length).toBeGreaterThan(0);
+              expect(p.d).toMatch(/[a-zA-Z]/);
+            });
+          },
+        );
+
+        it('includes feedback messages', () => {
+          pt.forEach((a) => {
+            expect(a.content.feedback.correct).toBeTruthy();
+            expect(a.content.feedback.incorrect).toBeTruthy();
+          });
+        });
+      });
+    }
+
     if (expectedTypes.matching) {
       describe('matching content', () => {
         const matching = activities.filter((a) => a.type === 'matching');

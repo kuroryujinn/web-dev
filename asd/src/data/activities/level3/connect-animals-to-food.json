@@ -1,0 +1,29 @@
+{
+  "id": "l3-connect-animals-to-food",
+  "levelId": "level3",
+  "type": "dragAndDrop",
+  "title": "Connect Animals to Food",
+  "description": "Drag each animal to its favorite food",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 6,
+  "content": {
+    "instructions": "Drag each animal onto its favorite food",
+    "items": [
+      { "id": "rabbit", "label": "🐰 Rabbit", "image": null },
+      { "id": "cat", "label": "🐱 Cat", "image": null },
+      { "id": "monkey", "label": "🐵 Monkey", "image": null }
+    ],
+    "targets": [
+      { "id": "carrot", "label": "🥕 Carrot", "image": null, "correctItemId": "rabbit" },
+      { "id": "fish", "label": "🐟 Fish", "image": null, "correctItemId": "cat" },
+      { "id": "banana", "label": "🍌 Banana", "image": null, "correctItemId": "monkey" }
+    ],
+    "feedback": {
+      "correct": "Perfect! Every animal found its food.",
+      "incorrect": "Some animals are at the wrong food. Try again!"
+    }
+  },
+  "hints": ["Rabbits love carrots"]
+}

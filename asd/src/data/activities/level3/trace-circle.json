@@ -1,0 +1,28 @@
+{
+  "id": "l3-trace-circle",
+  "levelId": "level3",
+  "type": "pathTracing",
+  "title": "Trace the Circle",
+  "description": "Trace around the circle",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 3,
+  "content": {
+    "instructions": "Trace all the way around the circle",
+    "paths": [
+      {
+        "id": "circle",
+        "d": "M 50 15 A 35 35 0 1 1 49.99 15",
+        "label": "Circle",
+        "strokeWidth": 3
+      }
+    ],
+    "tolerance": 5,
+    "feedback": {
+      "correct": "Beautiful tracing! The circle is complete.",
+      "incorrect": "Keep tracing — stay on the line!"
+    }
+  },
+  "hints": ["Go slowly and follow the round line"]
+}

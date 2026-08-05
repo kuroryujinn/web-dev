@@ -1,0 +1,25 @@
+{
+  "id": "l3-match-objects-to-uses",
+  "levelId": "level3",
+  "type": "matching",
+  "title": "Match Objects to Uses",
+  "description": "Match each object to what you do with it",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 10,
+  "content": {
+    "instructions": "Tap an object, then tap what you do with it",
+    "pairs": [
+      { "left": { "id": "l1", "label": "✂️ Scissors", "image": null }, "right": { "id": "r1", "label": "Cut paper", "image": null } },
+      { "left": { "id": "l2", "label": "🧽 Sponge", "image": null }, "right": { "id": "r2", "label": "Clean dishes", "image": null } },
+      { "left": { "id": "l3", "label": "📖 Book", "image": null }, "right": { "id": "r3", "label": "Read a story", "image": null } },
+      { "left": { "id": "l4", "label": "⚽ Ball", "image": null }, "right": { "id": "r4", "label": "Kick and play", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching!",
+      "incorrect": "Not quite. Think about what each object is for!"
+    }
+  },
+  "hints": []
+}

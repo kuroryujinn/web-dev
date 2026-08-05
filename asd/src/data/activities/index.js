@@ -22,6 +22,16 @@ import level2DragFoodToPlate from './level2/drag-food-to-plate.json';
 import level2SortItemsBySize from './level2/sort-items-by-size.json';
 import level2MatchNumbersToCounts from './level2/match-numbers-to-counts.json';
 import level2MatchThingsToPlaces from './level2/match-things-to-places.json';
+import level3FollowTheDirection from './level3/follow-the-direction.json';
+import level3CompleteThePattern from './level3/complete-the-pattern.json';
+import level3TraceCircle from './level3/trace-circle.json';
+import level3TraceSquare from './level3/trace-square.json';
+import level3TraceLetterA from './level3/trace-letter-a.json';
+import level3ConnectAnimalsToFood from './level3/connect-animals-to-food.json';
+import level3ConnectPeopleToTools from './level3/connect-people-to-tools.json';
+import level3ConnectThingsToRooms from './level3/connect-things-to-rooms.json';
+import level3MatchEmotionsToFaces from './level3/match-emotions-to-faces.json';
+import level3MatchObjectsToUses from './level3/match-objects-to-uses.json';
 
 const ACTIVITIES_BY_LEVEL = {
   level1: [
@@ -43,6 +53,18 @@ const ACTIVITIES_BY_LEVEL = {
     level2SortItemsBySize,
     level2MatchNumbersToCounts,
     level2MatchThingsToPlaces,
+  ],
+  level3: [
+    level3FollowTheDirection,
+    level3CompleteThePattern,
+    level3TraceCircle,
+    level3TraceSquare,
+    level3TraceLetterA,
+    level3ConnectAnimalsToFood,
+    level3ConnectPeopleToTools,
+    level3ConnectThingsToRooms,
+    level3MatchEmotionsToFaces,
+    level3MatchObjectsToUses,
   ],
 };
 

@@ -1,0 +1,27 @@
+{
+  "id": "l3-follow-the-direction",
+  "levelId": "level3",
+  "type": "multipleChoice",
+  "title": "Follow the Direction",
+  "description": "Which arrow points the right way?",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 1,
+  "content": {
+    "questionLabel": "Which arrow points UP?",
+    "questionImage": null,
+    "questionAlt": "Four arrows pointing different ways",
+    "options": [
+      { "id": "a", "label": "⬆️ Up", "image": null, "correct": true },
+      { "id": "b", "label": "⬇️ Down", "image": null, "correct": false },
+      { "id": "c", "label": "⬅️ Left", "image": null, "correct": false },
+      { "id": "d", "label": "➡️ Right", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That arrow points up!",
+      "incorrect": "Not quite. The up arrow points to the sky!"
+    }
+  },
+  "hints": ["Up means toward the top of the screen"]
+}

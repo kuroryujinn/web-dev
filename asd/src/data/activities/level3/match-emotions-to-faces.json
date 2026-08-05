@@ -1,0 +1,25 @@
+{
+  "id": "l3-match-emotions-to-faces",
+  "levelId": "level3",
+  "type": "matching",
+  "title": "Match Emotions to Faces",
+  "description": "Match each feeling to the face that shows it",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 9,
+  "content": {
+    "instructions": "Tap a feeling, then tap the face that shows it",
+    "pairs": [
+      { "left": { "id": "l1", "label": "😊 Happy", "image": null }, "right": { "id": "r1", "label": "Smiling face", "image": null } },
+      { "left": { "id": "l2", "label": "😢 Sad", "image": null }, "right": { "id": "r2", "label": "Frowning face", "image": null } },
+      { "left": { "id": "l3", "label": "😡 Angry", "image": null }, "right": { "id": "r3", "label": "Red angry face", "image": null } },
+      { "left": { "id": "l4", "label": "😨 Scared", "image": null }, "right": { "id": "r4", "label": "Wide-eyed face", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching!",
+      "incorrect": "Not quite. Look at each face again!"
+    }
+  },
+  "hints": []
+}

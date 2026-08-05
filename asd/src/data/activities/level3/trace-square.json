@@ -1,0 +1,28 @@
+{
+  "id": "l3-trace-square",
+  "levelId": "level3",
+  "type": "pathTracing",
+  "title": "Trace the Square",
+  "description": "Trace around the square",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 4,
+  "content": {
+    "instructions": "Trace all the way around the square",
+    "paths": [
+      {
+        "id": "square",
+        "d": "M 25 25 L 75 25 L 75 75 L 25 75 Z",
+        "label": "Square",
+        "strokeWidth": 3
+      }
+    ],
+    "tolerance": 5,
+    "feedback": {
+      "correct": "Great tracing! The square is complete.",
+      "incorrect": "Keep tracing — stay on the line!"
+    }
+  },
+  "hints": ["Follow the corners — stop and turn at each one"]
+}

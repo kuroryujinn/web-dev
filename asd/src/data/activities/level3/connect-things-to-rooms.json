@@ -1,0 +1,29 @@
+{
+  "id": "l3-connect-things-to-rooms",
+  "levelId": "level3",
+  "type": "dragAndDrop",
+  "title": "Connect Things to Rooms",
+  "description": "Drag each thing to the room it belongs in",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 8,
+  "content": {
+    "instructions": "Drag each thing onto the room where it belongs",
+    "items": [
+      { "id": "toothbrush", "label": "🪥 Toothbrush", "image": null },
+      { "id": "teddy", "label": "🧸 Teddy Bear", "image": null },
+      { "id": "fryingPan", "label": "🍳 Frying Pan", "image": null }
+    ],
+    "targets": [
+      { "id": "bathroom", "label": "🛁 Bathroom", "image": null, "correctItemId": "toothbrush" },
+      { "id": "bedroom", "label": "🛏️ Bedroom", "image": null, "correctItemId": "teddy" },
+      { "id": "kitchen", "label": "🍽️ Kitchen", "image": null, "correctItemId": "fryingPan" }
+    ],
+    "feedback": {
+      "correct": "Perfect! Everything is in the right room.",
+      "incorrect": "Some things are in the wrong room. Try again!"
+    }
+  },
+  "hints": ["You brush your teeth in the bathroom"]
+}

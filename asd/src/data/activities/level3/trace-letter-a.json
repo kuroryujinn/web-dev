@@ -1,0 +1,40 @@
+{
+  "id": "l3-trace-letter-a",
+  "levelId": "level3",
+  "type": "pathTracing",
+  "title": "Trace the Letter A",
+  "description": "Trace the big letter A",
+  "difficulty": 3,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 5,
+  "content": {
+    "instructions": "Trace the letter A — start at the top!",
+    "paths": [
+      {
+        "id": "a-left",
+        "d": "M 50 15 L 20 85",
+        "label": "Left line",
+        "strokeWidth": 3
+      },
+      {
+        "id": "a-right",
+        "d": "M 50 15 L 80 85",
+        "label": "Right line",
+        "strokeWidth": 3
+      },
+      {
+        "id": "a-bar",
+        "d": "M 33 55 L 67 55",
+        "label": "Middle bar",
+        "strokeWidth": 3
+      }
+    ],
+    "tolerance": 5,
+    "feedback": {
+      "correct": "You traced an A! Nice work!",
+      "incorrect": "Keep tracing — stay on the lines!"
+    }
+  },
+  "hints": ["Start at the top point of the A"]
+}

@@ -164,12 +164,12 @@ Seed activities for all 5 levels.
 - [x] **7b.5** Test Level 2 activities
 
 ### 7c: Level 3 — Visual-Motor Integration
-- [ ] **7c.1** Create `src/data/activities/level3/` directory
-- [ ] **7c.2** Create 3 PathTracing activities (trace letters, shapes)
-- [ ] **7c.3** Create 3 DragAndDrop activities (connect pairs)
-- [ ] **7c.4** Create 2 Matching activities
-- [ ] **7c.5** Create 2 MultipleChoice activities
-- [ ] **7c.6** Test Level 3 activities
+- [x] **7c.1** Create `src/data/activities/level3/` directory
+- [x] **7c.2** Create 3 PathTracing activities (trace letters, shapes)
+- [x] **7c.3** Create 3 DragAndDrop activities (connect pairs)
+- [x] **7c.4** Create 2 Matching activities
+- [x] **7c.5** Create 2 MultipleChoice activities
+- [x] **7c.6** Test Level 3 activities
 
 ### 7d: Level 4 — Fine Motor Skills
 - [ ] **7d.1** Create `src/data/activities/level4/` directory
@@ -259,6 +259,16 @@ Audit, optimize, and document.
 ---
 
 ## Session Notes — August 5, 2026
+
+### Milestone 7c — Level 3 Content (complete)
+
+Seeded all of Level 3's activities (Visual-Motor Integration, `difficulty: 3`) and registered them:
+
+- **`src/data/activities/level3/*.json`** — 10 activity documents: 2 MultipleChoice (`follow-the-direction`, `complete-the-pattern`), 3 PathTracing (`trace-circle`, `trace-square`, `trace-letter-a` — SVG `d` paths in the 0–100 viewBox the component renders in, with `tolerance` and per-path `strokeWidth`/`label`), 3 DragAndDrop (`connect-animals-to-food`, `connect-people-to-tools`, `connect-things-to-rooms` — balanced items/targets), and 2 Matching (`match-emotions-to-faces`, `match-objects-to-uses`).
+- **`src/data/activities/index.js`** — registered `level3` (10 entries).
+- **Validator:** `levelContentValidator.js` gained a `pathTracing` block (instructions, positive `tolerance`, ≥1 path, unique path ids, non-empty `d` with a drawing command, positive `strokeWidth`, feedback).
+- **Tests:** `level3.test.js` (21 tests) reuses the shared validator. Level 2 data verified untouched.
+- **Suite:** ✅ **382 tests / 42 files passing** (up from 361/41), ESLint clean, build OK.
 
 ### Milestone 7b — Level 2 Content (complete)
 
@@ -442,12 +452,12 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 4. Activity Types | ✅ Complete | 28 | 28/28 |
 | 5. Progress System | ✅ Complete | 13 | 13/13 |
 | 6. Dashboard & Nav | ✅ Complete | 15 | 15/15 |
-| 7. Level Content | 🟡 In Progress | 19 | 9/19 |
+| 7. Level Content | 🟡 In Progress | 19 | 15/19 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **142** | **97/142** |
+| **Total** | 🟡 In Progress | **142** | **103/142** |
 
 ---
 
