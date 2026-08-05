@@ -120,6 +120,9 @@ describe('App routing', () => {
     });
     // The button text contains an arrow prefix, so use a text matcher function
     expect(screen.getByText((text) => text.includes('BACK TO DASHBOARD'))).toBeInTheDocument();
+    // Level 1's seeded activities are listed (5 MC + 3 matching)
+    expect(screen.getByText('Identify the Fruit')).toBeInTheDocument();
+    expect(screen.getByText('Match Body Parts')).toBeInTheDocument();
   });
 
   it('navigates back from level screen to dashboard', async () => {

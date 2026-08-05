@@ -1,0 +1,25 @@
+{
+  "id": "l1-match-colors-to-objects",
+  "levelId": "level1",
+  "type": "matching",
+  "title": "Match Colors to Objects",
+  "description": "Match each color to an object of that color",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 8,
+  "content": {
+    "instructions": "Tap a color, then tap its object",
+    "pairs": [
+      { "left": { "id": "l1", "label": "🔴 Red", "image": null }, "right": { "id": "r1", "label": "🍎 Apple", "image": null } },
+      { "left": { "id": "l2", "label": "🔵 Blue", "image": null }, "right": { "id": "r2", "label": "🌊 Water", "image": null } },
+      { "left": { "id": "l3", "label": "🟢 Green", "image": null }, "right": { "id": "r3", "label": "🥦 Broccoli", "image": null } },
+      { "left": { "id": "l4", "label": "🟡 Yellow", "image": null }, "right": { "id": "r4", "label": "🍌 Banana", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching!",
+      "incorrect": "Not quite. Try again!"
+    }
+  },
+  "hints": []
+}

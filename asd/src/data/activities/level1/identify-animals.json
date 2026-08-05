@@ -1,0 +1,27 @@
+{
+  "id": "l1-identify-animals",
+  "levelId": "level1",
+  "type": "multipleChoice",
+  "title": "Identify the Animal",
+  "description": "What animal is shown?",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 2,
+  "content": {
+    "questionLabel": "What animal is this? 🐶",
+    "questionImage": null,
+    "questionAlt": "A small dog",
+    "options": [
+      { "id": "a", "label": "🐶 Dog", "image": null, "correct": true },
+      { "id": "b", "label": "🐱 Cat", "image": null, "correct": false },
+      { "id": "c", "label": "🐦 Bird", "image": null, "correct": false },
+      { "id": "d", "label": "🐟 Fish", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's a dog!",
+      "incorrect": "Not quite. That's a dog!"
+    }
+  },
+  "hints": ["It barks"]
+}

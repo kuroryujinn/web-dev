@@ -1,0 +1,27 @@
+{
+  "id": "l1-identify-colors",
+  "levelId": "level1",
+  "type": "multipleChoice",
+  "title": "Identify the Color",
+  "description": "What color is shown?",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 4,
+  "content": {
+    "questionLabel": "What color is this? 🔴",
+    "questionImage": null,
+    "questionAlt": "A red circle",
+    "options": [
+      { "id": "a", "label": "🔴 Red", "image": null, "correct": true },
+      { "id": "b", "label": "🔵 Blue", "image": null, "correct": false },
+      { "id": "c", "label": "🟢 Green", "image": null, "correct": false },
+      { "id": "d", "label": "🟡 Yellow", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's red!",
+      "incorrect": "Not quite. That's red!"
+    }
+  },
+  "hints": ["It's the color of a fire truck"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "l1-identify-objects",
+  "levelId": "level1",
+  "type": "multipleChoice",
+  "title": "Identify the Object",
+  "description": "What object is shown?",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 3,
+  "content": {
+    "questionLabel": "What object is this? ⚽",
+    "questionImage": null,
+    "questionAlt": "A soccer ball",
+    "options": [
+      { "id": "a", "label": "⚽ Ball", "image": null, "correct": true },
+      { "id": "b", "label": "📚 Book", "image": null, "correct": false },
+      { "id": "c", "label": "🧸 Teddy Bear", "image": null, "correct": false },
+      { "id": "d", "label": "🚗 Car", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's a ball!",
+      "incorrect": "Not quite. That's a ball!"
+    }
+  },
+  "hints": ["You can kick it"]
+}

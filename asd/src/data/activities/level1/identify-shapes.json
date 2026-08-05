@@ -1,0 +1,27 @@
+{
+  "id": "l1-identify-shapes",
+  "levelId": "level1",
+  "type": "multipleChoice",
+  "title": "Identify the Shape",
+  "description": "What shape is shown?",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 5,
+  "content": {
+    "questionLabel": "What shape is this? ⬛",
+    "questionImage": null,
+    "questionAlt": "A black square",
+    "options": [
+      { "id": "a", "label": "⬛ Square", "image": null, "correct": true },
+      { "id": "b", "label": "🔺 Triangle", "image": null, "correct": false },
+      { "id": "c", "label": "⭕ Circle", "image": null, "correct": false },
+      { "id": "d", "label": "⭐ Star", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's a square!",
+      "incorrect": "Not quite. That's a square!"
+    }
+  },
+  "hints": ["It has four equal sides"]
+}

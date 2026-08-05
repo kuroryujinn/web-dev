@@ -1,0 +1,27 @@
+{
+  "id": "l1-identify-fruits",
+  "levelId": "level1",
+  "type": "multipleChoice",
+  "title": "Identify the Fruit",
+  "description": "What fruit is shown in the picture?",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 1,
+  "content": {
+    "questionLabel": "What fruit is this? 🍌",
+    "questionImage": null,
+    "questionAlt": "A yellow banana",
+    "options": [
+      { "id": "a", "label": "🍌 Banana", "image": null, "correct": true },
+      { "id": "b", "label": "🍎 Apple", "image": null, "correct": false },
+      { "id": "c", "label": "🍊 Orange", "image": null, "correct": false },
+      { "id": "d", "label": "🍇 Grape", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! That's a banana!",
+      "incorrect": "Not quite. That's a banana!"
+    }
+  },
+  "hints": ["It's yellow and curved"]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "l1-match-animals-to-sounds",
+  "levelId": "level1",
+  "type": "matching",
+  "title": "Match Animals to Sounds",
+  "description": "Match each animal to the sound it makes",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 7,
+  "content": {
+    "instructions": "Tap an animal, then tap its sound",
+    "pairs": [
+      { "left": { "id": "l1", "label": "🐱 Cat", "image": null }, "right": { "id": "r1", "label": "Meow", "image": null } },
+      { "left": { "id": "l2", "label": "🐶 Dog", "image": null }, "right": { "id": "r2", "label": "Woof", "image": null } },
+      { "left": { "id": "l3", "label": "🐮 Cow", "image": null }, "right": { "id": "r3", "label": "Moo", "image": null } },
+      { "left": { "id": "l4", "label": "🐔 Chicken", "image": null }, "right": { "id": "r4", "label": "Cluck", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching!",
+      "incorrect": "Not quite. Try again!"
+    }
+  },
+  "hints": []
+}

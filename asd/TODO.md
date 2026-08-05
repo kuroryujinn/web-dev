@@ -151,10 +151,10 @@ Level selection, user profile, settings.
 Seed activities for all 5 levels.
 
 ### 7a: Level 1 — Core Recognition
-- [ ] **7a.1** Create `src/data/activities/level1/` directory
-- [ ] **7a.2** Create 5 MultipleChoice activities (identify fruits, animals, objects)
-- [ ] **7a.3** Create 3 Matching activities (match pairs)
-- [ ] **7a.4** Test Level 1 activities
+- [x] **7a.1** Create `src/data/activities/level1/` directory
+- [x] **7a.2** Create 5 MultipleChoice activities (identify fruits, animals, objects)
+- [x] **7a.3** Create 3 Matching activities (match pairs)
+- [x] **7a.4** Test Level 1 activities
 
 ### 7b: Level 2 — Basic Coordination
 - [ ] **7b.1** Create `src/data/activities/level2/` directory
@@ -255,6 +255,20 @@ Audit, optimize, and document.
 - [ ] **11.5** Update `.env.example` with required Firebase config
 - [ ] **11.6** Create architecture summary document
 - [ ] **11.7** Final commit
+
+---
+
+## Session Notes — August 5, 2026
+
+### Milestone 7a — Level 1 Content (complete)
+
+Seeded all of Level 1's activities and wired them into the app:
+
+- **`src/data/activities/level1/*.json`** — 8 activity documents mirroring the Firestore `activities/{activityId}` shape: 5 MultipleChoice (`identify-fruits`, `identify-animals`, `identify-objects`, `identify-colors`, `identify-shapes` — each with 4 options, exactly one correct, feedback, hints) and 3 Matching (`match-body-parts`, `match-animals-to-sounds`, `match-colors-to-objects` — 4 pairs each). Emoji labels used in place of image assets (image-less, ASD-friendly).
+- **`src/data/activities/index.js`** — `getActivitiesForLevel(levelId)` returns a level's activities sorted by `order` (empty array for levels without content yet).
+- **`src/App.jsx`** — selecting a level now loads its activities via `getActivitiesForLevel(level.id)` and passes them to `LevelScreen` (previously the level screen always showed "No activities available").
+- **Tests:** `src/data/activities/__tests__/level1.test.js` (16 tests — counts 8 activities / 5 MC / 3 matching, unique ids, sequential order, type whitelist vs `levels.js`, MC content shape with exactly one correct option, matching pair shape with unique left/right ids, feedback presence, empty for unseeded levels). App routing test extended to assert the seeded activities render on the level screen.
+- **Suite:** ✅ **298 tests / 37 files passing** (up from 281/36), ESLint clean, build OK.
 
 ---
 
@@ -393,12 +407,12 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 4. Activity Types | ✅ Complete | 28 | 28/28 |
 | 5. Progress System | ✅ Complete | 13 | 13/13 |
 | 6. Dashboard & Nav | ✅ Complete | 15 | 15/15 |
-| 7. Level Content | ⬜ Not Started | 19 | 0/19 |
+| 7. Level Content | 🟡 In Progress | 19 | 4/19 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **142** | **88/142** |
+| **Total** | 🟡 In Progress | **142** | **92/142** |
 
 ---
 

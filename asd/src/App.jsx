@@ -8,6 +8,7 @@ import LevelScreen from './components/level/LevelScreen';
 import ActivityPlayer from './components/activities/ActivityPlayer';
 import ProfileScreen from './components/profile/ProfileScreen';
 import SettingsScreen from './components/settings/SettingsScreen';
+import { getActivitiesForLevel } from './data/activities';
 
 const AppContent = () => {
   const { user, loading } = useAuth();
@@ -66,9 +67,9 @@ const AppContent = () => {
   return (
     <DashboardScreen
       user={user}
-      onSelectLevel={(level, activities) => {
+      onSelectLevel={(level) => {
         setSelectedLevel(level);
-        setSelectedLevelActivities(activities || null);
+        setSelectedLevelActivities(getActivitiesForLevel(level.id));
       }}
       onNavigate={setScreen}
     />

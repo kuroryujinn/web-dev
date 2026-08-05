@@ -1,0 +1,25 @@
+{
+  "id": "l1-match-body-parts",
+  "levelId": "level1",
+  "type": "matching",
+  "title": "Match Body Parts",
+  "description": "Match each body part to its name",
+  "difficulty": 1,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 6,
+  "content": {
+    "instructions": "Tap a body part, then tap its name",
+    "pairs": [
+      { "left": { "id": "l1", "label": "👁️ Eye", "image": null }, "right": { "id": "r1", "label": "Eye", "image": null } },
+      { "left": { "id": "l2", "label": "👂 Ear", "image": null }, "right": { "id": "r2", "label": "Ear", "image": null } },
+      { "left": { "id": "l3", "label": "👃 Nose", "image": null }, "right": { "id": "r3", "label": "Nose", "image": null } },
+      { "left": { "id": "l4", "label": "👄 Mouth", "image": null }, "right": { "id": "r4", "label": "Mouth", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching!",
+      "incorrect": "Not quite. Try again!"
+    }
+  },
+  "hints": []
+}
