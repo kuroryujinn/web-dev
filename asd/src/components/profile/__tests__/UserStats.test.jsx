@@ -57,4 +57,68 @@ describe('UserStats', () => {
     expect(screen.getByText('Total XP')).toBeInTheDocument();
     expect(screen.getByText('Current Level')).toBeInTheDocument();
   });
+
+  it('treats an empty progress object like a fresh user', () => {
+    render(<UserStats progress={{}} />);
+
+    expect(screen.getAllByText('0')).toHaveLength(4);
+    expect(screen.getByText('1')).toBeInTheDocument(); // level
+  });
+
+  it('does not crash when optional keys are missing entirely', () => {
+    // No badges/streak/activities keys at all
+    render(<UserStats progress={{ totalXP: 500, currentLevel: 2 }} />);
+
+    expect(screen.getByText('500')).toBeInTheDocument();
+    expect(screen.getByText('2')).toBeInTheDocument();
+    expect(screen.getAllByText('0')).toHaveLength(3); // activities, badges, streak
+  });
+
+  it('handles activities being null instead of an object', () => {
+    render(<UserStats progress={{ totalXP: 100, currentLevel: 1, activities: null, badges: [], streak: 1 }} />);
+
+    expect(screen.getByText('100')).toBeInTheDocument();
+    // activities (0) + badges (0)
+    expect(screen.getAllByText('0')).toHaveLength(2);
+    // level (1) + streak (1)
+    expect(screen.getAllByText('1')).toHaveLength(2);
+  });
+
+  it('shows zero XP while still counting completed activities', () => {
+    const progress = {
+      totalXP: 0,
+      currentLevel: 1,
+      badges: [],
+      streak: 0,
+      activities: {
+        a1: { bestScore: 90, stars: 3, attempts: 1, completed: true },
+        a2: { bestScore: 60, stars: 1, attempts: 2, completed: true },
+      },
+    };
+    render(<UserStats progress={progress} />);
+
+    // XP = 0 but Activities = 2 — the values are ambiguous text, so assert via getAllByText
+    expect(screen.getAllByText('0')).toHaveLength(3); // XP, badges, streak
+    expect(screen.getByText('2')).toBeInTheDocument(); // activities
+  });
+
+  it('renders large XP values without truncation', () => {
+    render(<UserStats progress={{ ...baseProgress, totalXP: 1234567 }} />);
+
+    expect(screen.getByText('1234567')).toBeInTheDocument();
+  });
+
+  it('renders a maximum level of 5 and zero streak', () => {
+    const progress = {
+      totalXP: 99999,
+      currentLevel: 5,
+      badges: ['first_steps'],
+      activities: {},
+      streak: 0,
+    };
+    render(<UserStats progress={progress} />);
+
+    expect(screen.getByText('5')).toBeInTheDocument(); // level
+    expect(screen.getAllByText('0')).toHaveLength(2); // activities + streak
+  });
 });

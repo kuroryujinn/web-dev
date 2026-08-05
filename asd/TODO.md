@@ -270,6 +270,14 @@ Seeded all of Level 1's activities and wired them into the app:
 - **Tests:** `src/data/activities/__tests__/level1.test.js` (16 tests — counts 8 activities / 5 MC / 3 matching, unique ids, sequential order, type whitelist vs `levels.js`, MC content shape with exactly one correct option, matching pair shape with unique left/right ids, feedback presence, empty for unseeded levels). App routing test extended to assert the seeded activities render on the level screen.
 - **Suite:** ✅ **298 tests / 37 files passing** (up from 281/36), ESLint clean, build OK.
 
+### Profile edge-case test coverage (complete)
+
+Extended `UserStats` and `SessionHistory` suites with 14 edge-case tests:
+
+- **`UserStats.test.jsx`** (+6) — empty `{}` progress object, missing optional keys (no badges/streak/activities), `activities: null`, zero XP while still counting completed activities, large XP values (no truncation), max level 5 with zero streak.
+- **`SessionHistory.test.jsx`** (+8) — `progress: null`, missing `activities` key, missing `lastAttempted` (renders "Recently"), timestamped sessions sort before untimestamped ones, correct sorting across mixed formats (ISO UTC, `+05:30` offset, date-only strings — all TZ-independent assertions), unparseable timestamps don't crash, zero-star dash rendering, and a unicode-safe timestamp still renders its year.
+- **Suite:** ✅ **312 tests / 37 files passing**, ESLint clean. No production code changed.
+
 ---
 
 ## Session Notes — August 5, 2026
