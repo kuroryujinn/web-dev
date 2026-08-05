@@ -260,6 +260,14 @@ Audit, optimize, and document.
 
 ## Session Notes — August 5, 2026
 
+### DragAndDrop end-to-end integration test (complete)
+
+Added an integration test that plays a real Level 2 DragAndDrop activity through the full `ActivityPlayer` stack:
+
+- **`src/components/activities/__tests__/ActivityPlayer.integration.test.jsx`** (new, 2 tests) — pulls the real registered `drag-food-to-plate` activity via `getActivitiesForLevel('level2')`, mounts it through `AuthProvider`/`ProgressProvider`/`SettingsProvider` (Firestore mocked), plays it to completion with all-correct drops, and asserts the **XP actually lands in the learner's progress** (3 stars on difficulty 2 → `10 × 1.5 × 1.5 = 22.5 → 23 XP`). Second test: an all-wrong playthrough awards the 0-star consolation XP (`10 × 1.5 × 1 = 15 XP`) — verifying no stars are earned and the feedback overlay still appears.
+- Verifies the full chain end-to-end: seeded data → `getActivitiesForLevel` → `ActivityPlayer` registry → `DragAndDropActivity` + `useDragAndDrop` → `useProgress().recordActivityResult` → XP shown in a `ProgressConsumer`.
+- **Suite:** ✅ **384 tests / 43 files passing** (up from 382/42), ESLint clean.
+
 ### Milestone 7c — Level 3 Content (complete)
 
 Seeded all of Level 3's activities (Visual-Motor Integration, `difficulty: 3`) and registered them:
