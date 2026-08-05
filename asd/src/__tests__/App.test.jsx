@@ -39,6 +39,7 @@ describe('App routing', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    localStorage.clear();
     mockUnsubscribe = vi.fn();
     onAuthStateChanged.mockImplementation((auth, callback) => {
       onAuthStateChangedCallback = callback;
@@ -65,15 +66,136 @@ describe('App routing', () => {
     expect(screen.getByText(/ASD Learn/)).toBeInTheDocument();
   });
 
-  it('shows the dashboard when signed in', () => {
+  it('shows the dashboard when signed in', async () => {
     render(<App />);
 
     act(() => {
       onAuthStateChangedCallback(firebaseUser());
     });
 
-    expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
     expect(screen.getByText('LOG OUT')).toBeInTheDocument();
+  });
+
+  it('shows the dashboard with stats, level grid, and badges section', async () => {
+    render(<App />);
+
+    act(() => {
+      onAuthStateChangedCallback(firebaseUser());
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    // Dashboard sections are rendered
+    expect(screen.getByText('Levels')).toBeInTheDocument();
+    // 'Badges' appears in both the stat card label and the section heading
+    expect(screen.getAllByText('Badges')).toHaveLength(2);
+    expect(screen.getByText('Total XP')).toBeInTheDocument();
+
+    // Level 1 is always visible (unlocked by default)
+    expect(screen.getByText('Level 1')).toBeInTheDocument();
+    expect(screen.getByText('Core Recognition')).toBeInTheDocument();
+  });
+
+  it('navigates to a level screen when a level card is clicked', async () => {
+    render(<App />);
+
+    act(() => {
+      onAuthStateChangedCallback(firebaseUser());
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    // Click on Level 1
+    fireEvent.click(screen.getByRole('button', { name: /level 1/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Level 1: Core Recognition')).toBeInTheDocument();
+    });
+    // The button text contains an arrow prefix, so use a text matcher function
+    expect(screen.getByText((text) => text.includes('BACK TO DASHBOARD'))).toBeInTheDocument();
+  });
+
+  it('navigates back from level screen to dashboard', async () => {
+    render(<App />);
+
+    act(() => {
+      onAuthStateChangedCallback(firebaseUser());
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    // Navigate to level
+    fireEvent.click(screen.getByRole('button', { name: /level 1/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Level 1: Core Recognition')).toBeInTheDocument();
+    });
+
+    // Click back — the button text contains an arrow prefix, so use a function matcher
+    fireEvent.click(screen.getByRole('button', { name: /back to dashboard/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+  });
+
+  it('navigates to the profile screen and back to the dashboard', async () => {
+    render(<App />);
+
+    act(() => {
+      onAuthStateChangedCallback(firebaseUser());
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: /profile/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('My Stats')).toBeInTheDocument();
+    });
+    expect(screen.getByText('Session History')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /back to dashboard/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+  });
+
+  it('navigates to the settings screen and back to the dashboard', async () => {
+    render(<App />);
+
+    act(() => {
+      onAuthStateChangedCallback(firebaseUser());
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: /settings/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Sound Effects')).toBeInTheDocument();
+    });
+    expect(screen.getByText('Reduced Motion')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /back to dashboard/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
   });
 
   it('signs in through the login form and navigates to the dashboard without crashing', async () => {
@@ -104,6 +226,9 @@ describe('App routing', () => {
     act(() => {
       onAuthStateChangedCallback(user);
     });
-    expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    // Progress loads asynchronously, so the dashboard header appears after a tick.
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
   });
 });

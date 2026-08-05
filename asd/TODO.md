@@ -128,20 +128,20 @@ XP, stars, badges, and level unlocking.
 
 Level selection, user profile, settings.
 
-- [ ] **6.1** Create `src/components/dashboard/DashboardScreen.jsx`
-- [ ] **6.2** Create `src/components/dashboard/LevelGrid.jsx`
-- [ ] **6.3** Create `src/components/dashboard/LevelCard.jsx`
-- [ ] **6.4** Create `src/components/dashboard/BadgeShelf.jsx`
-- [ ] **6.5** Create `src/components/dashboard/QuickStats.jsx`
-- [ ] **6.6** Create `src/components/level/LevelScreen.jsx`
-- [ ] **6.7** Create `src/components/level/ActivityList.jsx`
-- [ ] **6.8** Create `src/components/level/ActivityCard.jsx`
-- [ ] **6.9** Create `src/components/profile/ProfileScreen.jsx`
-- [ ] **6.10** Create `src/components/profile/UserStats.jsx`
-- [ ] **6.11** Create `src/components/profile/SessionHistory.jsx`
-- [ ] **6.12** Create `src/components/settings/SettingsScreen.jsx`
-- [ ] **6.13** Refactor `App.jsx` — New screen routing (dashboard, level, profile, settings)
-- [ ] **6.14** Test navigation flow end-to-end
+- [x] **6.1** Create `src/components/dashboard/DashboardScreen.jsx`
+- [x] **6.2** Create `src/components/dashboard/LevelGrid.jsx`
+- [x] **6.3** Create `src/components/dashboard/LevelCard.jsx`
+- [x] **6.4** Create `src/components/dashboard/BadgeShelf.jsx`
+- [x] **6.5** Create `src/components/dashboard/QuickStats.jsx`
+- [x] **6.6** Create `src/components/level/LevelScreen.jsx`
+- [x] **6.7** Create `src/components/level/ActivityList.jsx`
+- [x] **6.8** Create `src/components/level/ActivityCard.jsx`
+- [x] **6.9** Create `src/components/profile/ProfileScreen.jsx`
+- [x] **6.10** Create `src/components/profile/UserStats.jsx`
+- [x] **6.11** Create `src/components/profile/SessionHistory.jsx`
+- [x] **6.12** Create `src/components/settings/SettingsScreen.jsx`
+- [x] **6.13** Refactor `App.jsx` — New screen routing (dashboard, level, profile, settings)
+- [x] **6.14** Test navigation flow end-to-end
 - [ ] **6.15** Commit dashboard & navigation
 
 ---
@@ -258,7 +258,33 @@ Audit, optimize, and document.
 
 ---
 
+## Session Notes — August 5, 2026
+
+### Milestone 6 — Dashboard & Navigation (14/15 complete)
+
+Dashboard and level screens were built in the prior session (uncommitted); this session completed the profile/settings screens, wiring, and end-to-end navigation tests:
+
+- **`src/components/profile/ProfileScreen.jsx`** — header (avatar, name, email), **My Stats** (UserStats), **Badges** (reuses dashboard `BadgeShelf`), **Session History** (SessionHistory), back-to-dashboard button.
+- **`src/components/profile/UserStats.jsx`** — presentational stat cards: Total XP, Current Level, completed Activities, Badges, Day Streak (completed-only activity count).
+- **`src/components/profile/SessionHistory.jsx`** — presentational list of completed activities, most-recent-first (sorted by `lastAttempted`), showing best score %, star count, attempts, and formatted date; falls back to the activity id when no title is known; empty state.
+- **`src/components/settings/SettingsScreen.jsx`** — wired to `useSettings`: Sound / Haptic / Reduced Motion toggles (`aria-pressed`), Text Size segmented control (normal/large/extra-large), Account section, back button.
+- **`src/App.jsx`** — added `screen` state (`dashboard | profile | settings`); profile/settings render above the dashboard fallback; level back button resets to dashboard.
+- **`src/components/dashboard/DashboardScreen.jsx`** — added 👤 PROFILE and ⚙ SETTINGS nav buttons to the header (optional `onNavigate` prop).
+- **Tests:** new `UserStats` (3), `SessionHistory` (5), `ProfileScreen` (4), `SettingsScreen` (6) suites (18 total, TDD red→green); App routing tests for profile/settings navigation (+2). Fixed pre-existing bugs in uncommitted milestone-6 tests: App sign-in test needed `waitFor` for the async progress load (the old committed dashboard rendered welcome text synchronously), QuickStats streak seeds as 1 day for fresh users, and 'Badges'/'Locked' text now has multiple matches (QuickStats label + section heading, 8 locked badges).
+- **Suite:** ✅ **281 tests / 36 files passing** (up from 246/30), ESLint clean, build OK.
+- **Remaining:** **6.15** commit.
+
+---
+
 ## Session Notes — August 2, 2026
+
+### ActivityPlayer → ProgressContext Wiring (complete)
+
+Wired `recordActivityResult` from `useProgress()` into `ActivityPlayer.handleComplete` so activities actually award XP when the user completes them:
+
+- **`src/components/activities/ActivityPlayer.jsx`** — `handleComplete` now computes stars/xp (via `calculateStars`/`calculateXP`) and calls `recordActivityResult({ activityId, score, stars, xp })` before showing the feedback overlay. Added an **idempotency guard** (`if (showFeedback) return;`) that prevents double-award when the timer expires and the activity's own delayed `onComplete` fires afterward — XP is awarded exactly once per playthrough.
+- **`src/components/activities/__tests__/ActivityPlayer.test.jsx`** — Added `localStorage.clear()` in `beforeEach` (prevents XP leak from the progress service's localStorage backup). Added a regression test (`awards XP only once when the timer expiry and the activity completion overlap`) that simulates the exact double-fire scenario. Uses fake timers from mount (so the `useTimer` `setInterval` and `SlowActivity`'s `setTimeout` are both intercepted).
+- **Suite:** ✅ **246 tests / 30 files passing** (up from 244), ESLint clean, build OK.
 
 ### Milestone 5.13 — Commit (complete)
 
@@ -366,13 +392,13 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 3. Activity Engine | ✅ Complete | 11 | 11/11 |
 | 4. Activity Types | ✅ Complete | 28 | 28/28 |
 | 5. Progress System | ✅ Complete | 13 | 13/13 |
-| 6. Dashboard & Nav | ⬜ Not Started | 15 | 0/15 |
+| 6. Dashboard & Nav | 🟡 In Progress | 15 | 14/15 |
 | 7. Level Content | ⬜ Not Started | 19 | 0/19 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **142** | **73/142** |
+| **Total** | 🟡 In Progress | **142** | **87/142** |
 
 ---
 

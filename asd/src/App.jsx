@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { SettingsProvider } from './contexts/SettingsContext';
 import { ProgressProvider } from './contexts/ProgressContext';
 import LoginPage from './components/auth/LoginPage';
 import DashboardScreen from './components/dashboard/DashboardScreen';
+import LevelScreen from './components/level/LevelScreen';
+import ActivityPlayer from './components/activities/ActivityPlayer';
+import ProfileScreen from './components/profile/ProfileScreen';
+import SettingsScreen from './components/settings/SettingsScreen';
 
 const AppContent = () => {
   const { user, loading } = useAuth();
+  const [screen, setScreen] = useState('dashboard'); // 'dashboard' | 'profile' | 'settings'
+  const [selectedLevel, setSelectedLevel] = useState(null);
+  const [selectedLevelActivities, setSelectedLevelActivities] = useState(null);
+  const [selectedActivity, setSelectedActivity] = useState(null);
 
   if (loading) {
     return (
@@ -20,7 +28,51 @@ const AppContent = () => {
     return <LoginPage />;
   }
 
-  return <DashboardScreen user={user} />;
+  if (selectedActivity) {
+    return (
+      <ActivityPlayer
+        activity={selectedActivity}
+        onComplete={() => {
+          setSelectedActivity(null);
+        }}
+        onBack={() => setSelectedActivity(null)}
+      />
+    );
+  }
+
+  if (selectedLevel) {
+    return (
+      <LevelScreen
+        level={selectedLevel}
+        activities={selectedLevelActivities}
+        onSelectActivity={setSelectedActivity}
+        onBack={() => {
+          setSelectedLevel(null);
+          setSelectedLevelActivities(null);
+          setScreen('dashboard');
+        }}
+      />
+    );
+  }
+
+  if (screen === 'profile') {
+    return <ProfileScreen user={user} onBack={() => setScreen('dashboard')} />;
+  }
+
+  if (screen === 'settings') {
+    return <SettingsScreen user={user} onBack={() => setScreen('dashboard')} />;
+  }
+
+  return (
+    <DashboardScreen
+      user={user}
+      onSelectLevel={(level, activities) => {
+        setSelectedLevel(level);
+        setSelectedLevelActivities(activities || null);
+      }}
+      onNavigate={setScreen}
+    />
+  );
 };
 
 function App() {
@@ -46,4 +98,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;

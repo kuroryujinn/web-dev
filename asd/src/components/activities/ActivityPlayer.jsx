@@ -8,6 +8,7 @@ import SortingActivity from './SortingActivity';
 import MatchingActivity from './MatchingActivity';
 import FeedbackOverlay from '../shared/FeedbackOverlay';
 import AccessibleButton from '../shared/AccessibleButton';
+import { useProgress } from '../../contexts/ProgressContext';
 import { calculateStars, calculateXP } from '../../utils/scoring';
 
 /**
@@ -33,11 +34,16 @@ const ActivityPlayer = ({
   const [score, setScore] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedback, setFeedback] = useState({ isCorrect: false, message: '' });
+  const { recordActivityResult } = useProgress();
 
   const ActivityComponent = registry[activity.type];
 
   const handleComplete = useCallback(
     (activityScore) => {
+      // Idempotency guard: once feedback is shown, ignore any later completion
+      // (e.g. the timer expiring, then the activity's own delayed onComplete)
+      // so XP is awarded exactly once per playthrough.
+      if (showFeedback) return;
       setScore(activityScore);
       setFeedback({
         isCorrect: activityScore >= 70,
@@ -48,9 +54,19 @@ const ActivityPlayer = ({
             ? 'Good job! Keep practicing!'
             : activity.content?.feedback?.incorrect || 'Keep trying!',
       });
+      // Award XP/stars to the learner's progress as soon as the score is in.
+      // The same values flow to the parent through `onComplete` on continue.
+      const stars = calculateStars(activityScore);
+      const xp = calculateXP(activity.difficulty, stars);
+      recordActivityResult({
+        activityId: activity.id,
+        score: activityScore,
+        stars,
+        xp,
+      });
       setShowFeedback(true);
     },
-    [activity],
+    [activity, recordActivityResult, showFeedback],
   );
 
   const handleContinue = useCallback(() => {
