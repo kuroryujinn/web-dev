@@ -2,6 +2,9 @@ import React from 'react';
 import AccessibleButton from '../shared/AccessibleButton';
 
 const ActivityCard = ({ activity, isCompleted, bestScore, onClick }) => {
+  // Guard against a missing best score so completed cards never show "undefined%".
+  const score = bestScore ?? 0;
+
   return (
     <button
       onClick={onClick}
@@ -9,7 +12,7 @@ const ActivityCard = ({ activity, isCompleted, bestScore, onClick }) => {
         focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2
         cursor-pointer hover:-translate-y-1 active:translate-y-1
       `}
-      aria-label={`${activity.title}${isCompleted ? ` — Completed, ${bestScore}%` : ''}`}
+      aria-label={`${activity.title}${isCompleted ? ` — Completed, ${score}%` : ''}`}
     >
       <div className="flex items-center justify-between gap-4">
         <div className="flex-1">
@@ -26,7 +29,7 @@ const ActivityCard = ({ activity, isCompleted, bestScore, onClick }) => {
           )}
           {isCompleted && (
             <span className="text-sm font-black text-[var(--surface-mint)]">
-              {bestScore}%
+              {score}%
             </span>
           )}
           <span className="text-2xl" aria-hidden="true">

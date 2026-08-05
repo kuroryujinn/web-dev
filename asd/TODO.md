@@ -278,6 +278,15 @@ Extended `UserStats` and `SessionHistory` suites with 14 edge-case tests:
 - **`SessionHistory.test.jsx`** (+8) — `progress: null`, missing `activities` key, missing `lastAttempted` (renders "Recently"), timestamped sessions sort before untimestamped ones, correct sorting across mixed formats (ISO UTC, `+05:30` offset, date-only strings — all TZ-independent assertions), unparseable timestamps don't crash, zero-star dash rendering, and a unicode-safe timestamp still renders its year.
 - **Suite:** ✅ **312 tests / 37 files passing**, ESLint clean. No production code changed.
 
+### Level screen edge-case test coverage (complete)
+
+Extended `LevelScreen` and added a new `ActivityCard` suite with 18 edge-case tests:
+
+- **`LevelScreen.test.jsx`** (+9) — `activities: undefined` treated like an empty list (placeholder, no progress bar), hidden progress bar for empty lists, 0% for an unplayed level (with `aria-valuenow` check), partial progress (1/2 = 50%) with a completed card showing its best score, 100% with every activity done, percentage rounding (1/3 = 33%), ignoring progress entries for activities outside the level, ignoring entries missing the `completed` flag, and a null progress document.
+- **`ActivityCard.test.jsx`** (new, 9 tests) — title/description render, type fallback when description is missing, time-limit chip present/absent, play vs completion indicators, completed aria-label with best score, 0% for a zero best score, click handler, and an **undefined best score guard**.
+- **Fix (RED→GREEN):** `ActivityCard` now defaults a missing `bestScore` to 0 via `?? 0` — previously an undefined score would have rendered "undefined%" in both the badge and the aria-label.
+- **Suite:** ✅ **330 tests / 38 files passing**, ESLint clean, build OK.
+
 ---
 
 ## Session Notes — August 5, 2026
