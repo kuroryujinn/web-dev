@@ -142,7 +142,7 @@ Level selection, user profile, settings.
 - [x] **6.12** Create `src/components/settings/SettingsScreen.jsx`
 - [x] **6.13** Refactor `App.jsx` — New screen routing (dashboard, level, profile, settings)
 - [x] **6.14** Test navigation flow end-to-end
-- [ ] **6.15** Commit dashboard & navigation
+- [x] **6.15** Commit dashboard & navigation
 
 ---
 
@@ -272,7 +272,7 @@ Dashboard and level screens were built in the prior session (uncommitted); this 
 - **`src/components/dashboard/DashboardScreen.jsx`** — added 👤 PROFILE and ⚙ SETTINGS nav buttons to the header (optional `onNavigate` prop).
 - **Tests:** new `UserStats` (3), `SessionHistory` (5), `ProfileScreen` (4), `SettingsScreen` (6) suites (18 total, TDD red→green); App routing tests for profile/settings navigation (+2). Fixed pre-existing bugs in uncommitted milestone-6 tests: App sign-in test needed `waitFor` for the async progress load (the old committed dashboard rendered welcome text synchronously), QuickStats streak seeds as 1 day for fresh users, and 'Badges'/'Locked' text now has multiple matches (QuickStats label + section heading, 8 locked badges).
 - **Suite:** ✅ **281 tests / 36 files passing** (up from 246/30), ESLint clean, build OK.
-- **Remaining:** **6.15** commit.
+- **Committed:** `492e156` — `feat: Milestone 6 - Dashboard & Navigation` (23 files, +1691/−97). Working tree clean. Milestone 6 is **15/15 complete**. Next milestone: **7. Level Content**.
 
 ---
 
@@ -392,13 +392,13 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 3. Activity Engine | ✅ Complete | 11 | 11/11 |
 | 4. Activity Types | ✅ Complete | 28 | 28/28 |
 | 5. Progress System | ✅ Complete | 13 | 13/13 |
-| 6. Dashboard & Nav | 🟡 In Progress | 15 | 14/15 |
+| 6. Dashboard & Nav | ✅ Complete | 15 | 15/15 |
 | 7. Level Content | ⬜ Not Started | 19 | 0/19 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **142** | **87/142** |
+| **Total** | 🟡 In Progress | **142** | **88/142** |
 
 ---
 
