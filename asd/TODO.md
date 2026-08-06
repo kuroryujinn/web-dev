@@ -26,15 +26,15 @@ Refine neo-brutalism design, ensure consistency.
 
 Comprehensive testing and final verification.
 
-- [ ] **10.2** Add unit tests for scoring utilities
-- [ ] **10.3** Add unit tests for progress calculations
-- [ ] **10.4** Add component tests for ActivityPlayer
-- [ ] **10.5** Add component tests for each activity type
-- [ ] **10.8** Manual test: Complete full user flow (login → dashboard → activity → results)
-- [ ] **10.9** Manual test: Verify progress persistence (refresh page, check data)
-- [ ] **10.10** Manual test: Verify level unlocking works
-- [ ] **10.11** Manual test: Verify accessibility (keyboard, screen reader basics)
-- [ ] **10.12** Final commit with all changes
+- [x] **10.2** Add unit tests for scoring utilities
+- [x] **10.3** Add unit tests for progress calculations
+- [x] **10.4** Add component tests for ActivityPlayer
+- [x] **10.5** Add component tests for each activity type
+- [x] **10.8** Manual test: Complete full user flow (login → dashboard → activity → results)
+- [x] **10.9** Manual test: Verify progress persistence (refresh page, check data)
+- [x] **10.10** Manual test: Verify level unlocking works
+- [x] **10.11** Manual test: Verify accessibility (keyboard, screen reader basics)
+- [x] **10.12** Final commit with all changes
 
 ---
 
@@ -53,6 +53,15 @@ Audit, optimize, and document.
 ---
 
 ## Session Notes — August 6, 2026
+
+### Milestone 10 — Testing & Verification (complete)
+
+Completed the testing/verification milestone. Tasks 10.2–10.5 were already covered by suites written in Milestones 3–5 (scoring: 17 tests; progress: 24; ActivityPlayer: 9 + 2 integration; per-activity-type: 6 suites / 63 tests) — verified and marked complete. The remaining work (10.8–10.11) was executed as real-browser verification:
+
+- **10.11 — Automated axe-core audit (new, permanent):** `src/__tests__/Accessibility.axe.test.jsx` walks the login page, dashboard, level screen, a live activity, and settings through the full provider stack and asserts zero WCAG violations with `jest-axe` (`toHaveNoViolations` extended in the test file; devDeps `jest-axe@11`/`axe-core@4.13` were already staged). **Caught a real violation:** every screen failed axe's `region` rule — the app content lived in a plain `<div>` with no landmark. Fixed by wrapping `AppContent` in a `<main>` element and marking the decorative background layer `aria-hidden="true"` (`src/App.jsx`). All 5 audits now pass.
+- **10.8/10.9/10.10 — Real-browser flow suite (new):** `src/__tests__/App.flow.browser.test.jsx` (4 tests, Playwright chromium via Vitest browser mode) walks the full user flow deterministically: dashboard → Level 1 → Identify the Fruit → correct answer → NICE WORK! overlay → CONTINUE → back → **15 XP awarded** (3 stars × difficulty 1) and recorded in the `asd_progress_demo-user` localStorage backup; **persistence** proven by unmounting + remounting the whole app (page refresh) and seeing the same 15 XP restored; **level unlocking** proven (fresh user: Level 1 enabled / 2–5 disabled; seeded 500 XP: Level 2 enabled / 3 disabled); accessibility basics checked (`<main>` landmark + `h1`, accessible button names, focus-visible outline classes).
+- **Manual browser spot-check (10.8/10.11):** browser automation confirmed the live dev server boots to the dashboard with stat cards, 9 labeled buttons, Level 1 clickable / Levels 2–5 LOCKED, `<main>` present, and **zero console errors**.
+- **Suite:** ✅ **471 jsdom + 11 browser tests passing** (up from 466/7), ESLint clean, build OK. Milestone 10 is **9/9 complete**; tracker total 152 → **161/161** across milestones 1–10. Next milestone: **11. Final Review** (7 tasks).
 
 ### Milestone 9 — Styling & Polish (complete)
 
@@ -282,11 +291,11 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | Milestone | Status | Remaining |
 |-----------|--------|-----------|
 | 9. Styling & Polish | ✅ Complete | 0 |
-| 10. Testing & Verification | 🟡 In Progress | 9 |
+| 10. Testing & Verification | ✅ Complete | 0 |
 | 11. Final Review | ⬜ Not Started | 7 |
-| **Total remaining** | 🟡 In Progress | **16** |
+| **Total remaining** | 🟢 In Progress | **7** |
 
-Milestones 1–9 are **complete** — see Session Notes for the full history.
+Milestones 1–10 are **complete** — see Session Notes for the full history.
 
 ---
 
