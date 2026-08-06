@@ -4,6 +4,10 @@
 @theme {
   --color-warm-cream: #fff4df;
   --color-warm-peach: #ffd7bc;
+  --color-warm-butter: #ffc94a;
+  --color-warm-coral: #ff7a59;
+  --color-warm-mint: #57d19d;
+  --color-warm-sky: #5eaefd;
   --color-surface-butter: #ffc94a;
   --color-surface-coral: #ff7a59;
   --color-surface-mint: #57d19d;
@@ -26,88 +30,155 @@
   }
 }
 
-.brutal-card {
-  border: var(--border-brutal) solid var(--ink);
-  box-shadow: 10px 10px 0 var(--ink), 0 14px 22px rgba(31, 26, 23, 0.2);
+@layer components {
+  /* Component classes live in a cascade layer so Tailwind utilities (which
+     come later in the layer order) can override them — e.g. bg-warm-butter/70
+     must win over the brutal-card background shorthand (regression fix). */
+  .brutal-card {
+    border: var(--border-brutal) solid var(--ink);
+    box-shadow: 10px 10px 0 var(--ink), 0 14px 22px rgba(31, 26, 23, 0.2);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 236, 0.82));
+  }
+
+  .raised-glass-soft {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .raised-glass-soft::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.45), transparent 48%);
+    pointer-events: none;
+  }
+
+  .glass-card {
+    border: var(--border-brutal) solid var(--ink);
+    box-shadow: 10px 10px 0 var(--ink), 0 14px 22px rgba(31, 26, 23, 0.2);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 236, 0.82));
+  }
+
+  .brutal-button {
+    border: 4px solid var(--ink);
+    box-shadow: 0 12px 0 var(--ink), 0 16px 18px rgba(31, 26, 23, 0.25);
+    border-radius: 12px;
+    transition: transform 90ms ease, box-shadow 90ms ease, filter 120ms ease;
+  }
+
+  .brutal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 0 var(--ink), 0 20px 24px rgba(31, 26, 23, 0.28);
+  }
+
+  .brutal-button:active,
+  .pressable:active {
+    transform: translateY(10px);
+    box-shadow: 0 2px 0 var(--ink), 0 6px 10px rgba(31, 26, 23, 0.2);
+  }
+
+  .brutal-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 6px 0 var(--ink-soft);
+  }
+
+  .brutal-tile {
+    border: var(--border-brutal) solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink), 0 10px 14px rgba(31, 26, 23, 0.2);
+    border-radius: 14px;
+    transform: translateY(0);
+    transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease, opacity 150ms ease;
+  }
+
+  .brutal-tile.raised:hover {
+    transform: translateY(-2px);
+  }
+
+  .brutal-tile.pressed {
+    transform: translateY(8px);
+    box-shadow: 0 1px 0 var(--ink), 0 5px 8px rgba(31, 26, 23, 0.18);
+  }
+
+  .brutal-tile.dropped-negative {
+    transform: translateY(10px);
+    box-shadow: inset 0 0 0 3px var(--ink);
+    filter: saturate(0.78);
+  }
+
+  .brutal-tile.raised-correct {
+    transform: translateY(-1px);
+    box-shadow: 10px 10px 0 var(--ink), 0 14px 18px rgba(31, 26, 23, 0.22);
+  }
+
+  .brutal-tile.raised-muted {
+    opacity: 0.48;
+  }
+}
+
+/* Loading skeletons (9.5) — shimmer blocks shaped like the target screen.
+   The reduced-motion kill-switch below collapses the animation to a single
+   instant frame automatically, satisfying the ASD reduced-motion need. */
+.skeleton-block {
+  border: 3px dashed var(--ink-soft);
   border-radius: var(--radius-xl);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 236, 0.82));
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.5) 60%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
 }
 
-.raised-glass-soft {
-  position: relative;
-  overflow: hidden;
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -80% 0;
+  }
 }
 
-.raised-glass-soft::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.45), transparent 48%);
-  pointer-events: none;
+/* Activity-type chips (9.2) — pill badge giving each activity type a visual
+   identity. Background is set inline per level accent; the type modifier
+   carries the semantic token so themes can restyle chips consistently. */
+.activity-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.125rem 0.6rem;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-.glass-card {
-  border: var(--border-brutal) solid var(--ink);
-  box-shadow: 10px 10px 0 var(--ink), 0 14px 22px rgba(31, 26, 23, 0.2);
-  border-radius: var(--radius-xl);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 236, 0.82));
+.activity-chip--multipleChoice {
+  box-shadow: 0 2px 0 var(--ink);
 }
-
-.brutal-button {
-  border: 4px solid var(--ink);
-  box-shadow: 0 12px 0 var(--ink), 0 16px 18px rgba(31, 26, 23, 0.25);
-  border-radius: 12px;
-  transition: transform 90ms ease, box-shadow 90ms ease, filter 120ms ease;
+.activity-chip--dragAndDrop {
+  box-shadow: 0 2px 0 var(--ink);
 }
-
-.brutal-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 0 var(--ink), 0 20px 24px rgba(31, 26, 23, 0.28);
+.activity-chip--pathTracing {
+  box-shadow: 0 2px 0 var(--ink);
 }
-
-.brutal-button:active,
-.pressable:active {
-  transform: translateY(10px);
-  box-shadow: 0 2px 0 var(--ink), 0 6px 10px rgba(31, 26, 23, 0.2);
+.activity-chip--freehandDrawing {
+  box-shadow: 0 2px 0 var(--ink);
 }
-
-.brutal-button:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: 0 6px 0 var(--ink-soft);
+.activity-chip--sorting {
+  box-shadow: 0 2px 0 var(--ink);
 }
-
-.brutal-tile {
-  border: var(--border-brutal) solid var(--ink);
-  box-shadow: 8px 8px 0 var(--ink), 0 10px 14px rgba(31, 26, 23, 0.2);
-  border-radius: 14px;
-  transform: translateY(0);
-  transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease, opacity 150ms ease;
-}
-
-.brutal-tile.raised:hover {
-  transform: translateY(-2px);
-}
-
-.brutal-tile.pressed {
-  transform: translateY(8px);
-  box-shadow: 0 1px 0 var(--ink), 0 5px 8px rgba(31, 26, 23, 0.18);
-}
-
-.brutal-tile.dropped-negative {
-  transform: translateY(10px);
-  box-shadow: inset 0 0 0 3px var(--ink);
-  filter: saturate(0.78);
-}
-
-.brutal-tile.raised-correct {
-  transform: translateY(-1px);
-  box-shadow: 10px 10px 0 var(--ink), 0 14px 18px rgba(31, 26, 23, 0.22);
-}
-
-.brutal-tile.raised-muted {
-  opacity: 0.48;
+.activity-chip--matching {
+  box-shadow: 0 2px 0 var(--ink);
 }
 
 /* Reduced Motion (WCAG 2.3.3 / ASD consideration) — kill-switch that collapses

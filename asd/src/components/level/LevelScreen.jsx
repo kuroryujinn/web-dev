@@ -46,8 +46,11 @@ const LevelScreen = ({ level, activities, onSelectActivity, onBack }) => {
               </div>
               <div className="w-full h-4 bg-white/60 rounded-full overflow-hidden border-[3px] border-[var(--ink)]">
                 <div
-                  className="h-full bg-[var(--surface-mint)] transition-all duration-500"
-                  style={{ width: `${levelProgress.percentage}%` }}
+                  className="h-full transition-all duration-500"
+                  style={{
+                    width: `${levelProgress.percentage}%`,
+                    backgroundColor: level.color,
+                  }}
                   role="progressbar"
                   aria-valuenow={levelProgress.percentage}
                   aria-valuemin={0}
@@ -66,6 +69,7 @@ const LevelScreen = ({ level, activities, onSelectActivity, onBack }) => {
         <ActivityList
           activities={activities}
           progress={progress}
+          accentColor={level.color}
           onSelectActivity={onSelectActivity}
         />
       </div>

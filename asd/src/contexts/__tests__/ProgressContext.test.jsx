@@ -24,6 +24,8 @@ const ProgressConsumer = () => {
   const {
     progress,
     loading,
+    error,
+    retry,
     recordActivityResult,
     isLevelUnlocked,
     getLevelProgress,
@@ -31,6 +33,14 @@ const ProgressConsumer = () => {
   } = useProgress();
 
   if (loading) return <div data-testid="progress-state">loading</div>;
+  if (error) {
+    return (
+      <div>
+        <div data-testid="progress-state">error</div>
+        <button onClick={retry}>RETRY</button>
+      </div>
+    );
+  }
   if (!progress) return <div data-testid="progress-state">no-progress</div>;
 
   return (
@@ -156,6 +166,45 @@ describe('ProgressContext', () => {
     });
     expect(screen.getByTestId('level-progress')).toHaveTextContent('"total":2');
     expect(screen.getByTestId('level-progress')).toHaveTextContent('"percentage":50');
+  });
+
+  it('exposes an error state when progress cannot be loaded', async () => {
+    getDoc.mockRejectedValue(new Error('network'));
+
+    renderWithProvider();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('progress-state')).toHaveTextContent('error');
+    });
+  });
+
+  it('retry reloads progress after a failed load', async () => {
+    getDoc.mockRejectedValue(new Error('network'));
+
+    renderWithProvider();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('progress-state')).toHaveTextContent('error');
+    });
+
+    // Backend recovers — retry succeeds and progress loads.
+    getDoc.mockResolvedValue({
+      exists: () => true,
+      data: () => ({
+        totalXP: 80,
+        currentLevel: 1,
+        badges: [],
+        activities: {},
+        streak: 1,
+        lastActiveDate: new Date().toISOString().split('T')[0],
+      }),
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'RETRY' }));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('progress-state')).toHaveTextContent('loaded');
+    });
+    expect(screen.getByTestId('total-xp')).toHaveTextContent('80');
   });
 
   it('clears progress when the user signs out', async () => {

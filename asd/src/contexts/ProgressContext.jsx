@@ -24,13 +24,15 @@ export const useProgress = () => {
   return context;
 };
 
-const INITIAL_STATE = { uid: null, progress: null, loading: true };
+const INITIAL_STATE = { uid: null, progress: null, loading: true, error: false };
 
 /**
  * Global progress state (XP, stars, badges, per-activity results).
  *
  * - Loads from Firestore (localStorage fallback) when a user signs in.
  * - Records activity completions through `recordActivityResult`.
+ * - Exposes `error` + `retry` so screens can show a friendly error card with
+ *   a retry action when progress is unreachable (9.6).
  * - State is keyed by user uid and derived at render time, so switching
  *   accounts or signing out never shows another user's progress, and no
  *   synchronous setState happens inside effects.
@@ -46,6 +48,7 @@ export const ProgressProvider = ({ children }) => {
   // until the current user's document is loaded.
   const progress = isFresh ? state.progress : null;
   const loading = user ? !isFresh || state.loading : false;
+  const error = isFresh ? state.error : false;
 
   useEffect(() => {
     if (!user || state.uid === user.uid) return;
@@ -66,11 +69,11 @@ export const ProgressProvider = ({ children }) => {
           await persistProgress(user.uid, loaded);
         }
         if (!cancelled && state.uid !== user.uid) {
-          setState({ uid: user.uid, progress: loaded, loading: false });
+          setState({ uid: user.uid, progress: loaded, loading: false, error: false });
         }
       } catch {
         if (!cancelled && state.uid !== user.uid) {
-          setState({ uid: user.uid, progress: null, loading: false });
+          setState({ uid: user.uid, progress: null, loading: false, error: true });
         }
       }
     };
@@ -80,6 +83,14 @@ export const ProgressProvider = ({ children }) => {
       cancelled = true;
     };
   }, [user, state.uid]);
+
+  /**
+   * Re-attempt loading progress after a failure. Resets to the initial
+   * loading state so the effect re-runs with the current user.
+   */
+  const retry = useCallback(() => {
+    setState({ uid: null, progress: null, loading: true, error: false });
+  }, []);
 
   /**
    * Record an activity completion and update progress + persistence.
@@ -95,7 +106,7 @@ export const ProgressProvider = ({ children }) => {
         stars,
         xp,
       });
-      setState({ uid: user.uid, progress: next, loading: false });
+      setState({ uid: user.uid, progress: next, loading: false, error: false });
       persistProgress(user.uid, next);
       return { progress: next, newlyEarnedBadges };
     },
@@ -119,6 +130,8 @@ export const ProgressProvider = ({ children }) => {
       value={{
         progress,
         loading,
+        error,
+        retry,
         recordActivityResult,
         isLevelUnlocked,
         getLevelProgress,

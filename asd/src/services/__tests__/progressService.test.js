@@ -52,6 +52,12 @@ describe('progressService', () => {
 
       await expect(loadProgress('uid-1')).resolves.toEqual(progress);
     });
+
+    it('throws when Firestore is unavailable and no local backup exists', async () => {
+      getDoc.mockRejectedValue(new Error('network'));
+
+      await expect(loadProgress('uid-1')).rejects.toThrow('progress_unavailable');
+    });
   });
 
   describe('persistProgress', () => {

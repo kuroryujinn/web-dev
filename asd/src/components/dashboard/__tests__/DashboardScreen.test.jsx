@@ -118,6 +118,33 @@ describe('DashboardScreen', () => {
     }
   });
 
+  it('shows an error card with retry when progress cannot be loaded', async () => {
+    getDoc.mockRejectedValue(new Error('network'));
+    renderWithProviders(<DashboardScreen user={user} onSelectLevel={vi.fn()} />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toBeInTheDocument();
+    });
+    expect(screen.getByRole('button', { name: /retry/i })).toBeInTheDocument();
+  });
+
+  it('recovers after retrying a failed progress load', async () => {
+    getDoc.mockRejectedValue(new Error('network'));
+    renderWithProviders(<DashboardScreen user={user} onSelectLevel={vi.fn()} />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toBeInTheDocument();
+    });
+
+    // Backend recovers; retry loads the fresh document and the dashboard renders.
+    getDoc.mockResolvedValue({ exists: () => false, data: () => ({}) });
+    fireEvent.click(screen.getByRole('button', { name: /retry/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+  });
+
   it('logs out when the LOG OUT button is clicked', async () => {
     renderWithProviders(<DashboardScreen user={user} onSelectLevel={vi.fn()} />);
 

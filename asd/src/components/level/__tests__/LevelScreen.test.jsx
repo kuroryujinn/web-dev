@@ -320,4 +320,41 @@ describe('LevelScreen', () => {
       expect(screen.getByText('0/2 (0%)')).toBeInTheDocument();
     });
   });
+
+  it('colors the progress bar fill with the level accent color', async () => {
+    seedProgress({
+      totalXP: 60,
+      currentLevel: 1,
+      badges: [],
+      streak: 1,
+      activities: {
+        'l1-activity-1': { bestScore: 90, stars: 3, attempts: 1, completed: true },
+      },
+    });
+    renderWithProviders(
+      <LevelScreen level={level} activities={sampleActivities} onSelectActivity={vi.fn()} onBack={vi.fn()} />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('1/2 (50%)')).toBeInTheDocument();
+    });
+    const fill = screen.getByRole('progressbar');
+    expect(fill).toHaveStyle(`background-color: ${level.color}`);
+  });
+
+  it('passes the level accent color to activity cards', async () => {
+    renderWithProviders(
+      <LevelScreen level={level} activities={sampleActivities} onSelectActivity={vi.fn()} onBack={vi.fn()} />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('Identify the Fruit')).toBeInTheDocument();
+    });
+    // Every activity card receives the level accent color for its type chip.
+    const chips = screen.getAllByTestId('activity-type-chip');
+    expect(chips.length).toBe(2);
+    chips.forEach((chip) => {
+      expect(chip).toHaveStyle(`background-color: ${level.color}`);
+    });
+  });
 });

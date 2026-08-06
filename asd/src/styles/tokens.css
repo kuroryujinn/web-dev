@@ -10,4 +10,20 @@
   --border-brutal: 3px;
   --shadow-offset: 6px;
   --panel-highlight: rgba(255, 255, 255, 0.45);
+
+  /* Level accent colors (9.1) — mirror src/data/levels.js `color` so the
+     design system is the single source of truth for level theming. */
+  --level-1: #5eaefd; /* Core Recognition */
+  --level-2: #57d19d; /* Basic Coordination */
+  --level-3: #ffc94a; /* Visual-Motor Integration */
+  --level-4: #ff7a59; /* Fine Motor Skills */
+  --level-5: #e74c3c; /* Functional Activities */
+
+  /* Activity-type accent colors (9.2) — per-type visual identity. */
+  --activity-multipleChoice: #5eaefd;
+  --activity-dragAndDrop: #ff7a59;
+  --activity-pathTracing: #ffc94a;
+  --activity-freehandDrawing: #ffb27d;
+  --activity-sorting: #57d19d;
+  --activity-matching: #b39ddb;
 }

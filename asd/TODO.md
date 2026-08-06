@@ -7,18 +7,18 @@
 
 ---
 
-## Milestone 9: Styling & Polish 🎨
+## Milestone 9: Styling & Polish 🎨 ✅
 
 Refine neo-brutalism design, ensure consistency.
 
-- [ ] **9.1** Update `src/styles/tokens.css` — Add level-specific colors
-- [ ] **9.2** Update `src/index.css` — Add activity-specific styles
-- [ ] **9.3** Ensure consistent button styles across all screens
-- [ ] **9.4** Add hover/focus states to all interactive elements
-- [ ] **9.5** Add loading states (skeleton screens)
-- [ ] **9.6** Add error states (network errors, missing data)
-- [ ] **9.7** Test responsive layout (375px, 768px, 1024px, 1440px)
-- [ ] **9.8** Commit styling polish
+- [x] **9.1** Update `src/styles/tokens.css` — Add level-specific colors
+- [x] **9.2** Update `src/index.css` — Add activity-specific styles
+- [x] **9.3** Ensure consistent button styles across all screens
+- [x] **9.4** Add hover/focus states to all interactive elements
+- [x] **9.5** Add loading states (skeleton screens)
+- [x] **9.6** Add error states (network errors, missing data)
+- [x] **9.7** Test responsive layout (375px, 768px, 1024px, 1440px)
+- [x] **9.8** Commit styling polish
 
 ---
 
@@ -53,6 +53,19 @@ Audit, optimize, and document.
 ---
 
 ## Session Notes — August 6, 2026
+
+### Milestone 9 — Styling & Polish (complete)
+
+Implemented the full styling milestone with TDD (red→green) plus a real-browser responsive suite:
+
+- **9.1/9.2 — Level + activity-type theming:** `tokens.css` gained `--level-1..5` accent tokens (mirroring `levels.js`) and `--activity-<type>` tokens. `index.css` gained `.activity-chip` pill styles with per-type modifiers and a `.skeleton-block` shimmer utility. Level accent is threaded from `LevelScreen` → `ActivityList` → `ActivityCard` (chip background via inline accent, ink text for contrast) and `LevelCard` already borders in `level.color`; the level progress bar now fills with the level's accent.
+- **9.5 — Skeleton loading states:** new `src/components/shared/LoadingSkeleton.jsx` with layout-matched `app`/`dashboard`/`profile` variants (`role="status"`, `aria-label="Loading"`). Wired into `App.jsx` (auth boot), `DashboardScreen`, and `ProfileScreen` replacing the plain "LOADING..." text.
+- **9.6 — Error + retry:** `progressService.loadProgress` now **throws only when a backend is configured but unreachable** (db truthy) with no local backup — demo mode (db null) still seeds locally. `ProgressContext` exposes `error` + `retry` (retry resets uid so the load effect re-runs). New `ErrorState.jsx` (`role="alert"`, friendly card, ↻ RETRY via `AccessibleButton`). Screens show it in place of skeletons.
+- **9.3/9.4 — Button consistency + hover/focus audit:** swept every `<button>`/`AccessibleButton` — all rendered interactives carry `focus-visible` rings + hover/active feedback (brutal-button/tile hover lifts, card `hover:-translate-y-1`, tile `hover:bg` tints).
+- **🐛 Big regression found & fixed — warm palette silently missing:** only `warm-cream`/`warm-peach` compiled because Tailwind v4's `@theme` (CSS-first config; `tailwind.config.js` isn't loaded without `@config`) lacked `--color-warm-butter/coral/mint/sky`. All `bg-warm-*` tints on every screen were dropped. Fixed by adding the missing `@theme` tokens **and** moving `.brutal-card`/`.brutal-tile`/etc. into `@layer components` so utilities (later in layer order) win over the `background` shorthand that reset `background-color` to transparent. Verified in the built CSS (`bg-warm-butter/70{background-color:#ffc94ab3}…`) and locked in with a browser regression test.
+- **9.7 — Responsive browser suite:** new `src/__tests__/App.responsive.browser.test.jsx` — real Chromium, viewports 375/768/1024/1440, asserts no horizontal overflow on dashboard, level, and settings screens (now imports the real `index.css` so layout checks are meaningful), plus the palette regression test.
+- **Tests (TDD, +20 jsdom, +4 browser):** LoadingSkeleton (3), ErrorState (3), LevelCard accent (3), ProgressContext error/retry (+5), progressService throw (+1), DashboardScreen skeleton/error (+3), ProfileScreen skeleton/error (+2), App loading skeleton (+1), ActivityCard type-chip (+1), LevelScreen accent (+3). Color assertions use `toHaveStyle` (jsdom color normalization).
+- **Suite:** ✅ **466 jsdom + 7 browser tests passing**, ESLint clean, build OK. Milestone 9 is **8/8 complete**; tracker total 128 → **152/152** across milestones 1–9. Next milestone: **10. Testing & Verification** (9 tasks).
 
 ### Milestone 8 — Accessibility (complete)
 
@@ -268,18 +281,18 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 
 | Milestone | Status | Remaining |
 |-----------|--------|-----------|
-| 9. Styling & Polish | ⬜ Not Started | 8 |
+| 9. Styling & Polish | ✅ Complete | 0 |
 | 10. Testing & Verification | 🟡 In Progress | 9 |
 | 11. Final Review | ⬜ Not Started | 7 |
-| **Total remaining** | 🟡 In Progress | **24** |
+| **Total remaining** | 🟡 In Progress | **16** |
 
-Milestones 1–8 are **complete** — see Session Notes for the full history.
+Milestones 1–9 are **complete** — see Session Notes for the full history.
 
 ---
 
 ## Quick Reference
 
-**To resume work:** Start from the first unchecked task in the lists above (Milestone 9).
+**To resume work:** Start from the first unchecked task in the lists above (Milestone 10).
 
 **Key files:**
 - Spec: `docs/superpowers/specs/2026-08-01-asd-motor-skill-platform-design.md`

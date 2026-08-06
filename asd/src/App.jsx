@@ -8,6 +8,7 @@ import LevelScreen from './components/level/LevelScreen';
 import ActivityPlayer from './components/activities/ActivityPlayer';
 import ProfileScreen from './components/profile/ProfileScreen';
 import SettingsScreen from './components/settings/SettingsScreen';
+import LoadingSkeleton from './components/shared/LoadingSkeleton';
 import { getActivitiesForLevel } from './data/activities';
 
 const AppContent = () => {
@@ -18,11 +19,7 @@ const AppContent = () => {
   const [selectedActivity, setSelectedActivity] = useState(null);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-xl font-black text-[var(--ink)]">LOADING...</p>
-      </div>
-    );
+    return <LoadingSkeleton variant="app" />;
   }
 
   if (!user) {

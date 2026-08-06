@@ -46,6 +46,19 @@ describe('ActivityCard', () => {
     expect(screen.getByText('30s')).toBeInTheDocument();
   });
 
+  it('renders an activity-type chip with a friendly label', () => {
+    renderCard();
+
+    const chip = screen.getByTestId('activity-type-chip');
+    expect(chip).toHaveTextContent('Multiple Choice');
+  });
+
+  it('labels the type chip from the raw activity type', () => {
+    renderCard({ activity: { ...baseActivity, type: 'dragAndDrop' } });
+
+    expect(screen.getByTestId('activity-type-chip')).toHaveTextContent('Drag & Drop');
+  });
+
   it('omits the time limit when absent', () => {
     renderCard();
 

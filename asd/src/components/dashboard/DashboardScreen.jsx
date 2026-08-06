@@ -4,9 +4,11 @@ import { logout } from '../../services/authService';
 import LevelGrid from './LevelGrid';
 import BadgeShelf from './BadgeShelf';
 import QuickStats from './QuickStats';
+import LoadingSkeleton from '../shared/LoadingSkeleton';
+import ErrorState from '../shared/ErrorState';
 
 const DashboardScreen = ({ user, onSelectLevel, onNavigate }) => {
-  const { progress, loading } = useProgress();
+  const { progress, loading, error, retry } = useProgress();
 
   const handleLogout = async () => {
     try {
@@ -21,9 +23,17 @@ const DashboardScreen = ({ user, onSelectLevel, onNavigate }) => {
   };
 
   if (loading) {
+    return <LoadingSkeleton variant="dashboard" />;
+  }
+
+  if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-xl font-black text-[var(--ink)]">LOADING...</p>
+      <div className="flex flex-col justify-center min-h-screen p-4 md:p-8">
+        <ErrorState
+          title="Couldn't load your progress"
+          message="Check your connection and try again."
+          onRetry={retry}
+        />
       </div>
     );
   }

@@ -4,14 +4,24 @@ import UserStats from './UserStats';
 import SessionHistory from './SessionHistory';
 import BadgeShelf from '../dashboard/BadgeShelf';
 import AccessibleButton from '../shared/AccessibleButton';
+import LoadingSkeleton from '../shared/LoadingSkeleton';
+import ErrorState from '../shared/ErrorState';
 
 const ProfileScreen = ({ user, onBack }) => {
-  const { progress, loading } = useProgress();
+  const { progress, loading, error, retry } = useProgress();
 
   if (loading) {
+    return <LoadingSkeleton variant="profile" />;
+  }
+
+  if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-xl font-black text-[var(--ink)]">LOADING...</p>
+      <div className="flex flex-col justify-center min-h-screen p-4 md:p-8">
+        <ErrorState
+          title="Couldn't load your profile"
+          message="Check your connection and try again."
+          onRetry={retry}
+        />
       </div>
     );
   }

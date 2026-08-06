@@ -31,6 +31,11 @@ export const setLocalProgress = (uid, progress) => {
 
 /**
  * Load a user's progress: Firestore first, localStorage as fallback.
+ *
+ * Throws when the backend is unreachable AND no local backup exists, so the
+ * UI can surface a friendly error with a retry action (9.6) instead of
+ * silently treating a network failure as a brand-new user.
+ *
  * @param {string} uid
  * @returns {Promise<object|null>} progress object, or null when none exists anywhere
  */
@@ -39,7 +44,12 @@ export const loadProgress = async (uid) => {
     const snapshot = await getDoc(progressDoc(uid));
     if (snapshot.exists()) return snapshot.data();
   } catch {
-    // Firestore unavailable — fall through to the local backup.
+    // Firestore unavailable — try the local backup. Only surface a retry-able
+    // error when a real backend is configured (db is null in demo mode, where
+    // local seeding is the intended offline behavior).
+    const local = getLocalProgress(uid);
+    if (local) return local;
+    if (db) throw new Error('progress_unavailable');
   }
   return getLocalProgress(uid);
 };

@@ -1,9 +1,19 @@
 import React from 'react';
-import AccessibleButton from '../shared/AccessibleButton';
 
-const ActivityCard = ({ activity, isCompleted, bestScore, onClick }) => {
+// Friendly display labels for each activity type (9.2).
+const TYPE_LABELS = {
+  multipleChoice: 'Multiple Choice',
+  dragAndDrop: 'Drag & Drop',
+  pathTracing: 'Path Tracing',
+  freehandDrawing: 'Drawing',
+  sorting: 'Sorting',
+  matching: 'Matching',
+};
+
+const ActivityCard = ({ activity, isCompleted, bestScore, accentColor, onClick }) => {
   // Guard against a missing best score so completed cards never show "undefined%".
   const score = bestScore ?? 0;
+  const typeLabel = TYPE_LABELS[activity.type] || activity.type;
 
   return (
     <button
@@ -22,6 +32,13 @@ const ActivityCard = ({ activity, isCompleted, bestScore, onClick }) => {
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
+          <span
+            data-testid="activity-type-chip"
+            className={`activity-chip activity-chip--${activity.type}`}
+            style={accentColor ? { backgroundColor: accentColor } : undefined}
+          >
+            {typeLabel}
+          </span>
           {activity.timeLimit && (
             <span className="text-xs font-black text-[var(--ink-soft)] uppercase">
               {activity.timeLimit}s

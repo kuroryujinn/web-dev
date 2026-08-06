@@ -1,7 +1,7 @@
 import React from 'react';
 import ActivityCard from './ActivityCard';
 
-const ActivityList = ({ activities = [], progress, onSelectActivity }) => {
+const ActivityList = ({ activities = [], progress, accentColor, onSelectActivity }) => {
   if (!activities || activities.length === 0) {
     return (
       <div className="brutal-card p-8 rounded-xl text-center bg-white/50">
@@ -25,6 +25,7 @@ const ActivityList = ({ activities = [], progress, onSelectActivity }) => {
             activity={activity}
             isCompleted={isCompleted}
             bestScore={bestScore}
+            accentColor={accentColor}
             onClick={() => onSelectActivity(activity)}
           />
         );

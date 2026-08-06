@@ -50,10 +50,11 @@ describe('App routing', () => {
     getDoc.mockResolvedValue({ exists: () => false, data: () => ({}) });
   });
 
-  it('shows a loading screen while auth state is pending', () => {
+  it('shows a loading skeleton while auth state is pending', () => {
     render(<App />);
 
-    expect(screen.getByText('LOADING...')).toBeInTheDocument();
+    expect(screen.getByRole('status', { name: /loading/i })).toBeInTheDocument();
+    expect(screen.getByTestId('loading-skeleton')).toBeInTheDocument();
   });
 
   it('shows the login page when signed out', () => {
