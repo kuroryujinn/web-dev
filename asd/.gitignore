@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 coverage
+.vitest-attachments
+.vitest-results.json
+**/__screenshots__/
 *.local
 .vercel
 .env
