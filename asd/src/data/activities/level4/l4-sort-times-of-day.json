@@ -1,0 +1,27 @@
+{
+  "id": "l4-sort-times-of-day",
+  "levelId": "level4",
+  "type": "sorting",
+  "title": "Sort the Times of Day",
+  "description": "Put the parts of the day in the right order",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 4,
+  "content": {
+    "instructions": "Put the parts of the day in order",
+    "direction": "ascending",
+    "orderHint": "morning, afternoon, evening, night",
+    "items": [
+      { "id": "night", "label": "🌙 Night", "image": null, "order": 3 },
+      { "id": "morning", "label": "🌅 Morning", "image": null, "order": 0 },
+      { "id": "evening", "label": "🌆 Evening", "image": null, "order": 2 },
+      { "id": "afternoon", "label": "☀️ Afternoon", "image": null, "order": 1 }
+    ],
+    "feedback": {
+      "correct": "Perfect — you know the whole day!",
+      "incorrect": "Think about what happens first each day."
+    }
+  },
+  "hints": ["The sun comes up in the morning"]
+}

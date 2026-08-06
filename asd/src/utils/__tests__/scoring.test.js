@@ -37,6 +37,13 @@ describe('calculateXP', () => {
     expect(calculateXP(3, 3)).toBe(30); // 10 × 2 × 1.5
   });
 
+  it('scales difficulty 4 and 5 activities with extended multipliers', () => {
+    expect(calculateXP(4, 1)).toBe(25); // 10 × 2.5 × 1
+    expect(calculateXP(4, 3)).toBe(38); // 10 × 2.5 × 1.5
+    expect(calculateXP(5, 2)).toBe(36); // 10 × 3 × 1.2
+    expect(calculateXP(5, 3)).toBe(45); // 10 × 3 × 1.5
+  });
+
   it('falls back to a neutral multiplier for unknown values', () => {
     expect(calculateXP(9, 0)).toBe(10);
   });

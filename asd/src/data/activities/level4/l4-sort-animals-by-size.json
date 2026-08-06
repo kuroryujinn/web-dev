@@ -1,0 +1,27 @@
+{
+  "id": "l4-sort-animals-by-size",
+  "levelId": "level4",
+  "type": "sorting",
+  "title": "Sort Animals by Size",
+  "description": "Put the animals in order from biggest to smallest",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 1,
+  "content": {
+    "instructions": "Put the animals in order, biggest first",
+    "direction": "descending",
+    "orderHint": "biggest to smallest",
+    "items": [
+      { "id": "mouse", "label": "🐭 Mouse", "image": null, "order": 2 },
+      { "id": "whale", "label": "🐋 Whale", "image": null, "order": 0 },
+      { "id": "ant", "label": "🐜 Ant", "image": null, "order": 3 },
+      { "id": "dog", "label": "🐕 Dog", "image": null, "order": 1 }
+    ],
+    "feedback": {
+      "correct": "Perfect order — biggest to smallest!",
+      "incorrect": "Not quite. Check which animal is biggest."
+    }
+  },
+  "hints": ["The whale is the biggest animal"]
+}

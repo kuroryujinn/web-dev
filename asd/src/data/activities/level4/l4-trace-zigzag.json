@@ -1,0 +1,28 @@
+{
+  "id": "l4-trace-zigzag",
+  "levelId": "level4",
+  "type": "pathTracing",
+  "title": "Trace the Zigzag",
+  "description": "Trace the zigzag line from left to right",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 6,
+  "content": {
+    "instructions": "Trace the zigzag line from left to right",
+    "paths": [
+      {
+        "id": "zigzag",
+        "d": "M 10 75 L 30 25 L 50 75 L 70 25 L 90 75",
+        "label": "Zigzag",
+        "strokeWidth": 3
+      }
+    ],
+    "tolerance": 5,
+    "feedback": {
+      "correct": "Nice and wiggly — the zigzag is done!",
+      "incorrect": "Almost — follow the line up and down, up and down."
+    }
+  },
+  "hints": ["Go slowly at each corner"]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "l4-sort-things-by-category",
+  "levelId": "level4",
+  "type": "dragAndDrop",
+  "title": "Sort Things by Category",
+  "description": "Put each thing in the box of its category",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 9,
+  "content": {
+    "instructions": "Put each thing in the box of its category",
+    "items": [
+      { "id": "apple", "label": "🍎 Apple", "image": null },
+      { "id": "sock", "label": "🧦 Sock", "image": null },
+      { "id": "car", "label": "🚗 Car", "image": null }
+    ],
+    "targets": [
+      { "id": "food-box", "label": "🍎 Food box", "image": null, "correctItemId": "apple" },
+      { "id": "clothes-box", "label": "🧦 Clothes box", "image": null, "correctItemId": "sock" },
+      { "id": "vehicle-box", "label": "🚗 Vehicle box", "image": null, "correctItemId": "car" }
+    ],
+    "feedback": {
+      "correct": "Excellent sorting — every thing is in its group!",
+      "incorrect": "One thing is in the wrong group. What do we eat?"
+    }
+  },
+  "hints": ["Think about which things belong together"]
+}

@@ -17,13 +17,13 @@ export const calculateStars = (score) => {
 
 /**
  * Calculate XP earned for an activity completion.
- * @param {number} difficulty - 1, 2, or 3
+ * @param {number} difficulty - 1, 2, 3, 4, or 5
  * @param {number} stars - 0, 1, 2, or 3
  * @returns {number} XP earned
  */
 export const calculateXP = (difficulty, stars) => {
   const baseXP = 10;
-  const difficultyMultiplier = { 1: 1, 2: 1.5, 3: 2 }[difficulty] || 1;
+  const difficultyMultiplier = { 1: 1, 2: 1.5, 3: 2, 4: 2.5, 5: 3 }[difficulty] || 1;
   const starsMultiplier = { 1: 1, 2: 1.2, 3: 1.5 }[stars] || 1;
   return Math.round(baseXP * difficultyMultiplier * starsMultiplier);
 };

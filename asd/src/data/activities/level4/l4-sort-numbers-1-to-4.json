@@ -1,0 +1,27 @@
+{
+  "id": "l4-sort-numbers-1-to-4",
+  "levelId": "level4",
+  "type": "sorting",
+  "title": "Sort the Numbers",
+  "description": "Put the numbers in order from 1 to 4",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 3,
+  "content": {
+    "instructions": "Put the numbers in order, smallest first",
+    "direction": "ascending",
+    "orderHint": "1, 2, 3, 4",
+    "items": [
+      { "id": "three", "label": "3️⃣ Three", "image": null, "order": 2 },
+      { "id": "one", "label": "1️⃣ One", "image": null, "order": 0 },
+      { "id": "four", "label": "4️⃣ Four", "image": null, "order": 3 },
+      { "id": "two", "label": "2️⃣ Two", "image": null, "order": 1 }
+    ],
+    "feedback": {
+      "correct": "Great counting — 1, 2, 3, 4!",
+      "incorrect": "Not quite. Count with me: one, two, three, four."
+    }
+  },
+  "hints": ["Count out loud while you sort"]
+}

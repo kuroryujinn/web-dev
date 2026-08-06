@@ -1,0 +1,27 @@
+{
+  "id": "l4-sort-rainbow-colors",
+  "levelId": "level4",
+  "type": "sorting",
+  "title": "Sort the Rainbow Colors",
+  "description": "Put the colors in rainbow order",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 2,
+  "content": {
+    "instructions": "Put the colors in rainbow order",
+    "direction": "ascending",
+    "orderHint": "red, orange, yellow, green",
+    "items": [
+      { "id": "green", "label": "🟢 Green", "image": null, "order": 3 },
+      { "id": "red", "label": "🔴 Red", "image": null, "order": 0 },
+      { "id": "yellow", "label": "🟡 Yellow", "image": null, "order": 2 },
+      { "id": "orange", "label": "🟠 Orange", "image": null, "order": 1 }
+    ],
+    "feedback": {
+      "correct": "Beautiful rainbow order!",
+      "incorrect": "Almost — remember red comes first in the rainbow."
+    }
+  },
+  "hints": ["Red, orange, yellow, green — just like a rainbow"]
+}

@@ -44,6 +44,16 @@ describe('SortingActivity', () => {
     ]);
   });
 
+  it('uses a custom order hint when the content provides one', () => {
+    renderActivity({
+      content: { ...content, orderHint: 'red, orange, yellow, green' },
+    });
+
+    expect(
+      screen.getByText(/Put them in order \(red, orange, yellow, green\)/),
+    ).toBeInTheDocument();
+  });
+
   it('swaps two tapped items by ID', () => {
     renderActivity();
 

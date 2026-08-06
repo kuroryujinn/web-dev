@@ -36,7 +36,8 @@ const SortingActivity = ({ content, onComplete }) => {
   }, []);
 
   const directionLabel =
-    content.direction === 'descending' ? 'biggest to smallest' : 'smallest to biggest';
+    content.orderHint ||
+    (content.direction === 'descending' ? 'biggest to smallest' : 'smallest to biggest');
 
   // Swap by item ID (not array index) so the correct items always move,
   // regardless of the current display order.

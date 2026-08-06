@@ -1,0 +1,28 @@
+{
+  "id": "l4-trace-triangle",
+  "levelId": "level4",
+  "type": "pathTracing",
+  "title": "Trace the Triangle",
+  "description": "Trace all the way around the triangle",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 5,
+  "content": {
+    "instructions": "Trace all the way around the triangle",
+    "paths": [
+      {
+        "id": "triangle",
+        "d": "M 50 12 L 88 85 L 12 85 Z",
+        "label": "Triangle",
+        "strokeWidth": 3
+      }
+    ],
+    "tolerance": 5,
+    "feedback": {
+      "correct": "Great tracing — the triangle is complete!",
+      "incorrect": "Keep tracing — stay on the line and close the shape."
+    }
+  },
+  "hints": ["Start at the top point and go around"]
+}

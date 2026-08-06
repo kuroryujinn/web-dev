@@ -1,0 +1,29 @@
+{
+  "id": "l4-match-shapes-to-holes",
+  "levelId": "level4",
+  "type": "dragAndDrop",
+  "title": "Match Shapes to Holes",
+  "description": "Drag each shape into the hole that matches it",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 7,
+  "content": {
+    "instructions": "Drag each shape into the hole that matches it",
+    "items": [
+      { "id": "star", "label": "⭐ Star", "image": null },
+      { "id": "square", "label": "🟦 Square", "image": null },
+      { "id": "triangle", "label": "🔺 Triangle", "image": null }
+    ],
+    "targets": [
+      { "id": "star-hole", "label": "⭐ Star hole", "image": null, "correctItemId": "star" },
+      { "id": "square-hole", "label": "🟦 Square hole", "image": null, "correctItemId": "square" },
+      { "id": "triangle-hole", "label": "🔺 Triangle hole", "image": null, "correctItemId": "triangle" }
+    ],
+    "feedback": {
+      "correct": "Perfect fit — every shape found its hole!",
+      "incorrect": "Some shapes are in the wrong hole. Try again!"
+    }
+  },
+  "hints": ["Look at each shape's points and corners"]
+}

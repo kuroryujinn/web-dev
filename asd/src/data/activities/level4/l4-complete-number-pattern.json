@@ -1,0 +1,27 @@
+{
+  "id": "l4-complete-number-pattern",
+  "levelId": "level4",
+  "type": "multipleChoice",
+  "title": "Complete the Number Pattern",
+  "description": "What number comes next in the pattern?",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 10,
+  "content": {
+    "questionLabel": "What number comes next? 2️⃣ 4️⃣ 6️⃣ ?",
+    "questionImage": null,
+    "questionAlt": "Two, four, six, then what?",
+    "options": [
+      { "id": "eight", "label": "8️⃣ Eight", "image": null, "correct": true },
+      { "id": "seven", "label": "7️⃣ Seven", "image": null, "correct": false },
+      { "id": "nine", "label": "9️⃣ Nine", "image": null, "correct": false },
+      { "id": "ten", "label": "🔟 Ten", "image": null, "correct": false }
+    ],
+    "feedback": {
+      "correct": "Yes! We are counting by twos — eight comes next!",
+      "incorrect": "Not quite. Count by twos: two, four, six…"
+    }
+  },
+  "hints": ["Add two each time: 2, 4, 6, …"]
+}

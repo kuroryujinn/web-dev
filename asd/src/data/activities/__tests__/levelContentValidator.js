@@ -160,6 +160,50 @@ export const validateLevelContent = ({ levelId, difficulty, expectedTypes }) => 
       });
     }
 
+    if (expectedTypes.sorting) {
+      describe('sorting content', () => {
+        const sorting = activities.filter((a) => a.type === 'sorting');
+
+        it.each(sorting.map((a) => [a.id, a]))(
+          '%s has instructions, a direction, an order hint, and a unique shuffled order',
+          (_id, activity) => {
+            expect(activity.content.instructions).toBeTruthy();
+            expect(['ascending', 'descending']).toContain(activity.content.direction);
+            expect(activity.content.orderHint).toBeTruthy();
+            expect(activity.content.items.length).toBeGreaterThanOrEqual(3);
+
+            const itemIds = activity.content.items.map((i) => i.id);
+            expect(new Set(itemIds).size).toBe(activity.content.items.length);
+
+            // Each item's `order` is its correct 0-based display position, so
+            // the orders must be a permutation of 0..n-1 — every slot has
+            // exactly one correct item.
+            const correctOrders = activity.content.items.map((i) => i.order);
+            expect([...correctOrders].sort((a, b) => a - b)).toEqual(
+              activity.content.items.map((_, i) => i),
+            );
+
+            // The activity must not ship already solved — the initial display
+            // order should differ from the correct order so there is a task.
+            const displayOrder = activity.content.items.map((_, i) => i);
+            expect(correctOrders).not.toEqual(displayOrder);
+
+            activity.content.items.forEach((i) => {
+              expect(i.label).toBeTruthy();
+              expect(Number.isInteger(i.order)).toBe(true);
+            });
+          },
+        );
+
+        it('includes feedback messages', () => {
+          sorting.forEach((a) => {
+            expect(a.content.feedback.correct).toBeTruthy();
+            expect(a.content.feedback.incorrect).toBeTruthy();
+          });
+        });
+      });
+    }
+
     if (expectedTypes.matching) {
       describe('matching content', () => {
         const matching = activities.filter((a) => a.type === 'matching');

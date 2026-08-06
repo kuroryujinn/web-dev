@@ -1,0 +1,29 @@
+{
+  "id": "l4-sort-buttons-by-color",
+  "levelId": "level4",
+  "type": "dragAndDrop",
+  "title": "Sort Buttons by Color",
+  "description": "Drop each button into the jar of the same color",
+  "difficulty": 4,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 8,
+  "content": {
+    "instructions": "Drop each button into the jar of the same color",
+    "items": [
+      { "id": "red-button", "label": "🔴 Red button", "image": null },
+      { "id": "yellow-button", "label": "🟡 Yellow button", "image": null },
+      { "id": "blue-button", "label": "🔵 Blue button", "image": null }
+    ],
+    "targets": [
+      { "id": "red-jar", "label": "🫙 Red jar", "image": null, "correctItemId": "red-button" },
+      { "id": "yellow-jar", "label": "🫙 Yellow jar", "image": null, "correctItemId": "yellow-button" },
+      { "id": "blue-jar", "label": "🫙 Blue jar", "image": null, "correctItemId": "blue-button" }
+    ],
+    "feedback": {
+      "correct": "Tidy buttons — every jar is sorted!",
+      "incorrect": "One button is in the wrong jar. Check the colors!"
+    }
+  },
+  "hints": ["Match the button color to the jar color"]
+}

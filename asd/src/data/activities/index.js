@@ -32,6 +32,16 @@ import level3ConnectPeopleToTools from './level3/connect-people-to-tools.json';
 import level3ConnectThingsToRooms from './level3/connect-things-to-rooms.json';
 import level3MatchEmotionsToFaces from './level3/match-emotions-to-faces.json';
 import level3MatchObjectsToUses from './level3/match-objects-to-uses.json';
+import level4SortAnimalsBySize from './level4/l4-sort-animals-by-size.json';
+import level4SortRainbowColors from './level4/l4-sort-rainbow-colors.json';
+import level4SortNumbers1To4 from './level4/l4-sort-numbers-1-to-4.json';
+import level4SortTimesOfDay from './level4/l4-sort-times-of-day.json';
+import level4TraceTriangle from './level4/l4-trace-triangle.json';
+import level4TraceZigzag from './level4/l4-trace-zigzag.json';
+import level4MatchShapesToHoles from './level4/l4-match-shapes-to-holes.json';
+import level4SortButtonsByColor from './level4/l4-sort-buttons-by-color.json';
+import level4SortThingsByCategory from './level4/l4-sort-things-by-category.json';
+import level4CompleteNumberPattern from './level4/l4-complete-number-pattern.json';
 
 const ACTIVITIES_BY_LEVEL = {
   level1: [
@@ -65,6 +75,18 @@ const ACTIVITIES_BY_LEVEL = {
     level3ConnectThingsToRooms,
     level3MatchEmotionsToFaces,
     level3MatchObjectsToUses,
+  ],
+  level4: [
+    level4SortAnimalsBySize,
+    level4SortRainbowColors,
+    level4SortNumbers1To4,
+    level4SortTimesOfDay,
+    level4TraceTriangle,
+    level4TraceZigzag,
+    level4MatchShapesToHoles,
+    level4SortButtonsByColor,
+    level4SortThingsByCategory,
+    level4CompleteNumberPattern,
   ],
 };
 
