@@ -101,6 +101,23 @@ describe('DashboardScreen', () => {
     );
   });
 
+  it('gives header action buttons a 48px target and a visible focus ring', async () => {
+    renderWithProviders(<DashboardScreen user={user} onSelectLevel={vi.fn()} />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    const profile = screen.getByRole('button', { name: /PROFILE/i });
+    const settings = screen.getByRole('button', { name: /SETTINGS/i });
+    const logout = screen.getByRole('button', { name: /LOG OUT/i });
+
+    for (const button of [profile, settings, logout]) {
+      expect(button).toHaveClass('min-h-[48px]');
+      expect(button).toHaveClass('focus-visible:outline-4');
+    }
+  });
+
   it('logs out when the LOG OUT button is clicked', async () => {
     renderWithProviders(<DashboardScreen user={user} onSelectLevel={vi.fn()} />);
 

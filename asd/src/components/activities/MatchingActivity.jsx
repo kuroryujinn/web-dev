@@ -157,7 +157,7 @@ const MatchingActivity = ({ content, onComplete }) => {
                 }}
                 onClick={() => handleLeftClick(pair.left.id)}
                 aria-pressed={isSelected || undefined}
-                className={`brutal-tile pressable p-4 rounded-xl text-center transition-all min-h-[48px]
+                className={`brutal-tile pressable p-4 rounded-xl text-center transition-all min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2
                   ${isSelected ? 'bg-[var(--surface-butter)] -translate-y-1' : ''}
                   ${isCorrect ? 'bg-[var(--surface-mint)]' : ''}
                   ${isWrong ? 'bg-[var(--surface-coral)]' : ''}
@@ -199,7 +199,7 @@ const MatchingActivity = ({ content, onComplete }) => {
                 }}
                 onClick={() => handleRightClick(pair.right.id)}
                 aria-pressed={isSelected || undefined}
-                className={`brutal-tile pressable p-4 rounded-xl text-center transition-all min-h-[48px]
+                className={`brutal-tile pressable p-4 rounded-xl text-center transition-all min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2
                   ${isSelected ? 'bg-[var(--surface-butter)] -translate-y-1' : ''}
                   ${isCorrect ? 'bg-[var(--surface-mint)]' : ''}
                   ${isWrong ? 'bg-[var(--surface-coral)]' : ''}

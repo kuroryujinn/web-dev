@@ -45,19 +45,19 @@ const DashboardScreen = ({ user, onSelectLevel, onNavigate }) => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <button
                 onClick={navigate('profile')}
-                className="brutal-button pressable px-5 py-3 text-sm font-black text-[var(--ink)] bg-[var(--surface-sky)] uppercase tracking-[0.15em]"
+                className="brutal-button pressable px-5 py-3 text-sm font-black text-[var(--ink)] bg-[var(--surface-sky)] uppercase tracking-[0.15em] min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
               >
                 👤 PROFILE
               </button>
               <button
                 onClick={navigate('settings')}
-                className="brutal-button pressable px-5 py-3 text-sm font-black text-[var(--ink)] bg-[var(--surface-butter)] uppercase tracking-[0.15em]"
+                className="brutal-button pressable px-5 py-3 text-sm font-black text-[var(--ink)] bg-[var(--surface-butter)] uppercase tracking-[0.15em] min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
               >
                 ⚙ SETTINGS
               </button>
               <button
                 onClick={handleLogout}
-                className="brutal-button pressable px-6 py-3 text-sm font-black text-[var(--ink)] bg-[var(--surface-coral)] uppercase tracking-[0.15em]"
+                className="brutal-button pressable px-6 py-3 text-sm font-black text-[var(--ink)] bg-[var(--surface-coral)] uppercase tracking-[0.15em] min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
               >
                 LOG OUT
               </button>

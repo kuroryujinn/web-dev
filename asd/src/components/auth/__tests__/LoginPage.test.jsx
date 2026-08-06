@@ -39,6 +39,14 @@ describe('LoginPage', () => {
     expect(screen.getByText(/SIGN IN WITH GOOGLE/)).toBeInTheDocument();
   });
 
+  it('gives the Google button a 48px target and a visible focus ring', () => {
+    render(<LoginPage />);
+
+    const google = screen.getByRole('button', { name: /SIGN IN WITH GOOGLE/i });
+    expect(google).toHaveClass('min-h-[48px]');
+    expect(google).toHaveClass('focus-visible:outline-4');
+  });
+
   it('calls signInWithGoogle when the Google button is clicked', async () => {
     signInWithGoogle.mockResolvedValue(mockUser());
     render(<LoginPage />);

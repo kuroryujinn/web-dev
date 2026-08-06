@@ -35,7 +35,7 @@ const AnswerTile = ({ option, onSelect, isSelected, isCorrect, showResult }) => 
       data-depth-state={depthState}
       data-layer="option"
       aria-pressed={isSelected || undefined}
-      className={`brutal-tile pressable ${depthState} group relative flex flex-row items-center justify-start p-4 md:p-6 w-full overflow-hidden ${getStatusClasses()}`}
+      className={`brutal-tile pressable ${depthState} group relative flex flex-row items-center justify-start p-4 md:p-6 w-full overflow-hidden focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2 ${getStatusClasses()}`}
       onClick={!showResult ? onSelect : undefined}
       disabled={showResult}
     >

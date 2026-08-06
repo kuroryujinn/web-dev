@@ -4,7 +4,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD_LENGTH = 6;
 
 const inputClass =
-  'w-full px-4 py-3 border-[3px] border-[var(--ink)] rounded-xl focus:outline-none bg-white/90 font-black text-[var(--ink)]';
+  'w-full px-4 py-3 border-[3px] border-[var(--ink)] rounded-xl focus:outline-4 focus:outline-[var(--ink)] focus:outline-offset-2 bg-white/90 font-black text-[var(--ink)]';
 
 const EmailPasswordForm = ({ onLogin, onRegister }) => {
   const [email, setEmail] = useState('');
@@ -133,7 +133,7 @@ const EmailPasswordForm = ({ onLogin, onRegister }) => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full brutal-button pressable py-4 text-xl font-black text-[var(--ink)] bg-[var(--surface-coral)] uppercase tracking-[0.12em] disabled:opacity-50"
+        className="w-full brutal-button pressable py-4 text-xl font-black text-[var(--ink)] bg-[var(--surface-coral)] uppercase tracking-[0.12em] disabled:opacity-50 min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
       >
         {loading ? 'LOADING...' : isRegister ? 'CREATE ACCOUNT' : 'SIGN IN'}
       </button>
@@ -141,7 +141,7 @@ const EmailPasswordForm = ({ onLogin, onRegister }) => {
       <button
         type="button"
         onClick={toggleMode}
-        className="w-full text-sm font-bold text-[var(--ink-soft)] underline"
+        className="w-full text-sm font-bold text-[var(--ink-soft)] underline min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
       >
         {isRegister ? 'Already have an account? Sign in' : "Don't have an account? Register"}
       </button>

@@ -110,6 +110,14 @@ describe('DragAndDropActivity', () => {
     expect(screen.getByRole('status')).toHaveTextContent('All placed correctly');
   });
 
+  it('gives draggable items and drop targets a visible focus ring', () => {
+    render(<DragAndDropActivity content={content} onComplete={vi.fn()} />);
+
+    const apple = screen.getByTestId('drag-item-apple');
+    expect(apple).toHaveClass('focus-visible:outline-4');
+    expect(screen.getByTestId('drop-target-t1')).toHaveClass('focus-visible:outline-4');
+  });
+
   it('keeps items interactive via keyboard (aria-pressed on selection)', () => {
     render(<DragAndDropActivity content={content} onComplete={vi.fn()} />);
 

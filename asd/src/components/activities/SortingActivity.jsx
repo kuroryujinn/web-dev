@@ -154,7 +154,7 @@ const SortingActivity = ({ content, onComplete }) => {
                 onDrop={(e) => handleDrop(e, item.id)}
                 onDragEnd={handleDragEnd}
                 aria-pressed={isSelected || undefined}
-                className={`brutal-tile pressable p-4 md:p-6 flex items-center gap-4 text-left transition-all w-full min-h-[48px]
+                className={`brutal-tile pressable p-4 md:p-6 flex items-center gap-4 text-left transition-all w-full min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2
                   ${isSelected ? 'bg-[var(--surface-butter)] -translate-y-1' : ''}
                   ${isDragging ? 'opacity-60' : ''}
                   ${isCorrect ? 'bg-[var(--surface-mint)]' : ''}

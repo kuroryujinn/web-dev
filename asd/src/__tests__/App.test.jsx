@@ -202,6 +202,38 @@ describe('App routing', () => {
     });
   });
 
+  it('marks the app root with reduced motion off by default', async () => {
+    render(<App />);
+
+    act(() => {
+      onAuthStateChangedCallback(firebaseUser());
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    expect(document.querySelector('.App')).toHaveAttribute('data-reduced-motion', 'false');
+  });
+
+  it('applies the reduced motion setting to the app root', async () => {
+    localStorage.setItem(
+      'asd-settings-v1',
+      JSON.stringify({ reducedMotion: true, sound: false, haptic: true, fontSize: 'normal' }),
+    );
+    render(<App />);
+
+    act(() => {
+      onAuthStateChangedCallback(firebaseUser());
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Welcome, Alex')).toBeInTheDocument();
+    });
+
+    expect(document.querySelector('.App')).toHaveAttribute('data-reduced-motion', 'true');
+  });
+
   it('signs in through the login form and navigates to the dashboard without crashing', async () => {
     const user = firebaseUser();
     signInWithEmailAndPassword.mockResolvedValue({ user });

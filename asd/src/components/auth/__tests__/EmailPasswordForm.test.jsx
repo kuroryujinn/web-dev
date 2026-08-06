@@ -166,6 +166,28 @@ describe('EmailPasswordForm', () => {
     expect(screen.getByText('Password is required')).toBeInTheDocument();
   });
 
+  it('keeps a visible focus indicator on text inputs (no focus:outline-none)', () => {
+    render(<EmailPasswordForm onLogin={vi.fn()} onRegister={vi.fn()} />);
+
+    const email = screen.getByLabelText('Email');
+    const password = screen.getByLabelText('Password');
+
+    expect(email).toHaveClass('focus:outline-4');
+    expect(password).toHaveClass('focus:outline-4');
+  });
+
+  it('gives action buttons a 48px target and a visible focus ring', () => {
+    render(<EmailPasswordForm onLogin={vi.fn()} onRegister={vi.fn()} />);
+
+    const signIn = screen.getByRole('button', { name: 'SIGN IN' });
+    expect(signIn).toHaveClass('min-h-[48px]');
+    expect(signIn).toHaveClass('focus-visible:outline-4');
+
+    const toggle = screen.getByRole('button', { name: /don't have an account/i });
+    expect(toggle).toHaveClass('min-h-[48px]');
+    expect(toggle).toHaveClass('focus-visible:outline-4');
+  });
+
   it('shows a loading state while submitting, then re-enables', async () => {
     let resolveLogin;
     const onLogin = vi.fn(() => new Promise((resolve) => { resolveLogin = resolve; }));

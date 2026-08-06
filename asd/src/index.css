@@ -110,6 +110,31 @@
   opacity: 0.48;
 }
 
+/* Reduced Motion (WCAG 2.3.3 / ASD consideration) — kill-switch that collapses
+   animations and transitions to a single instant frame. Applies both when the
+   OS prefers-reduced-motion is set and when the in-app Reduced Motion toggle
+   is ON (data-reduced-motion on the app root). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-reduced-motion='true'],
+[data-reduced-motion='true'] *,
+[data-reduced-motion='true'] *::before,
+[data-reduced-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
 /* Base Styles */
 @layer base {
   body {

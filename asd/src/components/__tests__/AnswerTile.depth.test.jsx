@@ -35,6 +35,21 @@ describe('AnswerTile depth states', () => {
     expect(tile).toHaveAttribute('data-depth-state', 'dropped-negative');
   });
 
+  test('keeps a visible focus ring', () => {
+    render(
+      <AnswerTile
+        option={option}
+        onSelect={() => {}}
+        isSelected={false}
+        isCorrect={false}
+        showResult={false}
+      />,
+    );
+
+    const tile = screen.getByRole('button', { name: /dog/i });
+    expect(tile).toHaveClass('focus-visible:outline-4');
+  });
+
   test('calls onSelect when interactable and blocks when result is shown', () => {
     const onSelect = vi.fn();
     const { rerender } = render(

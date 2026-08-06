@@ -97,6 +97,12 @@ describe('SortingActivity', () => {
     expect(document.activeElement).toBe(sortItem('Dog'));
   });
 
+  it('gives sort items a visible focus ring', () => {
+    renderActivity();
+
+    expect(sortItem('Elephant')).toHaveClass('focus-visible:outline-4');
+  });
+
   it('marks a selected item as pressed and deselects after a swap', () => {
     renderActivity();
 

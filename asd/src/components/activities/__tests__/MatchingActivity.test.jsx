@@ -48,6 +48,13 @@ describe('MatchingActivity', () => {
     expect(screen.getByRole('button', { name: 'CHECK MATCHES' })).toBeDisabled();
   });
 
+  it('gives match items a visible focus ring', () => {
+    renderActivity();
+
+    expect(leftItem('dog')).toHaveClass('focus-visible:outline-4');
+    expect(rightItem('woof')).toHaveClass('focus-visible:outline-4');
+  });
+
   it('creates a match when a left item is tapped then a right item', () => {
     renderActivity();
 

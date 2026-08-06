@@ -53,7 +53,7 @@ const LoginPage = () => {
 
               <button
                 onClick={handleGoogleLogin}
-                className="w-full brutal-button pressable py-4 text-xl font-black text-[var(--ink)] bg-white uppercase tracking-[0.12em] flex items-center justify-center gap-3"
+                className="w-full brutal-button pressable py-4 text-xl font-black text-[var(--ink)] bg-white uppercase tracking-[0.12em] flex items-center justify-center gap-3 min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
               >
                 <span className="text-2xl">G</span> SIGN IN WITH GOOGLE
               </button>

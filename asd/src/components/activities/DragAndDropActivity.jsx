@@ -98,7 +98,7 @@ const DragAndDropActivity = ({ content, onComplete }) => {
                 onClick={() => handleItemClick(item.id)}
                 aria-pressed={isSelected || undefined}
                 aria-label={`${item.label}${isAssigned ? ' (placed)' : ''}`}
-                className={`brutal-tile pressable p-4 rounded-xl text-lg font-black cursor-pointer transition-all
+                className={`brutal-tile pressable p-4 rounded-xl text-lg font-black cursor-pointer transition-all min-h-[48px] focus-visible:outline-4 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2
                   ${isSelected || isDragging
                     ? 'bg-[var(--surface-butter)] -translate-y-1'
                     : 'bg-white/85 hover:bg-[var(--surface-sky)]'
