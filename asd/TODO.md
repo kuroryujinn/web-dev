@@ -1,7 +1,7 @@
 # ASD Motor-Skill Learning Platform — Project Tracker
 
 > **Status:** 🟡 In Progress
-> **Last Updated:** August 2, 2026
+> **Last Updated:** August 6, 2026
 > **Spec:** `docs/superpowers/specs/2026-08-01-asd-motor-skill-platform-design.md`
 > **Plan:** `docs/superpowers/plans/2026-08-01-asd-motor-skill-platform-implementation.md`
 
@@ -172,23 +172,23 @@ Seed activities for all 5 levels.
 - [x] **7c.6** Test Level 3 activities
 
 ### 7d: Level 4 — Fine Motor Skills
-- [ ] **7d.1** Create `src/data/activities/level4/` directory
-- [ ] **7d.2** Create 4 Sorting activities (by size, color, category)
-- [ ] **7d.3** Create 3 DragAndDrop activities
-- [ ] **7d.4** Create 2 PathTracing activities
-- [ ] **7d.5** Create 1 MultipleChoice activity
-- [ ] **7d.6** Test Level 4 activities
+- [x] **7d.1** Create `src/data/activities/level4/` directory
+- [x] **7d.2** Create 4 Sorting activities (by size, color, category)
+- [x] **7d.3** Create 3 DragAndDrop activities
+- [x] **7d.4** Create 2 PathTracing activities
+- [x] **7d.5** Create 1 MultipleChoice activity
+- [x] **7d.6** Test Level 4 activities
 
 ### 7e: Level 5 — Functional Activities
-- [ ] **7e.1** Create `src/data/activities/level5/` directory
-- [ ] **7e.2** Create 4 FreehandDrawing activities
-- [ ] **7e.3** Create 3 Sorting activities (multi-step)
-- [ ] **7e.4** Create 3 DragAndDrop activities (daily-life scenarios)
-- [ ] **7e.5** Create 2 PathTracing activities
-- [ ] **7e.6** Create 2 Matching activities
-- [ ] **7e.7** Test Level 5 activities
+- [x] **7e.1** Create `src/data/activities/level5/` directory
+- [x] **7e.2** Create 4 FreehandDrawing activities
+- [x] **7e.3** Create 3 Sorting activities (multi-step)
+- [x] **7e.4** Create 3 DragAndDrop activities (daily-life scenarios)
+- [x] **7e.5** Create 2 PathTracing activities
+- [x] **7e.6** Create 2 Matching activities
+- [x] **7e.7** Test Level 5 activities
 
-- [ ] **7.8** Commit all level content
+- [x] **7.8** Commit all level content
 
 ---
 
@@ -255,6 +255,23 @@ Audit, optimize, and document.
 - [ ] **11.5** Update `.env.example` with required Firebase config
 - [ ] **11.6** Create architecture summary document
 - [ ] **11.7** Final commit
+
+---
+
+## Session Notes — August 6, 2026
+
+### Milestone 7 — Level Content (complete; 7d + 7e)
+
+Seeded the final two levels, completing all 5 levels (42 seeded activities total):
+
+- **`src/data/activities/level4/*.json`** — 10 activity documents at `difficulty: 4` (Fine Motor Skills): 4 Sorting (`l4-sort-animals-by-size` descending, `l4-sort-rainbow-colors`, `l4-sort-numbers-1-to-4`, `l4-sort-times-of-day` — shuffled initial orders, 0-based `order` = correct position), 3 DragAndDrop (`l4-match-shapes-to-holes`, `l4-sort-buttons-by-color`, `l4-sort-things-by-category` — balanced items/targets), 2 PathTracing (`l4-trace-triangle`, `l4-trace-zigzag`), 1 MultipleChoice (`l4-complete-number-pattern`).
+- **`src/data/activities/level5/*.json`** — 14 activity documents at `difficulty: 5` (Functional Activities): 4 FreehandDrawing (`l5-draw-a-house`, `l5-draw-a-sun`, `l5-draw-a-star`, `l5-draw-a-face` — SVG `template` guides in the 800×450 canvas space), 3 Sorting (daily-life multi-step: `l5-sort-morning-routine`, `l5-sort-make-a-sandwich`, `l5-sort-get-ready-for-bed`), 3 DragAndDrop (`l5-put-groceries-away`, `l5-dress-for-the-weather`, `l5-sort-the-laundry`), 2 PathTracing (`l5-trace-a-star`, `l5-trace-a-heart`), 2 Matching (`l5-match-tools-to-rooms`, `l5-match-clothes-to-body-parts`).
+- **`src/data/activities/index.js`** — registered `level4` (10) and `level5` (14).
+- **`levelContentValidator.js`** — gained a `sorting` block (instructions, `ascending|descending` direction, required `orderHint`, ≥3 items, unique ids, correct orders are a 0..n-1 permutation, **not already solved** — initial display order must differ from the correct order) and a `freehandDrawing` block (instructions, positive canvas dimensions, optional valid template `d`).
+- **Enablers:** `calculateXP` difficulty multipliers extended to `{4: 2.5, 5: 3}` (levels 4–5 would otherwise have earned *less* XP than level 3 via the ×1 fallback; levels 1–3 unchanged). `SortingActivity` gained an optional `content.orderHint` to override the hardcoded "smallest to biggest"/"biggest to smallest" label — required by the new non-size sorts (rainbow colors, numbers, times of day, routines).
+- **Tests:** `level4.test.js` (21) and `level5.test.js` (26) reuse the shared validator; level1's "empty array" test now targets an unknown level (`level99`) since every level is seeded. Scoring (+4) and SortingActivity (+1) tests cover the enablers.
+- **Suite:** ✅ **436 tests / 47 files passing** (up from 410/46), ESLint clean, build OK.
+- **Committed:** `5384d88` (7d) and `ffa8143` (7e), both pushed. Milestone 7 is **29/29 complete** (tracker table corrected from 19 → 29 to match the actual checkbox count). Next milestone: **8. Accessibility**.
 
 ---
 
@@ -460,12 +477,12 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 | 4. Activity Types | ✅ Complete | 28 | 28/28 |
 | 5. Progress System | ✅ Complete | 13 | 13/13 |
 | 6. Dashboard & Nav | ✅ Complete | 15 | 15/15 |
-| 7. Level Content | 🟡 In Progress | 19 | 15/19 |
+| 7. Level Content | ✅ Complete | 29 | 29/29 |
 | 8. Accessibility | ⬜ Not Started | 11 | 0/11 |
 | 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
 | 10. Testing | 🟡 In Progress | 12 | 3/12 |
 | 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **142** | **103/142** |
+| **Total** | 🟡 In Progress | **152** | **117/152** |
 
 ---
 
