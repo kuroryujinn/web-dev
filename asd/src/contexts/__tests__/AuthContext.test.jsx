@@ -9,6 +9,7 @@ vi.mock('firebase/auth', () => ({
 
 vi.mock('../../services/firebase', () => ({
   auth: {},
+  isDemoMode: false,
 }));
 
 const AuthStateConsumer = () => {

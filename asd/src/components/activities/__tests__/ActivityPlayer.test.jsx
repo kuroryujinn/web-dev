@@ -20,6 +20,7 @@ vi.mock('firebase/firestore', () => ({
 vi.mock('../../../services/firebase', () => ({
   auth: {},
   db: {},
+  isDemoMode: false,
 }));
 
 const baseActivity = {

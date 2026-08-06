@@ -21,6 +21,7 @@ vi.mock('firebase/firestore', () => ({
 vi.mock('../../../services/firebase', () => ({
   auth: {},
   db: {},
+  isDemoMode: false,
 }));
 
 // A real seeded Level 2 DragAndDrop activity (difficulty 2, 3 items / 3 targets).
