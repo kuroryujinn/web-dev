@@ -7,209 +7,6 @@
 
 ---
 
-## Milestone 1: Foundation & Cleanup 🧹
-
-Remove dead code, refactor existing components, establish clean base.
-
-- [x] **1.1** Remove unused components: `ResultScreen.jsx`, `StartScreen.jsx`, `QuizCard.jsx`
-- [x] **1.2** Remove unused hook: `hooks/useQuiz.js` (replaced by new activity system)
-- [x] **1.3** Remove legacy data: `data/questions.json`
-- [x] **1.4** Remove legacy feedback: `components/FeedbackBanner.jsx`, `components/AnswerOption.jsx`
-- [x] **1.5** Refactor `App.jsx` — clean screen routing, prepare for providers
-- [x] **1.6** Update `package.json` — remove unused deps, verify versions
-- [x] **1.7** Verify app still builds and runs after cleanup
-- [x] **1.8** Commit cleanup changes
-
----
-
-## Milestone 2: Firebase Setup & Authentication 🔐
-
-Set up Firebase backend, auth providers, and user management.
-
-- [x] **2.1** Install Firebase dependencies (`firebase`, `react-firebase-hooks`)
-- [x] **2.2** Create `src/services/firebase.js` — Firebase config & initialization
-- [x] **2.3** Create `src/contexts/AuthContext.jsx` — Auth state management
-- [x] **2.4** Create `src/services/authService.js` — Login/logout/register functions
-- [x] **2.5** Create `src/components/auth/EmailPasswordForm.jsx` — Email/password login
-- [x] **2.6** Integrate Google sign-in in `LoginPage.jsx` — Use Firebase Google auth (popup)
-- [x] **2.7** Refactor `LoginPage.jsx` — Integrate Firebase auth
-- [x] **2.8** Create `src/contexts/SettingsContext.jsx` — User settings
-- [x] **2.9** Test authentication flow end-to-end
-- [x] **2.10** Commit Firebase auth changes
-
----
-
-## Milestone 3: Activity Engine Core ⚙️
-
-Build the data-driven activity rendering system.
-
-- [x] **3.1** Create `src/services/activityService.js` — Fetch activities from Firestore
-- [x] **3.2** Create `src/data/levels.js` — Level definitions (5 levels)
-- [x] **3.3** Create `src/data/badges.js` — Badge definitions
-- [x] **3.4** Create `src/components/activities/ActivityPlayer.jsx` — Main activity renderer
-- [x] **3.5** Create `src/components/activities/ActivityHeader.jsx` — Title, timer, score
-- [x] **3.6** Create `src/hooks/useTimer.js` — Timer hook for timed activities
-- [x] **3.7** Create `src/utils/scoring.js` — Score calculation utilities
-- [x] **3.8** Create `src/components/shared/AccessibleButton.jsx` — Accessible button component
-- [x] **3.9** Create `src/components/shared/FeedbackOverlay.jsx` — Enhanced feedback modal
-- [x] **3.10** Test activity engine with mock data
-- [x] **3.11** Commit activity engine core
-
----
-
-## Milestone 4: Activity Types 🎯
-
-Implement all 6 activity type components.
-
-### 4a: MultipleChoice (existing, enhanced)
-- [x] **4a.1** Create `src/components/activities/MultipleChoiceActivity.jsx`
-- [x] **4a.2** Add keyboard navigation (Tab + Enter)
-- [x] **4a.3** Add ARIA labels and live regions
-- [x] **4a.4** Test MultipleChoice activity
-
-### 4b: DragAndDrop
-- [x] **4b.1** Create `src/hooks/useDragAndDrop.js` — Drag state management
-- [x] **4b.2** Create `src/components/activities/DragAndDropActivity.jsx`
-- [x] **4b.3** Add touch support (tap-to-assign — pointer-friendly)
-- [x] **4b.4** Add keyboard fallback (native buttons + ARIA, focus ring)
-- [x] **4b.5** Test DragAndDrop activity
-
-### 4c: PathTracing
-- [x] **4c.1** Create `src/hooks/usePathTracing.js` — Touch/draw state
-- [x] **4c.2** Create `src/components/activities/PathTracingActivity.jsx`
-- [x] **4c.3** Implement SVG path rendering and stroke detection
-- [x] **4c.4** Add visual feedback during tracing
-- [x] **4c.5** Test PathTracing activity
-
-### 4d: FreehandDrawing
-- [x] **4d.1** Create `src/components/activities/FreehandDrawingActivity.jsx`
-- [x] **4d.2** Implement HTML5 Canvas drawing
-- [x] **4d.3** Add stroke recording and scoring
-- [x] **4d.4** Add undo/clear functionality
-- [x] **4d.5** Test FreehandDrawing activity
-
-### 4e: Sorting
-- [x] **4e.1** Create `src/components/activities/SortingActivity.jsx`
-- [x] **4e.2** Implement drag-to-reorder
-- [x] **4e.3** Add keyboard fallback for sorting
-- [x] **4e.4** Test Sorting activity
-
-### 4f: Matching
-- [x] **4f.1** Create `src/components/activities/MatchingActivity.jsx`
-- [x] **4f.2** Implement tap-to-select-pairs
-- [x] **4f.3** Add visual connection lines
-- [x] **4f.4** Test Matching activity
-
-- [x] **4.5** Commit all activity types
-
----
-
-## Milestone 5: Progress System 📊
-
-XP, stars, badges, and level unlocking.
-
-- [x] **5.1** Create `src/contexts/ProgressContext.jsx` — Global progress state (co-exports `useProgress`)
-- [x] **5.2** Create `src/services/progressService.js` — Firestore CRUD for progress (localStorage fallback)
-- [x] **5.3** Create `useProgress` hook — co-exported from `ProgressContext` (AuthContext convention)
-- [x] **5.4** Implement XP calculation (base × difficulty × stars) — done in Milestone 3 (`calculateXP`)
-- [x] **5.5** Implement star calculation (completion, 70%, 90%) — done in Milestone 3 (`calculateStars`)
-- [x] **5.6** Implement badge earning logic (`checkEarnableBadges` in `utils/progress.js`)
-- [x] **5.7** Implement level unlock logic (XP thresholds — `getLevelForXP`, `isLevelUnlocked`)
-- [x] **5.8** Create `src/components/results/ResultsScreen.jsx` — Enhanced results
-- [x] **5.9** Create `src/components/results/ScoreDisplay.jsx`
-- [x] **5.10** Create `src/components/results/StarsEarned.jsx`
-- [x] **5.11** Create `src/components/results/BadgesEarned.jsx`
-- [x] **5.12** Test progress tracking end-to-end (util + service + context + results suites)
-- [x] **5.13** Commit progress system
-
----
-
-## Milestone 6: Dashboard & Navigation 🏠
-
-Level selection, user profile, settings.
-
-- [x] **6.1** Create `src/components/dashboard/DashboardScreen.jsx`
-- [x] **6.2** Create `src/components/dashboard/LevelGrid.jsx`
-- [x] **6.3** Create `src/components/dashboard/LevelCard.jsx`
-- [x] **6.4** Create `src/components/dashboard/BadgeShelf.jsx`
-- [x] **6.5** Create `src/components/dashboard/QuickStats.jsx`
-- [x] **6.6** Create `src/components/level/LevelScreen.jsx`
-- [x] **6.7** Create `src/components/level/ActivityList.jsx`
-- [x] **6.8** Create `src/components/level/ActivityCard.jsx`
-- [x] **6.9** Create `src/components/profile/ProfileScreen.jsx`
-- [x] **6.10** Create `src/components/profile/UserStats.jsx`
-- [x] **6.11** Create `src/components/profile/SessionHistory.jsx`
-- [x] **6.12** Create `src/components/settings/SettingsScreen.jsx`
-- [x] **6.13** Refactor `App.jsx` — New screen routing (dashboard, level, profile, settings)
-- [x] **6.14** Test navigation flow end-to-end
-- [x] **6.15** Commit dashboard & navigation
-
----
-
-## Milestone 7: Level Content 📚
-
-Seed activities for all 5 levels.
-
-### 7a: Level 1 — Core Recognition
-- [x] **7a.1** Create `src/data/activities/level1/` directory
-- [x] **7a.2** Create 5 MultipleChoice activities (identify fruits, animals, objects)
-- [x] **7a.3** Create 3 Matching activities (match pairs)
-- [x] **7a.4** Test Level 1 activities
-
-### 7b: Level 2 — Basic Coordination
-- [x] **7b.1** Create `src/data/activities/level2/` directory
-- [x] **7b.2** Create 3 MultipleChoice activities
-- [x] **7b.3** Create 3 DragAndDrop activities (match shapes, sort items)
-- [x] **7b.4** Create 2 Matching activities
-- [x] **7b.5** Test Level 2 activities
-
-### 7c: Level 3 — Visual-Motor Integration
-- [x] **7c.1** Create `src/data/activities/level3/` directory
-- [x] **7c.2** Create 3 PathTracing activities (trace letters, shapes)
-- [x] **7c.3** Create 3 DragAndDrop activities (connect pairs)
-- [x] **7c.4** Create 2 Matching activities
-- [x] **7c.5** Create 2 MultipleChoice activities
-- [x] **7c.6** Test Level 3 activities
-
-### 7d: Level 4 — Fine Motor Skills
-- [x] **7d.1** Create `src/data/activities/level4/` directory
-- [x] **7d.2** Create 4 Sorting activities (by size, color, category)
-- [x] **7d.3** Create 3 DragAndDrop activities
-- [x] **7d.4** Create 2 PathTracing activities
-- [x] **7d.5** Create 1 MultipleChoice activity
-- [x] **7d.6** Test Level 4 activities
-
-### 7e: Level 5 — Functional Activities
-- [x] **7e.1** Create `src/data/activities/level5/` directory
-- [x] **7e.2** Create 4 FreehandDrawing activities
-- [x] **7e.3** Create 3 Sorting activities (multi-step)
-- [x] **7e.4** Create 3 DragAndDrop activities (daily-life scenarios)
-- [x] **7e.5** Create 2 PathTracing activities
-- [x] **7e.6** Create 2 Matching activities
-- [x] **7e.7** Test Level 5 activities
-
-- [x] **7.8** Commit all level content
-
----
-
-## Milestone 8: Accessibility ♿
-
-WCAG 2.1 AA compliance and ASD-specific considerations.
-
-- [x] **8.1** Audit all components for touch target sizes (min 48px)
-- [x] **8.2** Add ARIA labels to all interactive elements
-- [x] **8.3** Add live regions for dynamic content (feedback, scores)
-- [x] **8.4** Implement keyboard navigation for all activities
-- [x] **8.5** Add focus indicators (visible focus rings)
-- [x] **8.6** Implement `prefers-reduced-motion` respect
-- [x] **8.7** Add reduced motion toggle in settings
-- [x] **8.8** Add sound toggle (default OFF)
-- [x] **8.9** Test with screen reader (VoiceOver/NVDA basics)
-- [x] **8.10** Test keyboard-only navigation
-- [x] **8.11** Commit accessibility improvements
-
----
-
 ## Milestone 9: Styling & Polish 🎨
 
 Refine neo-brutalism design, ensure consistency.
@@ -229,13 +26,10 @@ Refine neo-brutalism design, ensure consistency.
 
 Comprehensive testing and final verification.
 
-- [x] **10.1** Run all existing tests — verify no regressions (62/62 passing; re-verify at release)
 - [ ] **10.2** Add unit tests for scoring utilities
 - [ ] **10.3** Add unit tests for progress calculations
 - [ ] **10.4** Add component tests for ActivityPlayer
 - [ ] **10.5** Add component tests for each activity type
-- [x] **10.6** Run ESLint — fix all warnings (clean at `--max-warnings 0`)
-- [x] **10.7** Run build — verify no errors
 - [ ] **10.8** Manual test: Complete full user flow (login → dashboard → activity → results)
 - [ ] **10.9** Manual test: Verify progress persistence (refresh page, check data)
 - [ ] **10.10** Manual test: Verify level unlocking works
@@ -271,18 +65,14 @@ Audited every component against the WCAG 2.1 AA checklist (8.1–8.6) and verifi
 - **Browser verification (8.9/8.10):** demo-mode dev server (no Firebase config) boots to the dashboard; the browser agent confirmed the dashboard renders with all buttons carrying accessible names, level cards with descriptive aria-labels (e.g. "Level 1: Core Recognition — In Progress"), `data-reduced-motion="false"` present on the root, and **zero console errors**. Keyboard-only flows are covered by the existing activity suites (arrow-key sorting, Tab+Enter taps, aria-pressed selection).
 - **Suite:** ✅ **446 tests / 47 files passing** (up from 436/47), ESLint clean, build OK. Committed `9a8f0ec` (Milestone 8). Milestone 8 is **11/11 complete**; tracker total 117 → **128/152**. Next milestone: **9. Styling & Polish**.
 
-### Milestone 7 — Level Content (complete; 7d + 7e)
+### Browser-mode reduced-motion test (complete)
 
-Seeded the final two levels, completing all 5 levels (42 seeded activities total):
+Added real-browser end-to-end coverage for the reduced-motion wiring, per follow-up request:
 
-- **`src/data/activities/level4/*.json`** — 10 activity documents at `difficulty: 4` (Fine Motor Skills): 4 Sorting (`l4-sort-animals-by-size` descending, `l4-sort-rainbow-colors`, `l4-sort-numbers-1-to-4`, `l4-sort-times-of-day` — shuffled initial orders, 0-based `order` = correct position), 3 DragAndDrop (`l4-match-shapes-to-holes`, `l4-sort-buttons-by-color`, `l4-sort-things-by-category` — balanced items/targets), 2 PathTracing (`l4-trace-triangle`, `l4-trace-zigzag`), 1 MultipleChoice (`l4-complete-number-pattern`).
-- **`src/data/activities/level5/*.json`** — 14 activity documents at `difficulty: 5` (Functional Activities): 4 FreehandDrawing (`l5-draw-a-house`, `l5-draw-a-sun`, `l5-draw-a-star`, `l5-draw-a-face` — SVG `template` guides in the 800×450 canvas space), 3 Sorting (daily-life multi-step: `l5-sort-morning-routine`, `l5-sort-make-a-sandwich`, `l5-sort-get-ready-for-bed`), 3 DragAndDrop (`l5-put-groceries-away`, `l5-dress-for-the-weather`, `l5-sort-the-laundry`), 2 PathTracing (`l5-trace-a-star`, `l5-trace-a-heart`), 2 Matching (`l5-match-tools-to-rooms`, `l5-match-clothes-to-body-parts`).
-- **`src/data/activities/index.js`** — registered `level4` (10) and `level5` (14).
-- **`levelContentValidator.js`** — gained a `sorting` block (instructions, `ascending|descending` direction, required `orderHint`, ≥3 items, unique ids, correct orders are a 0..n-1 permutation, **not already solved** — initial display order must differ from the correct order) and a `freehandDrawing` block (instructions, positive canvas dimensions, optional valid template `d`).
-- **Enablers:** `calculateXP` difficulty multipliers extended to `{4: 2.5, 5: 3}` (levels 4–5 would otherwise have earned *less* XP than level 3 via the ×1 fallback; levels 1–3 unchanged). `SortingActivity` gained an optional `content.orderHint` to override the hardcoded "smallest to biggest"/"biggest to smallest" label — required by the new non-size sorts (rainbow colors, numbers, times of day, routines).
-- **Tests:** `level4.test.js` (21) and `level5.test.js` (26) reuse the shared validator; level1's "empty array" test now targets an unknown level (`level99`) since every level is seeded. Scoring (+4) and SortingActivity (+1) tests cover the enablers.
-- **Suite:** ✅ **436 tests / 47 files passing** (up from 410/46), ESLint clean, build OK.
-- **Committed:** `5384d88` (7d) and `ffa8143` (7e), both pushed. Milestone 7 is **29/29 complete** (tracker table corrected from 19 → 29 to match the actual checkbox count). Next milestone: **8. Accessibility**.
+- **`src/__tests__/App.reducedMotion.browser.test.jsx`** (new, 3 tests) — runs in real Chromium via Playwright: (1) boots to the dashboard in demo mode with `data-reduced-motion="false"` on the root `.App` element; (2) navigates to Settings, clicks the Reduced Motion toggle ON (asserts `aria-pressed` + root attribute → `"true"`), then back OFF; (3) imports the real `index.css` and proves the kill-switch via `getComputedStyle` — transition durations collapse from ~90ms to ≤0.02ms (reported as `1e-05s`). Mocks only the Firebase modules so it's deterministic regardless of `.env`; everything else (React, real DOM, real CSS) runs in the browser.
+- **Infra:** `vite.config.js` split into two Vitest projects — `jsdom` (default fast suite, excludes `*.browser.test.*`) and `browser` (Playwright chromium via `@vitest/browser-playwright`). New scripts: `npm run test:browser` and `npm run test:all`. `.gitignore` covers `.vitest-attachments/` and `__screenshots__/`.
+- **Deps:** `@vitest/browser@4.1.10`, `@vitest/browser-playwright@4.1.10`, `playwright@1.62.1` (+ chromium binary), plus `jest-axe@11` / `axe-core@4.13` staged for the upcoming accessibility audit.
+- **Suite:** ✅ **446 jsdom + 3 browser tests passing**, ESLint clean, build OK.
 
 ---
 
@@ -350,10 +140,6 @@ Added two new suites for the dashboard widgets:
 - **`BadgeShelf.test.jsx`** (new, 6 tests) — default/empty arrays show all 8 badges locked, mixed earned/locked states with correct aria-labels, all-earned state, unknown badge ids ignored, and a **null `badges` guard**.
 - **Fix (RED→GREEN):** `BadgeShelf` now normalizes a null `badges` prop via `badges ?? []` — previously `badges={null}` crashed with "Cannot read properties of null (reading 'includes')".
 - **Suite:** ✅ **343 tests / 40 files passing**, ESLint clean, build OK.
-
----
-
-## Session Notes — August 5, 2026
 
 ### Milestone 6 — Dashboard & Navigation (14/15 complete)
 
@@ -480,26 +266,20 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 
 ## Progress Summary
 
-| Milestone | Status | Tasks | Completed |
-|-----------|--------|-------|-----------|
-| 1. Foundation & Cleanup | ✅ Complete | 8 | 8/8 |
-| 2. Firebase Auth | ✅ Complete | 10 | 10/10 |
-| 3. Activity Engine | ✅ Complete | 11 | 11/11 |
-| 4. Activity Types | ✅ Complete | 28 | 28/28 |
-| 5. Progress System | ✅ Complete | 13 | 13/13 |
-| 6. Dashboard & Nav | ✅ Complete | 15 | 15/15 |
-| 7. Level Content | ✅ Complete | 29 | 29/29 |
-| 8. Accessibility | ✅ Complete | 11 | 11/11 |
-| 9. Styling & Polish | ⬜ Not Started | 8 | 0/8 |
-| 10. Testing | 🟡 In Progress | 12 | 3/12 |
-| 11. Final Review | ⬜ Not Started | 7 | 0/7 |
-| **Total** | 🟡 In Progress | **152** | **128/152** |
+| Milestone | Status | Remaining |
+|-----------|--------|-----------|
+| 9. Styling & Polish | ⬜ Not Started | 8 |
+| 10. Testing & Verification | 🟡 In Progress | 9 |
+| 11. Final Review | ⬜ Not Started | 7 |
+| **Total remaining** | 🟡 In Progress | **24** |
+
+Milestones 1–8 are **complete** — see Session Notes for the full history.
 
 ---
 
 ## Quick Reference
 
-**To resume work:** Check the last checked-off task in the list above. Start from the next unchecked task.
+**To resume work:** Start from the first unchecked task in the lists above (Milestone 9).
 
 **Key files:**
 - Spec: `docs/superpowers/specs/2026-08-01-asd-motor-skill-platform-design.md`
@@ -510,7 +290,9 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 ```bash
 npm run dev            # Start dev server
 npm run build          # Build for production
-npm run test           # Run tests
+npm run test           # Run tests (jsdom)
+npm run test:browser   # Run browser-mode tests (Playwright chromium)
+npm run test:all       # Run jsdom + browser tests
 npm run test:coverage  # Run tests with coverage report
 npm run lint           # Run linter
 ```
