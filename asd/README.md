@@ -1,161 +1,120 @@
-# ASD Quiz App
+# ASD Learn — Motor-Skill Training Platform
 
-> One-sentence thesis: ASD Quiz App is a React + Vite single-page learning quiz that combines a visual question flow, local session persistence, and optional Google OAuth login into a reproducible front-end workflow.
+> A warm neo-brutalist React app with 5 levels of progressive motor-skill activities designed for children with ASD. Runs fully offline in demo mode, or with Firebase auth + Firestore for real accounts and persisted progress.
 
 ## Abstract
 
-This project implements a multi-screen quiz experience with three core phases: authentication, launch dashboard, and question/answer progression with immediate feedback and score tracking. The UI is being migrated toward a warm neo-brutalist visual system while preserving quiz behavior and data flow. The repository includes a runnable development setup, build pipeline, and component-level automated tests.
+ASD Learn is a client-rendered React (Vite) single-page app that turns fine-motor practice into a structured game: users sign in, progress through 5 difficulty-scaled levels, and earn stars, XP, and badges for completing activities. Six activity types are built on a shared engine — multiple choice, drag-and-drop, sorting, matching, path tracing, and freehand drawing — with keyboard, touch, and mouse input, live-region announcements, and a reduced-motion mode.
 
-## Problem Context
+The app is **demo-mode first**: with no Firebase configuration it boots straight to a local demo user and persists progress in `localStorage`, so the entire product can be run and tested without any backend credentials. When `VITE_FIREBASE_*` env vars are present, Firebase Auth (email/password + Google) and Firestore take over.
 
-The app targets a common educational UI problem: presenting simple, image-forward multiple-choice questions in a way that is easy to run locally, visually expressive, and resilient to missing external configuration.
+## Features
 
-The implementation addresses three practical constraints:
-
-- Keep core quiz behavior deterministic and client-side (no backend dependency required for local use).
-- Support authentication UX with and without Google OAuth configuration.
-- Preserve clear test/build commands so contributors can validate changes quickly.
-
-## Approach and Architecture
-
-The application is a client-rendered React app built with Vite.
-
-- Entry point: `src/main.jsx` mounts `App`.
-- App shell and screen routing: `src/App.jsx` controls `login -> landing -> quiz` transitions.
-- Login: `src/components/LoginPage.jsx` supports local alias/avatar login and optional Google login.
-- Quiz runtime: `src/components/QuizScreen.jsx` drives question index, scoring, and feedback overlays.
-- Question rendering: `src/components/QuestionCard.jsx` and `src/components/AnswerTile.jsx` render question media/options and result states.
-- Data source: `src/data/questions.json` stores static quiz questions and feedback strings.
-- Styling system: `src/index.css` and `src/styles/tokens.css` provide global styles and design tokens.
-
-State model highlights:
-
-- User profile is persisted in local storage under `asd_quiz_user`.
-- Screen state is held in `App` and switched by explicit handlers.
-- Quiz state (index, score, selection, feedback visibility) is held inside `QuizScreen`.
-
-## Repository Layout
-
-Top-level structure relevant to development:
-
-- `src/`: React source code.
-- `src/components/`: screen and UI components.
-- `src/components/__tests__/`: component tests (Vitest + Testing Library).
-- `src/data/questions.json`: quiz content.
-- `src/styles/tokens.css`: global design token variables.
-- `public/images/`: static image assets used by quiz questions/options.
-- `docs/superpowers/specs/`: design specifications.
-- `docs/superpowers/plans/`: implementation plans.
+- **5 levels × seeded activities** — 50 activity documents (8/8/10/10/14) across `Core Recognition` → `Advanced Coordination`, scaled by difficulty (XP multipliers, star thresholds).
+- **Six activity types** on a registry-driven engine: MultipleChoice, DragAndDrop, Sorting, Matching, PathTracing, FreehandDrawing — all with touch/keyboard/mouse input.
+- **Progress system** — XP, stars, streaks, level unlocking, and 8 badges with rarity tiers; persisted to Firestore with a `localStorage` offline backup.
+- **Dashboard & navigation** — stats, level grid, badge shelf, profile with session history, and settings (sound, haptics, text size, reduced motion).
+- **Accessibility (WCAG 2.1 AA)** — keyboard-complete, 48px targets, focus-visible rings, polite live regions, `prefers-reduced-motion` + in-app toggle, and an automated axe-core audit in CI tests.
+- **Warm neo-brutalist design system** — design tokens, level/activity accent colors, skeletons, error cards with retry.
 
 ## Installation and Setup
 
-Prerequisites:
-
-- Node.js 20+ (recommended for modern Vite toolchains).
-- npm (ships with Node.js).
-
-Install dependencies:
+Prerequisites: Node.js 20+, npm.
 
 ```bash
 npm install
 ```
 
-Optional environment configuration for Google OAuth:
-
-1. Create a `.env` file in the project root.
-2. Add:
-
-```bash
-VITE_GOOGLE_CLIENT_ID=your_google_oauth_client_id
-```
-
-If `VITE_GOOGLE_CLIENT_ID` is not set, the app still runs and falls back to non-Google login paths.
-
-## Usage
-
-Start local development server:
+### Run in demo mode (no config needed)
 
 ```bash
 npm run dev
 ```
 
-Create production build:
+With no `.env`, the dev server detects missing Firebase config and signs in a local **Demo** user — no account or credentials required. Progress persists in `localStorage`.
+
+### Enable Firebase (auth + persisted progress)
+
+1. Create a Firebase project and enable **Email/Password** and **Google** sign-in (Authentication → Sign-in method).
+2. Copy `.env.example` to `.env` and fill in your web-app credentials:
 
 ```bash
-npm run build
+cp .env.example .env
 ```
 
-Preview production build locally:
-
 ```bash
-npm run preview
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
+VITE_FIREBASE_STORAGE_BUCKET=...
+VITE_FIREBASE_MESSAGING_SENDER_ID=...
+VITE_FIREBASE_APP_ID=...
 ```
 
-Run linter:
+3. Restart `npm run dev` — the login page appears and progress syncs to Firestore (`userProgress/{uid}`).
+
+## Usage
 
 ```bash
-npm run lint
+npm run dev            # Start dev server (demo mode without Firebase config)
+npm run build          # Production build
+npm run preview        # Preview the production build
+npm run lint           # ESLint
 ```
 
 ## Validation and Testing
 
-Run test suite:
+Two-tier test suite (see `vite.config.js`):
+
+| Command | Scope |
+|---|---|
+| `npm test` | Fast **jsdom** suite — 470 unit/integration tests |
+| `npm run test:browser` | **Real-browser** (Playwright chromium) suite — reduced-motion, responsive, full user flow, accessibility basics |
+| `npm run test:all` | Both suites |
+| `npm run test:coverage` | jsdom suite with v8 coverage report (`coverage/`) |
+
+Minimum pre-merge validation:
 
 ```bash
-npm run test
-```
-
-Watch mode for local development:
-
-```bash
-npm run test:watch
-```
-
-Current automated coverage includes at least one component-level regression test for `LandingScreen` behavior when Google OAuth is not configured.
-
-Observed command status in this repository (2026-04-15):
-
-- `npm run test`: pass.
-- `npm run build`: pass.
-- `npm run lint`: pass.
-
-Minimum pre-merge validation workflow:
-
-```bash
-npm run test
+npm test
+npm run test:browser
 npm run lint
 npm run build
 ```
 
-## Results and Demo Flow
+Coverage highlights: pure utilities (`scoring`, `progress`, `pathTracing`) have deep edge-case suites; every activity type, context, and screen has component tests; `Accessibility.axe.test.jsx` audits login/dashboard/level/activity/settings with zero WCAG violations; `App.flow.browser.test.jsx` walks the real user flow end-to-end in Chromium.
 
-When run locally, the primary flow is:
+## Project Structure
 
-1. Login screen: choose alias/avatar (and optional Google sign-in).
-2. Landing screen: review profile card and start the quiz.
-3. Quiz screen: answer questions with immediate correctness feedback.
-4. Results screen: review score and replay or return home.
+```
+src/
+├── main.jsx / App.jsx        # Bootstrap; state-based screen routing
+├── components/
+│   ├── auth/                 # LoginPage, EmailPasswordForm
+│   ├── dashboard/            # DashboardScreen, LevelGrid, LevelCard, QuickStats, BadgeShelf
+│   ├── level/                # LevelScreen, ActivityList, ActivityCard
+│   ├── activities/           # ActivityPlayer (registry) + 6 activity types
+│   ├── results/              # ResultsScreen, ScoreDisplay, StarsEarned, BadgesEarned
+│   ├── profile/ settings/    # ProfileScreen, SettingsScreen
+│   └── shared/               # AccessibleButton, AnswerTile, FeedbackOverlay, LoadingSkeleton, ErrorState
+├── contexts/                 # AuthContext, ProgressContext, SettingsContext
+├── services/                 # firebase (demo-mode aware), authService, progressService, activityService
+├── data/                     # levels.js, badges.js, activities/ (seeded level 1–5 content)
+├── hooks/ utils/             # useTimer, useDragAndDrop, usePathTracing; scoring, progress, pathTracing
+├── styles/                   # tokens.css (design tokens), index.css (utilities/components)
+└── __tests__/                # App routing, axe audit, browser-mode suites
+```
 
-The project includes static image assets and question metadata sufficient to demo the full flow without a backend service.
+See `docs/ARCHITECTURE.md` for the full architecture and data-flow summary.
 
 ## Limitations and Tradeoffs
 
-- Quiz data is static JSON bundled with the client; there is no persistence API for scores/history.
-- Routing is state-based inside React components rather than URL-based routing.
-- Google OAuth support depends on external environment configuration and provider behavior.
-- Visual redesign work is in progress; some components still contain legacy style patterns alongside tokenized styles.
-
-## Maintenance and Contributing
-
-Recommended contribution loop:
-
-1. Create a focused branch.
-2. Implement small, verifiable changes.
-3. Run `npm run test`, `npm run lint`, and `npm run build`.
-4. Update docs when behavior, setup, or architecture changes.
-
-When modifying UI, prefer updating tokenized styles (`src/styles/tokens.css`, `src/index.css`) before adding one-off utility overrides.
+- **Demo vs Firebase**: demo mode (dev only, no config) uses a local user + `localStorage`; real persistence requires the `.env` Firebase setup above.
+- **Session activities**: the Quick Learner badge counts total completed activities (a persisted counter), not per-session play — a documented simplification.
+- **Level-completion badges**: reaching a level's XP threshold stands in for "completing" it.
+- **Routing** is state-based inside `App` rather than URL-based.
+- **Badges** are awarded at activity-record time, not retroactively on load.
 
 ## License and Attribution
 
-No explicit license file is currently included in this repository. Add a `LICENSE` file if redistribution terms are required.
+No explicit license file is currently included in this repository.

@@ -38,21 +38,34 @@ Comprehensive testing and final verification.
 
 ---
 
-## Milestone 11: Final Review 📋
+## Milestone 11: Final Review 📋 ✅
 
 Audit, optimize, and document.
 
-- [ ] **11.1** Remove any remaining dead code
-- [ ] **11.2** Verify bundle size is reasonable
-- [ ] **11.3** Check for console errors/warnings
-- [ ] **11.4** Update README.md with new setup instructions
-- [ ] **11.5** Update `.env.example` with required Firebase config
-- [ ] **11.6** Create architecture summary document
-- [ ] **11.7** Final commit
+- [x] **11.1** Remove any remaining dead code
+- [x] **11.2** Verify bundle size is reasonable
+- [x] **11.3** Check for console errors/warnings
+- [x] **11.4** Update README.md with new setup instructions
+- [x] **11.5** Update `.env.example` with required Firebase config
+- [x] **11.6** Create architecture summary document
+- [x] **11.7** Final commit
 
 ---
 
 ## Session Notes — August 6, 2026
+
+### Milestone 11 — Final Review (complete) 🎉
+
+Final audit, cleanup, and documentation pass:
+
+- **11.1 — Dead code removed:** deleted 4 orphaned legacy components at `src/components/` root — `FeedbackOverlay.jsx`, `ResultsScreen.jsx`, `QuestionCard.jsx`, `ProgressBar.jsx` (zero production imports; the live variants live in `shared/` and `results/`) plus `__tests__/QuestionCard.depth-layer.test.jsx`, which only tested the dead card. Suite: 471 → **470** jsdom tests (deletion removes exactly 1).
+- **11.2 — Bundle verified:** production JS **841 KB minified / 237.6 KB gzipped** + 7.8 KB CSS. The size is dominated by the Firebase SDK — reasonable for a Firebase-backed app; Vite's >500 KB chunk warning is cosmetic (documented in README + ARCHITECTURE).
+- **11.3 — Console check:** browser agent verified the app boots with **zero console errors** (only Vite dev-server + React DevTools info messages).
+- **11.4 — README rewritten:** replaced the stale quiz-app README (QuizScreen/questions.json/VITE_GOOGLE_CLIENT_ID, all gone) with the real platform: demo mode vs Firebase setup, 50 seeded activities (8/8/10/10/14), all 6 activity types, the two-tier test suite, project structure, and limitations.
+- **11.5 — .env.example:** added comments explaining demo mode and how to obtain the Firebase vars.
+- **11.6 — docs/ARCHITECTURE.md:** new architecture summary — app-shell routing, the three contexts, activity engine + 6 types, progress model & persistence, completion data flow, design system (Tailwind v4 @theme + @layer components), testing strategy, bundle, and known limitations.
+- **Code review:** caught and fixed a stale test count in both new docs (471 → **470** after the deletion).
+- **Suite:** ✅ **470 jsdom + 11 browser tests passing**, ESLint clean, build OK. Milestone 11 is **7/7 complete** — tracker total 161 → **168/168**. **All 11 milestones complete.** 🎉
 
 ### Milestone 10 — Testing & Verification (complete)
 
@@ -292,10 +305,10 @@ Auxiliary work completed earlier this session (not milestone tasks, tracked for 
 |-----------|--------|-----------|
 | 9. Styling & Polish | ✅ Complete | 0 |
 | 10. Testing & Verification | ✅ Complete | 0 |
-| 11. Final Review | ⬜ Not Started | 7 |
-| **Total remaining** | 🟢 In Progress | **7** |
+| 11. Final Review | ✅ Complete | 0 |
+| **Total remaining** | ✅ **All milestones complete** | **0** |
 
-Milestones 1–10 are **complete** — see Session Notes for the full history.
+All 11 milestones are **complete** — see Session Notes for the full history.
 
 ---
 
