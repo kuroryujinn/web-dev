@@ -42,6 +42,20 @@ import level4MatchShapesToHoles from './level4/l4-match-shapes-to-holes.json';
 import level4SortButtonsByColor from './level4/l4-sort-buttons-by-color.json';
 import level4SortThingsByCategory from './level4/l4-sort-things-by-category.json';
 import level4CompleteNumberPattern from './level4/l4-complete-number-pattern.json';
+import level5DrawAHouse from './level5/l5-draw-a-house.json';
+import level5DrawASun from './level5/l5-draw-a-sun.json';
+import level5DrawAStar from './level5/l5-draw-a-star.json';
+import level5DrawAFace from './level5/l5-draw-a-face.json';
+import level5SortMorningRoutine from './level5/l5-sort-morning-routine.json';
+import level5SortMakeASandwich from './level5/l5-sort-make-a-sandwich.json';
+import level5SortGetReadyForBed from './level5/l5-sort-get-ready-for-bed.json';
+import level5TraceAStar from './level5/l5-trace-a-star.json';
+import level5TraceAHeart from './level5/l5-trace-a-heart.json';
+import level5PutGroceriesAway from './level5/l5-put-groceries-away.json';
+import level5DressForTheWeather from './level5/l5-dress-for-the-weather.json';
+import level5SortTheLaundry from './level5/l5-sort-the-laundry.json';
+import level5MatchToolsToRooms from './level5/l5-match-tools-to-rooms.json';
+import level5MatchClothesToBodyParts from './level5/l5-match-clothes-to-body-parts.json';
 
 const ACTIVITIES_BY_LEVEL = {
   level1: [
@@ -87,6 +101,22 @@ const ACTIVITIES_BY_LEVEL = {
     level4SortButtonsByColor,
     level4SortThingsByCategory,
     level4CompleteNumberPattern,
+  ],
+  level5: [
+    level5DrawAHouse,
+    level5DrawASun,
+    level5DrawAStar,
+    level5DrawAFace,
+    level5SortMorningRoutine,
+    level5SortMakeASandwich,
+    level5SortGetReadyForBed,
+    level5TraceAStar,
+    level5TraceAHeart,
+    level5PutGroceriesAway,
+    level5DressForTheWeather,
+    level5SortTheLaundry,
+    level5MatchToolsToRooms,
+    level5MatchClothesToBodyParts,
   ],
 };
 

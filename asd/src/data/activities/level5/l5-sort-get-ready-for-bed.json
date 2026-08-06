@@ -1,0 +1,27 @@
+{
+  "id": "l5-sort-get-ready-for-bed",
+  "levelId": "level5",
+  "type": "sorting",
+  "title": "Get Ready for Bed",
+  "description": "Put your bedtime steps in order",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 7,
+  "content": {
+    "instructions": "Put your bedtime steps in order",
+    "direction": "ascending",
+    "orderHint": "pajamas, brush teeth, read a book, lights off",
+    "items": [
+      { "id": "lights-off", "label": "💡 Turn off the light", "image": null, "order": 3 },
+      { "id": "pajamas", "label": "🩳 Put on pajamas", "image": null, "order": 0 },
+      { "id": "read-book", "label": "📖 Read a book", "image": null, "order": 2 },
+      { "id": "brush-teeth", "label": "🪥 Brush teeth", "image": null, "order": 1 }
+    ],
+    "feedback": {
+      "correct": "Good night! Your bedtime routine is perfect!",
+      "incorrect": "What do you change into before you brush your teeth?"
+    }
+  },
+  "hints": ["Pajamas come first, then the light goes off last"]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "l5-trace-a-heart",
+  "levelId": "level5",
+  "type": "pathTracing",
+  "title": "Trace the Heart",
+  "description": "Trace all the way around the heart",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 9,
+  "content": {
+    "instructions": "Trace all the way around the heart",
+    "paths": [
+      {
+        "id": "heart",
+        "d": "M 50 32 C 50 18 28 14 23 32 C 19 50 50 72 50 72 C 50 72 81 50 77 32 C 72 14 50 18 50 32 Z",
+        "label": "Heart",
+        "strokeWidth": 3
+      }
+    ],
+    "tolerance": 5,
+    "feedback": {
+      "correct": "A perfect heart — traced with love!",
+      "incorrect": "Keep tracing — follow the curve down to the point."
+    }
+  },
+  "hints": ["Follow the round tops down to the point"]
+}

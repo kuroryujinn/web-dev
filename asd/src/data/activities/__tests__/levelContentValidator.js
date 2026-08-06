@@ -160,6 +160,35 @@ export const validateLevelContent = ({ levelId, difficulty, expectedTypes }) => 
       });
     }
 
+    if (expectedTypes.freehandDrawing) {
+      describe('freehand drawing content', () => {
+        const fd = activities.filter((a) => a.type === 'freehandDrawing');
+
+        it.each(fd.map((a) => [a.id, a]))(
+          '%s has instructions, positive canvas dimensions, and an optional valid template',
+          (_id, activity) => {
+            expect(activity.content.instructions).toBeTruthy();
+            expect(activity.content.canvasWidth).toBeGreaterThan(0);
+            expect(activity.content.canvasHeight).toBeGreaterThan(0);
+            if (activity.content.template) {
+              // The template is a single SVG path `d` string drawn in the
+              // canvas coordinate space.
+              expect(typeof activity.content.template).toBe('string');
+              expect(activity.content.template.length).toBeGreaterThan(0);
+              expect(activity.content.template).toMatch(/[a-zA-Z]/);
+            }
+          },
+        );
+
+        it('includes feedback messages', () => {
+          fd.forEach((a) => {
+            expect(a.content.feedback.correct).toBeTruthy();
+            expect(a.content.feedback.incorrect).toBeTruthy();
+          });
+        });
+      });
+    }
+
     if (expectedTypes.sorting) {
       describe('sorting content', () => {
         const sorting = activities.filter((a) => a.type === 'sorting');

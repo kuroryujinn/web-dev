@@ -8,8 +8,8 @@ describe('Level 1 activities', () => {
     expectedTypes: { multipleChoice: 5, matching: 3 },
   });
 
-  it('returns an empty array for levels without content yet', () => {
-    expect(getActivitiesForLevel('level5')).toEqual([]);
+  it('returns an empty array for unknown levels', () => {
+    expect(getActivitiesForLevel('level99')).toEqual([]);
   });
 
   // No level-specific extra assertions beyond the shared validator for now.

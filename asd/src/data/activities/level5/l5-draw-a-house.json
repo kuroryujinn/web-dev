@@ -1,0 +1,23 @@
+{
+  "id": "l5-draw-a-house",
+  "levelId": "level5",
+  "type": "freehandDrawing",
+  "title": "Draw a House",
+  "description": "Draw your own house along the dotted line",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 1,
+  "content": {
+    "instructions": "Draw your own house along the dotted line",
+    "canvasWidth": 800,
+    "canvasHeight": 450,
+    "strokeWidth": 4,
+    "template": "M 120 260 L 120 120 L 250 60 L 380 120 L 380 260 Z M 220 260 L 220 195 L 280 195 L 280 260 Z",
+    "feedback": {
+      "correct": "Beautiful house — what a lovely home!",
+      "incorrect": "Keep drawing — follow the dotted line!"
+    }
+  },
+  "hints": ["Start at the roof and go around"]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "l5-draw-a-face",
+  "levelId": "level5",
+  "type": "freehandDrawing",
+  "title": "Draw a Happy Face",
+  "description": "Draw a happy face with eyes and a smile",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 4,
+  "content": {
+    "instructions": "Draw a happy face — head, eyes, and a big smile",
+    "canvasWidth": 800,
+    "canvasHeight": 450,
+    "strokeWidth": 4,
+    "template": "M 400 90 A 130 130 0 1 1 399.9 90 Z M 345 170 A 18 18 0 1 1 344.9 170 Z M 455 170 A 18 18 0 1 1 454.9 170 Z M 330 240 Q 400 310 470 240",
+    "feedback": {
+      "correct": "What a happy face — great job!",
+      "incorrect": "Keep drawing — don't forget the smile!"
+    }
+  },
+  "hints": ["A happy face always has a big smile"]
+}

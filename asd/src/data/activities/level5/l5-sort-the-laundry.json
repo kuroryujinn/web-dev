@@ -1,0 +1,29 @@
+{
+  "id": "l5-sort-the-laundry",
+  "levelId": "level5",
+  "type": "dragAndDrop",
+  "title": "Sort the Laundry",
+  "description": "Put each piece of clothing in the right basket",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 12,
+  "content": {
+    "instructions": "Put each piece of clothing in the right basket",
+    "items": [
+      { "id": "white-shirt", "label": "👕 White shirt", "image": null },
+      { "id": "red-socks", "label": "🧦 Red socks", "image": null },
+      { "id": "jacket", "label": "🧥 Jacket", "image": null }
+    ],
+    "targets": [
+      { "id": "whites-basket", "label": "⚪ Whites basket", "image": null, "correctItemId": "white-shirt" },
+      { "id": "colors-basket", "label": "🌈 Colors basket", "image": null, "correctItemId": "red-socks" },
+      { "id": "delicates-basket", "label": "✨ Delicates basket", "image": null, "correctItemId": "jacket" }
+    ],
+    "feedback": {
+      "correct": "Laundry day done — every basket is sorted!",
+      "incorrect": "One piece is in the wrong basket. What color are the socks?"
+    }
+  },
+  "hints": ["White goes with white, colors go with colors"]
+}

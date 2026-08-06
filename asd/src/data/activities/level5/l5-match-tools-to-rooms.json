@@ -1,0 +1,25 @@
+{
+  "id": "l5-match-tools-to-rooms",
+  "levelId": "level5",
+  "type": "matching",
+  "title": "Match Tools to Rooms",
+  "description": "Match each item to the room where it belongs",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 13,
+  "content": {
+    "instructions": "Tap an item, then tap the room where it belongs",
+    "pairs": [
+      { "left": { "id": "l1", "label": "🧹 Broom", "image": null }, "right": { "id": "r1", "label": "Kitchen", "image": null } },
+      { "left": { "id": "l2", "label": "🪥 Toothbrush", "image": null }, "right": { "id": "r2", "label": "Bathroom", "image": null } },
+      { "left": { "id": "l3", "label": "🛏️ Pillow", "image": null }, "right": { "id": "r3", "label": "Bedroom", "image": null } },
+      { "left": { "id": "l4", "label": "📺 TV", "image": null }, "right": { "id": "r4", "label": "Living room", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Great matching — every item is home!",
+      "incorrect": "Not quite. Where do you brush your teeth?"
+    }
+  },
+  "hints": ["Think about where you use each thing"]
+}

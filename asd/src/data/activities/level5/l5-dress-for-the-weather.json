@@ -1,0 +1,29 @@
+{
+  "id": "l5-dress-for-the-weather",
+  "levelId": "level5",
+  "type": "dragAndDrop",
+  "title": "Dress for the Weather",
+  "description": "Give each person the item they need for their day",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 11,
+  "content": {
+    "instructions": "Give each person the item they need for their day",
+    "items": [
+      { "id": "umbrella", "label": "☂️ Umbrella", "image": null },
+      { "id": "scarf", "label": "🧣 Scarf", "image": null },
+      { "id": "sunglasses", "label": "🕶️ Sunglasses", "image": null }
+    ],
+    "targets": [
+      { "id": "rainy-day", "label": "🌧️ Rainy day", "image": null, "correctItemId": "umbrella" },
+      { "id": "cold-day", "label": "🥶 Cold day", "image": null, "correctItemId": "scarf" },
+      { "id": "sunny-day", "label": "☀️ Sunny day", "image": null, "correctItemId": "sunglasses" }
+    ],
+    "feedback": {
+      "correct": "Everyone is ready for their day — perfect!",
+      "incorrect": "Who needs the umbrella? Look at the weather!"
+    }
+  },
+  "hints": ["Think about what keeps you dry, warm, or shaded"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "l5-sort-morning-routine",
+  "levelId": "level5",
+  "type": "sorting",
+  "title": "Morning Routine",
+  "description": "Put your morning steps in the right order",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 5,
+  "content": {
+    "instructions": "Put your morning steps in order",
+    "direction": "ascending",
+    "orderHint": "wake up, brush teeth, get dressed, eat breakfast",
+    "items": [
+      { "id": "brush-teeth", "label": "🪥 Brush teeth", "image": null, "order": 1 },
+      { "id": "eat-breakfast", "label": "🥣 Eat breakfast", "image": null, "order": 3 },
+      { "id": "wake-up", "label": "🌅 Wake up", "image": null, "order": 0 },
+      { "id": "get-dressed", "label": "👕 Get dressed", "image": null, "order": 2 }
+    ],
+    "feedback": {
+      "correct": "Perfect morning routine — off to a great day!",
+      "incorrect": "Think about what you do first when you wake up."
+    }
+  },
+  "hints": ["First you wake up, then you get ready"]
+}

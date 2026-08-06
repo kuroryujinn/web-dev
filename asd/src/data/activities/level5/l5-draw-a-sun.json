@@ -1,0 +1,23 @@
+{
+  "id": "l5-draw-a-sun",
+  "levelId": "level5",
+  "type": "freehandDrawing",
+  "title": "Draw the Sun",
+  "description": "Draw the sun with its rays",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 2,
+  "content": {
+    "instructions": "Draw the sun — follow the circle, then add the rays",
+    "canvasWidth": 800,
+    "canvasHeight": 450,
+    "strokeWidth": 4,
+    "template": "M 400 70 A 80 80 0 1 1 399.9 70 M 400 20 L 400 5 M 400 280 L 400 295 M 250 150 L 235 150 M 550 150 L 565 150 M 295 45 L 285 30 M 505 45 L 515 30 M 295 255 L 285 270 M 505 255 L 515 270",
+    "feedback": {
+      "correct": "Sunny and bright — wonderful drawing!",
+      "incorrect": "Keep drawing — trace the circle and the rays!"
+    }
+  },
+  "hints": ["The sun is a big circle with rays around it"]
+}

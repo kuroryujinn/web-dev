@@ -1,0 +1,25 @@
+{
+  "id": "l5-match-clothes-to-body-parts",
+  "levelId": "level5",
+  "type": "matching",
+  "title": "Match Clothes to Body Parts",
+  "description": "Match each piece of clothing to where it goes",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 14,
+  "content": {
+    "instructions": "Tap a piece of clothing, then tap where it goes",
+    "pairs": [
+      { "left": { "id": "l1", "label": "🧢 Hat", "image": null }, "right": { "id": "r1", "label": "Head", "image": null } },
+      { "left": { "id": "l2", "label": "🧤 Gloves", "image": null }, "right": { "id": "r2", "label": "Hands", "image": null } },
+      { "left": { "id": "l3", "label": "🧦 Socks", "image": null }, "right": { "id": "r3", "label": "Feet", "image": null } },
+      { "left": { "id": "l4", "label": "🧣 Scarf", "image": null }, "right": { "id": "r4", "label": "Neck", "image": null } }
+    ],
+    "feedback": {
+      "correct": "Perfect — everyone is dressed and ready!",
+      "incorrect": "Not quite. Where do your socks go?"
+    }
+  },
+  "hints": ["Clothes go where they keep you warm"]
+}

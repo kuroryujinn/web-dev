@@ -1,0 +1,23 @@
+{
+  "id": "l5-draw-a-star",
+  "levelId": "level5",
+  "type": "freehandDrawing",
+  "title": "Draw a Star",
+  "description": "Draw a star with five points",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 3,
+  "content": {
+    "instructions": "Draw the star — follow the dotted line",
+    "canvasWidth": 800,
+    "canvasHeight": 450,
+    "strokeWidth": 4,
+    "template": "M 400 80 L 435 185 L 545 185 L 455 250 L 485 355 L 400 295 L 315 355 L 345 250 L 255 185 L 365 185 Z",
+    "feedback": {
+      "correct": "Shining star — amazing drawing!",
+      "incorrect": "Keep tracing — go from point to point!"
+    }
+  },
+  "hints": ["Count the five points as you go"]
+}

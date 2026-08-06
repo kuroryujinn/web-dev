@@ -1,0 +1,29 @@
+{
+  "id": "l5-put-groceries-away",
+  "levelId": "level5",
+  "type": "dragAndDrop",
+  "title": "Put the Groceries Away",
+  "description": "Put each food in the right place to keep it fresh",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 10,
+  "content": {
+    "instructions": "Put each food where it stays fresh",
+    "items": [
+      { "id": "milk", "label": "🥛 Milk", "image": null },
+      { "id": "ice-cream", "label": "🍦 Ice cream", "image": null },
+      { "id": "crackers", "label": "🍘 Crackers", "image": null }
+    ],
+    "targets": [
+      { "id": "fridge", "label": "🧊 Fridge", "image": null, "correctItemId": "milk" },
+      { "id": "freezer", "label": "❄️ Freezer", "image": null, "correctItemId": "ice-cream" },
+      { "id": "cupboard", "label": "🚪 Cupboard", "image": null, "correctItemId": "crackers" }
+    ],
+    "feedback": {
+      "correct": "All the groceries are in the perfect spot!",
+      "incorrect": "One food is in the wrong place. Where does ice cream live?"
+    }
+  },
+  "hints": ["Cold foods go in the cold places"]
+}

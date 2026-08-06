@@ -1,0 +1,27 @@
+{
+  "id": "l5-sort-make-a-sandwich",
+  "levelId": "level5",
+  "type": "sorting",
+  "title": "Make a Sandwich",
+  "description": "Put the sandwich steps in order",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 6,
+  "content": {
+    "instructions": "Put the sandwich steps in order",
+    "direction": "ascending",
+    "orderHint": "bread, filling, close, cut",
+    "items": [
+      { "id": "cut", "label": "🔪 Cut in half", "image": null, "order": 3 },
+      { "id": "bread", "label": "🍞 Take two slices of bread", "image": null, "order": 0 },
+      { "id": "close", "label": "🥪 Close the sandwich", "image": null, "order": 2 },
+      { "id": "filling", "label": "🧀 Add the filling", "image": null, "order": 1 }
+    ],
+    "feedback": {
+      "correct": "Yummy! You made a perfect sandwich!",
+      "incorrect": "Remember — the filling goes between the bread."
+    }
+  },
+  "hints": ["Bread first, filling second, then close it up"]
+}

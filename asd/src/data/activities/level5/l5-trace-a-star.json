@@ -1,0 +1,28 @@
+{
+  "id": "l5-trace-a-star",
+  "levelId": "level5",
+  "type": "pathTracing",
+  "title": "Trace the Star",
+  "description": "Trace all the way around the star",
+  "difficulty": 5,
+  "maxScore": 100,
+  "timeLimit": null,
+  "order": 8,
+  "content": {
+    "instructions": "Trace all the way around the star",
+    "paths": [
+      {
+        "id": "star",
+        "d": "M 50 8 L 61 38 L 93 38 L 67 57 L 77 89 L 50 70 L 23 89 L 33 57 L 7 38 L 39 38 Z",
+        "label": "Star",
+        "strokeWidth": 3
+      }
+    ],
+    "tolerance": 5,
+    "feedback": {
+      "correct": "You traced the whole star — amazing!",
+      "incorrect": "Keep tracing — go from point to point and close the star."
+    }
+  },
+  "hints": ["Trace slowly at each point of the star"]
+}
